@@ -1,16 +1,23 @@
-﻿  internal partial class Program
+﻿using System;
+
+namespace Targil0
 {
-    private static void Main(string[] args)
+    partial class Program
     {
-        Welcome0055();
-    }
+        static void Main(string[] args)
+        {
+            Welcome0055();
+            Welcome8636();
+        }
 
-    private static void Welcome0055()
-    {
-        Console.Write("Enter your name: ");
-        string name = Console.ReadLine();
-        Console.WriteLine($"{name}, welcome to my first cobsole application");
-    }
+        private static void Welcome0055()
+        {
+            Console.Write("Enter your name: ");
+            string name = Console.ReadLine();
+            Console.WriteLine($"{name}, welcome tomy first cobsole application");
+        }
 
+        static partial void Welcome8636();
+    }
     private static void Welcome8636();
 }
