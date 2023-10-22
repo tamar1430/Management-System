@@ -14,7 +14,7 @@ namespace Targil0
         {
             Console.Write("Enter your name: ");
             string name = Console.ReadLine();
-            Console.WriteLine($"{name}, welcome tomy first cobsole application");
+            Console.WriteLine($"{name}, welcome to my first cobsole application");
         }
 
         static partial void Welcome8636();
