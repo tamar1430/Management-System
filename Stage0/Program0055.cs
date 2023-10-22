@@ -12,5 +12,5 @@
         Console.WriteLine($"{name}, welcome to my first cobsole application");
     }
 
-    private static void Welocome8636() { }
+    private static void Welocome8636();
 }
