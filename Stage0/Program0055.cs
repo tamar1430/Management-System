@@ -19,5 +19,4 @@ namespace Targil0
 
         static partial void Welcome8636();
     }
- 
 }
