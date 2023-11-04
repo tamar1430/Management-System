@@ -1,11 +1,10 @@
 ﻿
-
 namespace DO;
+//using Dal;
 
 public record Task
 (
-    ///static int I = 1;
-    int Id,
+    //DataSource.Config.NextTaskId Id,
     string Desceiption,
     string Alias,
     bool IsMilestone,
