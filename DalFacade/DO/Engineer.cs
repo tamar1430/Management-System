@@ -1,10 +1,16 @@
-﻿namespace Do;
+﻿
+namespace Do;
 
 public record Engineer
+(
+	int Id,
+	string Name,
+	string Email,
+    EngineerExperience Level, 
+	double Cost
+)
 {
-	int Id;
-	string ?Name = null;
-	string ?Email = null;
-
+	public Engineer():this(0,"","", EngineerExperience.Novice, 0) { }
 
 }
+Engineer e = new Engineer();
