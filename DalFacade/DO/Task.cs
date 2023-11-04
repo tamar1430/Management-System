@@ -5,6 +5,7 @@ namespace DO;
 public record Task
 (
     //DataSource.Config.NextTaskId Id,
+    int id,
     string Desceiption,
     string Alias,
     bool IsMilestone,
