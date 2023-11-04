@@ -1,4 +1,4 @@
-﻿namespace Do;
+﻿namespace DO;
 
 public record Dependency
 {

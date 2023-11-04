@@ -13,7 +13,7 @@ namespace Targil0
         private static void Welcome0055()
         {
             Console.Write("Enter your name: ");
-            string name = Console.ReadLine();
+            string? name = Console.ReadLine();
             Console.WriteLine($"{name}, welcome to my first console application");
         }
 

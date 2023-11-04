@@ -1,5 +1,5 @@
 ﻿
-namespace Do;
+namespace DO;
 
 public record Engineer
 (
@@ -11,6 +11,4 @@ public record Engineer
 )
 {
 	public Engineer():this(0,"","", EngineerExperience.Novice, 0) { }
-
 }
-Engineer e = new Engineer();
