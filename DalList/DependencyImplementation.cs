@@ -7,28 +7,39 @@ namespace Dal;
 
 internal class DependencyImplementation : IDependency
 {
-    public int Create(Dependency item)
+    public int Create(Dependency dependency)
     {
-        throw new NotImplementedException();
+        int newId = DataSource.Config.NextDependencyId;
+        Dependency newDependency = dependency with { Id = newId };
+        DataSource.Dependencys.Add(newDependency);
+        return newId;
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        Dependency? dependency = DataSource.Dependencys.Find(dependency => dependency.Id == id);
+        if (dependency == null)
+            throw new NotImplementedException("There is no object of type Engineer with the same ID");
+        else
+            DataSource.Dependencys.Remove(dependency);
     }
 
     public Dependency? Read(int id)
     {
-        throw new NotImplementedException();
+        return DataSource.Dependencys.Find(dependency => dependency.Id == id);
     }
 
     public List<Dependency> ReadAll()
     {
-        throw new NotImplementedException();
+        return new List<Dependency>(DataSource.Dependencys);
     }
 
-    public void Update(Dependency item)
+    public void Update(Dependency newDependency)
     {
-        throw new NotImplementedException();
+        Dependency? previousDependency = DataSource.Dependencys.Find(dependency => dependency.Id == newDependency.Id);
+        if (previousDependency == null)
+            throw new NotImplementedException("There is no object of type Engineer with the same ID");
+        DataSource.Dependencys.Remove(previousDependency);
+        DataSource.Dependencys.Add(newDependency);
     }
 }
