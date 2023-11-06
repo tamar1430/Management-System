@@ -2,6 +2,7 @@
 namespace Dal;
 using DalApi;
 using DO;
+using System;
 
 
 public class TaskImplementation : ITask
@@ -18,7 +19,7 @@ public class TaskImplementation : ITask
     {
         Task? task = DataSource.Tasks.Find(task => task.Id == id);
         if (task == null)
-            throw new NotImplementedException("There is no object of type Engineer with the same ID");
+            throw new Exception($"Task with ID={id} does Not exist");
         else
             DataSource.Tasks.Remove(task);
     }
@@ -37,7 +38,7 @@ public class TaskImplementation : ITask
     {
         Task? previousTask = DataSource.Tasks.Find(task => task.Id == newTask.Id);
         if (previousTask == null)
-            throw new NotImplementedException("There is no object of type Engineer with the same ID");
+            throw new Exception($"Task with ID={newTask.Id} does Not exist");
         DataSource.Tasks.Remove(previousTask);
         DataSource.Tasks.Add(newTask);
     }

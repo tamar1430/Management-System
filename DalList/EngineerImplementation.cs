@@ -8,7 +8,7 @@ public class EngineerImplementation : IEngineer
     public int Create(Engineer newEngineer)
     {
         if (DataSource.Engineers.Find(engineer => engineer.Id == newEngineer.Id)!= null)
-            throw new NotImplementedException("Engineer already exists an object of type with the same Id");
+            throw new Exception("Engineer already exists an object of type with the same Id");
         DataSource.Engineers.Add(newEngineer);
         return newEngineer.Id;
     }
@@ -17,7 +17,7 @@ public class EngineerImplementation : IEngineer
     {
         Engineer? engineer = DataSource.Engineers.Find(Engineer => Engineer.Id == id);
         if (engineer == null)
-            throw new NotImplementedException("There is no object of type Engineer with the same ID");
+            throw new Exception($"Engineer with ID={id} does Not exist");
         else
             DataSource.Engineers.Remove(engineer);
     }
@@ -36,7 +36,7 @@ public class EngineerImplementation : IEngineer
     {
         Engineer? previousEngineer = DataSource.Engineers.Find(Engineer => Engineer.Id == newEngineer.Id);
         if (previousEngineer == null)
-            throw new NotImplementedException("There is no object of type Engineer with the same ID");
+            throw new Exception($"Engineer with ID={newEngineer.Id} does Not exist");
         DataSource.Engineers.Remove(previousEngineer);
         DataSource.Engineers.Add(newEngineer);
     }

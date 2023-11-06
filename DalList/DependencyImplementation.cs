@@ -19,7 +19,7 @@ internal class DependencyImplementation : IDependency
     {
         Dependency? dependency = DataSource.Dependencys.Find(dependency => dependency.Id == id);
         if (dependency == null)
-            throw new NotImplementedException("There is no object of type Engineer with the same ID");
+            throw new Exception($"Dependency with ID={id} does Not exist");
         else
             DataSource.Dependencys.Remove(dependency);
     }
@@ -38,7 +38,7 @@ internal class DependencyImplementation : IDependency
     {
         Dependency? previousDependency = DataSource.Dependencys.Find(dependency => dependency.Id == newDependency.Id);
         if (previousDependency == null)
-            throw new NotImplementedException("There is no object of type Engineer with the same ID");
+            throw new Exception($"Dependency with ID={newDependency.Id} does Not exist");
         DataSource.Dependencys.Remove(previousDependency);
         DataSource.Dependencys.Add(newDependency);
     }
