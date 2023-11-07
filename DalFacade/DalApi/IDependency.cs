@@ -1,7 +1,4 @@
 ﻿
-
-
-
 namespace DalApi;
 using DO;
 

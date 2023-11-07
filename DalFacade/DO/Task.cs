@@ -4,14 +4,14 @@ namespace DO;
 public record Task
 (
     int Id,
-    string Desceiption,
+    string Description,
     string Alias,
     bool IsMilestone,
     EngineerExperience CopmlexityLevel,
     DateTime  CreatedAtDate,
-    DateTime? StartDate = null,
     DateTime? ScheduledDate = null,
-    DateTime? ForesastDate = null,
+    DateTime? StartDate = null,
+    TimeSpan? ForesastDate = null,
     DateTime? DeadLineDate = null,
     DateTime? CompleteDate = null,
     string? Deliverable = null,

@@ -7,7 +7,7 @@ public class EngineerImplementation : IEngineer
 {
     public int Create(Engineer newEngineer)
     {
-        if (DataSource.Engineers.Find(engineer => engineer.Id == newEngineer.Id)!= null)
+        if (DataSource.Engineers.Find(engineer => engineer.Id == newEngineer.Id) != null)
             throw new Exception("Engineer already exists an object of type with the same Id");
         DataSource.Engineers.Add(newEngineer);
         return newEngineer.Id;
