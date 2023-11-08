@@ -2,7 +2,7 @@
 using DalApi;
 using DO;
 using Dal;
-
+using System.Runtime.CompilerServices;
 
 public static class Initialization
 {
@@ -115,6 +115,68 @@ public static class Initialization
 
         }
 
+    }
+
+    private static void createDependencys()
+    {
+        createDependency(5, 1);
+        createDependency(5, 2);
+        createDependency(5, 3);
+        createDependency(7, 1);
+        createDependency(7, 2);
+        createDependency(7, 3);
+        createDependency(9, 4);
+        createDependency(10, 3);
+        createDependency(11, 8);
+        createDependency(12, 7);
+        createDependency(13, 8);
+        createDependency(15, 4);
+        createDependency(15, 5);
+        createDependency(15, 9);
+        createDependency(16, 2);
+        createDependency(16, 7);
+        createDependency(16, 10);
+        createDependency(17, 1);
+        createDependency(17, 2);
+        createDependency(17, 3);
+        createDependency(17, 4);
+        createDependency(17, 5);
+        createDependency(17, 6);
+        createDependency(17, 7);
+        createDependency(17, 8);
+        createDependency(17, 9);
+        createDependency(17, 10);
+        createDependency(17, 11);
+        createDependency(17, 12);
+        createDependency(17, 13);
+        createDependency(17, 14);
+        createDependency(17, 15);
+        createDependency(17, 16);
+        createDependency(18, 3);
+        createDependency(18, 2);
+        createDependency(18, 7);
+        createDependency(18, 15);
+        createDependency(19, 3);
+        createDependency(19, 8);
+        createDependency(19, 3);
+        createDependency(20, 1);
+    }
+
+    private static void createDependency(int x, int y)
+    {
+        Dependency newDependency1 = new(0, x, y);
+        s_dalDependency!.Create(newDependency1);
+    }
+
+    public static void DO(IEngineer? dalEngineer, ITask? dalTask, IDependency? dalDependency)
+    {
+        s_dalEngineer = dalEngineer ?? throw new Exception("DAL can not be null!");
+        s_dalTask = dalTask ?? throw new Exception("DAL can not be null!");
+        s_dalDependency = dalDependency ?? throw new Exception("DAL can not be null!");
+
+        createEngineers();
+        createTasks();
+        createDependencys();
     }
 }
 
