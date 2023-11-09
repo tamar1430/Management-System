@@ -2,8 +2,6 @@
 using DalApi;
 using DO;
 
-
-
 namespace DalTest;
 
 internal class Program

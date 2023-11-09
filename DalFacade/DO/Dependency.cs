@@ -3,7 +3,7 @@
 /// <summary>
 /// record class for dependencys
 /// </summary>
-/// <param name="Id"></param>
+/// <param name="Id">unique ID (created automatically)</param>
 /// <param name="DependentTask"></param>
 /// <param name="PreviousTask"></param>
 public record Dependency
