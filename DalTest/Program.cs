@@ -11,9 +11,8 @@ internal class Program
     private static ITask? s_dalTask = new TaskImplementation(); //stage 1
     private static IDependency? s_dalDependency = new DependencyImplementation(); //stage 1
 
-
     /// <summary>
-    /// this code initializes the program by calling the Do method of the Initialization class and then displays the options menu to the user. 
+    /// this function initializes the program by calling the Do method of the Initialization class and then displays the options menu to the user. 
     /// It also handles any exceptions that might occur during program execution by catching them and displaying the exception message.
     /// </summary>
     /// <param name="args"></param>
@@ -31,7 +30,7 @@ internal class Program
     }
 
     /// <summary>
-    /// this code presents an options menu to the user, allows them to select various entities (Engineer, Task, or Dependency), 
+    /// this function presents an options menu to the user, allows them to select various entities (Engineer, Task, or Dependency), 
     /// and performs specific actions based on their selection.
     /// It also handles invalid input by displaying an error message and showing the options menu again
     /// </summary>
@@ -78,7 +77,7 @@ internal class Program
     }
 
     /// <summary>
-    /// this code defines a method that displays a menu for a specific entity and allows the user to perform various actions related to that entity. 
+    /// this function defines a method that displays a menu for a specific entity and allows the user to perform various actions related to that entity. 
     /// It handles invalid input by displaying an error message and showing the entity menu again.
     /// </summary>
     /// <param name="entity"></param>
@@ -129,7 +128,7 @@ internal class Program
     #region Create
 
     /// <summary>
-    /// this code defines a method that creates an entity based on the provided entity parameter. 
+    /// this function defines a method that creates an entity based on the provided entity parameter. 
     /// It dynamically calls a specific creation method based on the value of entity.
     /// </summary>
     /// <param name="entity"></param>
@@ -265,7 +264,7 @@ internal class Program
     /// this function  snippet defines a method called ReadAll that reads and displays all entities of a specific type.
     /// It uses a switch statement to determine the entity type and then calls the corresponding ReadAll method from 
     /// the appropriate DataAccess Layer class. It iterates over each returned entity and displays it using Console.WriteLine(). 
-    /// The code handles three entity types: Engineer, Task, and Dependency.
+    /// The function handles three entity types: Engineer, Task, and Dependency.
     /// </summary>
     /// <param name="entity"></param>
     private static void ReadAll(string entity)
@@ -299,7 +298,11 @@ internal class Program
 
     #region Update
 
-  
+    /// <summary>
+    /// update entity
+    /// Passes to the appropriate reference update function
+    /// </summary>
+    /// <param name="entity"></param>
     private static void Update(string entity)
     {
         try
@@ -323,13 +326,13 @@ internal class Program
         catch (Exception ex) { Console.WriteLine(ex.Message); };
     }
 
-
-
-    // this code snippet allows the user to update the details of an engineer entity by providing a new name,
-    // email, level, and cost. It validates and retains the existing values if the user provides empty input. 
-    //After collecting the updated details,
-    // it creates a new Engineer object and calls the Update method to update the engineer entity in the data source.
-
+    /// <summary>
+    ///this function snippet allows the user to update the details of an engineer entity by providing a new name,
+    /// email, level, and cost. It validates and retains the existing values if the user provides empty input. 
+    ///After collecting the updated details,
+    /// it creates a new Engineer object and calls the Update method to update the engineer entity in the data source.
+    /// </summary>
+    /// <exception cref="Exception"></exception>
     private static void UpdateEngineer()
     {
         Console.Write($"Enter the ID of the engineer you want to update: ");
@@ -361,6 +364,13 @@ internal class Program
         s_dalEngineer!.Update(newEngineer);
     }
 
+    /// <summary>
+    /// this function snippet allows the user to update the details of an task entity by providing
+    /// and retains the existing values if the user provides empty input. 
+    /// After collecting the updated details,
+    /// it creates a new Engineer object and calls the Update method to update the engineer entity in the data source.
+    /// </summary>
+    /// <exception cref="Exception"></exception>
     private static void UpdateTask()
     {
         Console.Write($"Enter the ID of the engineer you want to update: ");
@@ -452,9 +462,11 @@ internal class Program
         s_dalTask!.Update(newTask);
     }
 
-
-    //, this code snippet allows the user to update the details of a dependency entity by providing new values
-    // for the dependentTask and `previousTask
+    /// <summary>
+    /// this function snippet allows the user to update the details of a dependency entity by providing new values
+    /// for the dependentTask and `previousTask
+    /// </summary>
+    /// <exception cref="Exception"></exception>
     private static void UpdateDependency()
     {
         Console.Write($"Enter the ID of the dependency you want to update: ");
@@ -485,10 +497,13 @@ internal class Program
 
     #region Delete
 
-    // The Delete function is responsible for deleting an entity (Engineer, Task, or Dependency) 
-    //based on the entity type specified as a parameter. It prompts the user to enter the ID of the entity
-    //they want to delete, and then calls the appropriate data access layer method to delete the entity from the data source. 
-    //It displays a success message if the deletion is successful, or an error message if an exception occurs during the deletion process.
+    /// <summary>
+    /// The Delete function is responsible for deleting an entity (Engineer, Task, or Dependency) 
+    /// based on the entity type specified as a parameter. It prompts the user to enter the ID of the entity
+    /// they want to delete, and then calls the appropriate data access layer method to delete the entity from the data source. 
+    /// It displays a success message if the deletion is successful, or an error message if an exception occurs during the deletion process.
+    /// </summary>
+    /// <param name="entity"></param>
     private static void Delete(string entity)
     {
         try
@@ -519,4 +534,3 @@ internal class Program
 
     #endregion
 }
- 
