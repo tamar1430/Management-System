@@ -4,7 +4,7 @@ using DO;
 
 namespace Dal;
 
-public class DependencyImplementation : IDependency
+internal class DependencyImplementation : IDependency
 {
     /// <summary>
     /// create new dependency
