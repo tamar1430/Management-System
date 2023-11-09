@@ -4,7 +4,7 @@ namespace DO;
 /// <summary>
 /// record class for engineers
 /// </summary>
-/// <param name="Id"></param>
+/// <param name="Id">Personal unique ID of the engineer</param>
 /// <param name="Name"></param>
 /// <param name="Email"></param>
 /// <param name="Level"></param>

@@ -1,5 +1,4 @@
 ﻿
-
 namespace Dal;
 using DalApi;
 using DO;
@@ -9,6 +8,10 @@ using DO;
 /// </summary>
 internal static class DataSource
 {
+    /// <summary>
+    /// static class of config
+    /// defining the numbers that identify the runners
+    /// </summary>
     internal static class Config
     {
         internal const int startTaskId = 1;
@@ -19,6 +22,7 @@ internal static class DataSource
         private static int nextDependencyId = startDependencyId;
         internal static int NextDependencyId { get => nextDependencyId++; }
     }
+
     internal static List<Task> Tasks { get; } = new();
     internal static List<Engineer> Engineers { get; } = new();
     internal static List<Dependency> Dependencys { get; } = new();

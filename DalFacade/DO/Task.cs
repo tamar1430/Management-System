@@ -4,7 +4,7 @@ namespace DO;
 /// <summary>
 /// record class for tasks
 /// </summary>
-/// <param name="Id"></param>
+/// <param name="Id">unique ID (created automatically)</param>
 /// <param name="Description"></param>
 /// <param name="Alias"></param>
 /// <param name="IsMilestone"></param>
