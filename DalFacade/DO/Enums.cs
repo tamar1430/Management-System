@@ -1,9 +1,9 @@
 ﻿
-using System.Net.NetworkInformation;
-
 namespace DO;
 
-
+/// <summary>
+/// enum of EngineerExperience
+/// </summary>
 public enum EngineerExperience
 {
     Novice,
