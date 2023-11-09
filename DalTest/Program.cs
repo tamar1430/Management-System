@@ -299,6 +299,7 @@ internal class Program
 
     #region Update
 
+  
     private static void Update(string entity)
     {
         try
@@ -322,51 +323,44 @@ internal class Program
         catch (Exception ex) { Console.WriteLine(ex.Message); };
     }
 
+
+
+    // this code snippet allows the user to update the details of an engineer entity by providing a new name,
+    // email, level, and cost. It validates and retains the existing values if the user provides empty input. 
+    //After collecting the updated details,
+    // it creates a new Engineer object and calls the Update method to update the engineer entity in the data source.
+
     private static void UpdateEngineer()
     {
         Console.Write($"Enter the ID of the engineer you want to update: ");
         int id = int.Parse(Console.ReadLine()!);
-
         if (s_dalEngineer!.Read(id) is null)
             throw new Exception($"Engineer with ID={id} does Not exist");
         Console.WriteLine(s_dalEngineer!.Read(id));
-
         string name;
         Console.Write("name: ");
         string? name_input = Console.ReadLine();
         if (name_input == "") { name = s_dalEngineer!.Read(id)!.Name; }
         else { name = name_input!; }
-
         string email;
         Console.Write("email: ");
         string? email_input = Console.ReadLine();
         if (email_input == "") { email = s_dalEngineer!.Read(id)!.Email; }
         else { email = email_input!; }
-
         EngineerExperience level;
         Console.Write("leval: ");
         string? level_input = Console.ReadLine();
         if (level_input == "") { level = s_dalEngineer!.Read(id)!.Level; }
         else { level = (EngineerExperience)Enum.Parse(typeof(EngineerExperience), level_input!); };
-
         double cost;
         Console.Write("cost: ");
         string? cost_input = Console.ReadLine();
         if (cost_input == "") { cost = s_dalEngineer!.Read(id)!.Cost; }
         else { cost = double.Parse(cost_input!); }
-
         Engineer newEngineer = new(id, name!, email!, level, cost);
-
         s_dalEngineer!.Update(newEngineer);
     }
 
-    /// <summary>
-    /// update task
-    /// After receiving the id and displaying the task,
-    /// it checks for each received field if it has a value
-    /// and then updates it or no value was entered and then remains as it was
-    /// </summary>
-    /// <exception cref="Exception"></exception>
     private static void UpdateTask()
     {
         Console.Write($"Enter the ID of the engineer you want to update: ");
@@ -450,16 +444,17 @@ internal class Program
         if (engineerld_input == "") { engineerld = s_dalTask!.Read(id)!.Engineerld; }
         else { engineerld = int.Parse(engineerld_input!); }
 
-
         DO.Task newTask = new(id, description, alias,
             isMilestone, copmlexityLevel, createdAtDate, startDate,
             scheduledDate, foresastDate, deadLineDate,
             completeDate, deliverable, remarks, engineerld);
 
-
         s_dalTask!.Update(newTask);
     }
 
+
+    //, this code snippet allows the user to update the details of a dependency entity by providing new values
+    // for the dependentTask and `previousTask
     private static void UpdateDependency()
     {
         Console.Write($"Enter the ID of the dependency you want to update: ");
@@ -490,6 +485,10 @@ internal class Program
 
     #region Delete
 
+    // The Delete function is responsible for deleting an entity (Engineer, Task, or Dependency) 
+    //based on the entity type specified as a parameter. It prompts the user to enter the ID of the entity
+    //they want to delete, and then calls the appropriate data access layer method to delete the entity from the data source. 
+    //It displays a success message if the deletion is successful, or an error message if an exception occurs during the deletion process.
     private static void Delete(string entity)
     {
         try
