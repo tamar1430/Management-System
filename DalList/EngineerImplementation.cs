@@ -28,7 +28,7 @@ internal class EngineerImplementation : IEngineer
     public void Delete(int id)
     {
         Engineer? engineer = DataSource.Engineers.Find(Engineer => Engineer.Id == id);
-        if (engineer == null)
+        if (engineer == null )
             throw new DalDoesNotExistException($"Engineer with ID={id} does Not exist");
         else
             DataSource.Engineers.Remove(engineer);
