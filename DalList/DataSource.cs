@@ -14,7 +14,7 @@ internal static class DataSource
     /// </summary>
     internal static class Config
     {
-        internal const int startTaskId = 1;
+        internal const int startTaskId =1;
         private static int nextTaskId = startTaskId;
         internal static int NextTaskId { get => nextTaskId++; }
 
