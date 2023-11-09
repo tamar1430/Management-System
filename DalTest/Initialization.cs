@@ -12,9 +12,11 @@ public static class Initialization
     const int MAX_ID = 999999999;
     const int MIN_COST = 100;
     const int MAX_COST = 600;
+
     private static IEngineer? s_dalEngineer;
     private static ITask? s_dalTask;
     private static IDependency? s_dalDependency;
+
     private static readonly Random s_rand = new();
 
     /// <summary>
@@ -54,35 +56,17 @@ public static class Initialization
             string _email = engineerEmails[i];
             Array enumValues = Enum.GetValues(typeof(EngineerExperience));// Get all values of the enum
             int randomIndex = s_rand.Next(enumValues.Length);   // Generate a random index
-            EngineerExperience _level = (EngineerExperience)enumValues.GetValue(randomIndex); // Get the random enum value
+            EngineerExperience _level = (EngineerExperience)enumValues.GetValue(randomIndex)!; // Get the random enum value
             double _cost = s_rand.Next(MIN_COST, MAX_COST);
             Engineer newEngineer = new(_id, _name, _email, _level, _cost);
             s_dalEngineer!.Create(newEngineer);
         }
     }
 
-
-
     /// <summary>
-    /// 
-    /*This function snippet creates multiple tasks and saves them using a data access layer (DAL). Here's what it does:
-1. It defines two string arrays: arrTaskDescription and arrTaskAlias. These arrays hold descriptions and aliases for various tasks.
-2. It enters a for loop that iterates through the elements of the arrTaskDescription array.
-3. Within the loop, it assigns the current task description to the _description variable and the corresponding task alias to the _alias variable.
-4. It sets the _isMilestone variable to false.
-5. It retrieves all the values of the EngineerExperience enumeration using Enum.GetValues(typeof(EngineerExperience)) and stores them in an array called enumValues.
-6. It generates a random index within the range of enumValues.Length using s_rand.Next(enumValues.Length).
-7. It retrieves a random value from enumValues using the generated random index and assigns it to the _copmlexityLevel variable, casting it to the appropriate enum type.
-8. It generates a random date within the range of 100 days ago to 1 day ago using DateTime.Now.AddDays(s_rand.Next(-100, -1)) and assigns it to the _createdAtDate variable.
-9. It initializes nullable DateTime variables (_scheduledDate, _startDate, _foresastDate, _deadLineDate, _completeDate) to null.
-10. It assigns specific string values to the _deliverable and _remarks variables.
-11. It sets the _engineerld variable to null.
-12. It creates a new Task object, newTask, with the values provided for its properties.
-13. It calls the Create method of the DAL (s_dalTask) and passes the newTask object as a parameter to save it in the data storage.
-14. The loop continues, creating and saving tasks until all elements of arrTaskDescription have been processed.
-
-In summary, this code generates multiple tasks with various properties using predefined descriptions and aliases. It assigns random complexity levels,
-    creates random creation dates, and saves the tasks using the DAL.*/
+    /// this function generates multiple tasks with various properties using predefined descriptions and aliases.
+    /// It assigns random complexity levels,
+    /// creates random creation dates, and saves the tasks using the DAL
     /// </summary>
     private static void createTasks()
     {
