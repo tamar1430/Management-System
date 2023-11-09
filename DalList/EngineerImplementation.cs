@@ -24,7 +24,8 @@ public class EngineerImplementation : IEngineer
 
     public Engineer? Read(int id)
     {
-        return DataSource.Engineers.Find(Engineer => Engineer.Id == id);
+        Engineer a= DataSource.Engineers.Find(Engineer => Engineer.Id == id);
+        return a;
     }
 
     public List<Engineer> ReadAll()
@@ -32,12 +33,12 @@ public class EngineerImplementation : IEngineer
         return new List<Engineer>(DataSource.Engineers);
     }
 
-    public void Update(Engineer newEngineer)
+    public void Update(Engineer engineer)
     {
-        Engineer? previousEngineer = DataSource.Engineers.Find(Engineer => Engineer.Id == newEngineer.Id);
+        Engineer? previousEngineer = DataSource.Engineers.Find(Engineer => Engineer.Id == engineer.Id);
         if (previousEngineer == null)
-            throw new Exception($"Engineer with ID={newEngineer.Id} does Not exist");
+            throw new Exception($"Engineer with ID={engineer.Id} does Not exist");
         DataSource.Engineers.Remove(previousEngineer);
-        DataSource.Engineers.Add(newEngineer);
+        DataSource.Engineers.Add(engineer);
     }
 }
