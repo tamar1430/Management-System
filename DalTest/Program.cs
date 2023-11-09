@@ -172,7 +172,7 @@ internal class Program
 
             Engineer newEngineer = new(id, name, email, level, cost);
 
-            s_dalEngineer!.Create(newEngineer);
+            s_dal.Engineer!.Create(newEngineer);
 
             Console.WriteLine("Entity created successfully.");
         }
@@ -219,7 +219,7 @@ internal class Program
         DO.Task newTask = new(0, description, alias, isMilestone, copmlexityLevel, createdAtDate, scheduledDate,
             startDate, foresastDate, deadLineDate, completeDate, deliverable, remarks, engineerld);
 
-        s_dalTask!.Create(newTask);
+        s_dal.Task!.Create(newTask);
 
         Console.WriteLine("Entity created successfully.");
     }
@@ -239,7 +239,7 @@ internal class Program
 
         Dependency newDependency = new(0, dependentTask, previousTask);
 
-        s_dalDependency!.Create(newDependency);
+        s_dal!.Dependency!.Create(newDependency);
 
         Console.WriteLine("Entity created successfully.");
     }
@@ -263,13 +263,13 @@ internal class Program
         switch (entity)
         {
             case "Engineer":
-                Console.WriteLine(s_dalEngineer!.Read(id));
+                Console.WriteLine(s_dal.Engineer!.Read(id));
                 break;
             case "Task":
-                Console.WriteLine(s_dalTask!.Read(id));
+                Console.WriteLine(s_dal.Task!.Read(id));
                 break;
             case "Dependency":
-                Console.WriteLine(s_dalDependency!.Read(id));
+                Console.WriteLine(s_dal.Dependency!.Read(id));
                 break;
         }
     }
@@ -291,19 +291,19 @@ internal class Program
         switch (entity)
         {
             case "Engineer":
-                foreach (Engineer engineer in s_dalEngineer!.ReadAll())
+                foreach (Engineer engineer in s_dal!.Engineer!.ReadAll())
                 {
                     Console.WriteLine(engineer);
                 }
                 break;
             case "Task":
-                foreach (DO.Task task in s_dalTask!.ReadAll())
+                foreach (DO.Task task in s_dal!.Task!.ReadAll())
                 {
                     Console.WriteLine(task);
                 }
                 break;
             case "Dependency":
-                foreach (Dependency dependency in s_dalDependency!.ReadAll())
+                foreach (Dependency dependency in s_dal!.Dependency!.ReadAll())
                 {
                     Console.WriteLine(dependency);
                 }
@@ -355,31 +355,31 @@ internal class Program
     {
         Console.Write($"Enter the ID of the engineer you want to update: ");
         int id = int.Parse(Console.ReadLine()!);
-        if (s_dalEngineer!.Read(id) is null)
+        if (s_dal!.Engineer!.Read(id) is null)
             throw new Exception($"Engineer with ID={id} does Not exist");
-        Console.WriteLine(s_dalEngineer!.Read(id));
+        Console.WriteLine(s_dal!.Engineer!.Read(id));
         string name;
         Console.Write("name: ");
         string? name_input = Console.ReadLine();
-        if (name_input == "") { name = s_dalEngineer!.Read(id)!.Name; }
+        if (name_input == "") { name = s_dal!.Engineer!.Read(id)!.Name; }
         else { name = name_input!; }
         string email;
         Console.Write("email: ");
         string? email_input = Console.ReadLine();
-        if (email_input == "") { email = s_dalEngineer!.Read(id)!.Email; }
+        if (email_input == "") { email = s_dal!.Engineer!.Read(id)!.Email; }
         else { email = email_input!; }
         EngineerExperience level;
         Console.Write("leval: ");
         string? level_input = Console.ReadLine();
-        if (level_input == "") { level = s_dalEngineer!.Read(id)!.Level; }
+        if (level_input == "") { level = s_dal!.Engineer!.Read(id)!.Level; }
         else { level = (EngineerExperience)Enum.Parse(typeof(EngineerExperience), level_input!); };
         double cost;
         Console.Write("cost: ");
         string? cost_input = Console.ReadLine();
-        if (cost_input == "") { cost = s_dalEngineer!.Read(id)!.Cost; }
+        if (cost_input == "") { cost = s_dal!.Engineer!.Read(id)!.Cost; }
         else { cost = double.Parse(cost_input!); }
         Engineer newEngineer = new(id, name!, email!, level, cost);
-        s_dalEngineer!.Update(newEngineer);
+        s_dal!.Engineer!.Update(newEngineer);
     }
 
     /// <summary>
@@ -394,82 +394,82 @@ internal class Program
         Console.Write($"Enter the ID of the engineer you want to update: ");
         int id = int.Parse(Console.ReadLine()!);
 
-        if (s_dalEngineer!.Read(id) is null)
+        if (s_dal!.Engineer!.Read(id) is null)
             throw new Exception($"Task with ID={id} does Not exist");
-        Console.WriteLine(s_dalEngineer!.Read(id));
+        Console.WriteLine(s_dal!.Engineer!.Read(id));
 
         string description;
         Console.Write("description: ");
         string? description_input = Console.ReadLine();
-        if (description_input == "") { description = s_dalTask!.Read(id)!.Description; }
+        if (description_input == "") { description = s_dal!.Task!.Read(id)!.Description; }
         else { description = description_input!; }
 
         string alias;
         Console.Write("alias: ");
         string? alias_input = Console.ReadLine();
-        if (alias_input == "") { alias = s_dalTask!.Read(id)!.Alias; }
+        if (alias_input == "") { alias = s_dal!.Task!.Read(id)!.Alias; }
         else { alias = alias_input!; }
 
         bool isMilestone;
         Console.Write("isMilestone: ");
         string? isMilestone_input = Console.ReadLine();
-        if (isMilestone_input == "") { isMilestone = s_dalTask!.Read(id)!.IsMilestone; }
+        if (isMilestone_input == "") { isMilestone = s_dal!.Task!.Read(id)!.IsMilestone; }
         else { isMilestone = bool.Parse(isMilestone_input!); }
 
         EngineerExperience copmlexityLevel;
         Console.Write("copmlexityLevel: ");
         string? copmlexityLevel_input = Console.ReadLine();
-        if (copmlexityLevel_input == "") { copmlexityLevel = (s_dalTask!.Read(id)!.CopmlexityLevel); }
+        if (copmlexityLevel_input == "") { copmlexityLevel = (s_dal!.Task!.Read(id)!.CopmlexityLevel); }
         else { copmlexityLevel = (EngineerExperience)Enum.Parse(typeof(EngineerExperience), copmlexityLevel_input!); };
 
         DateTime createdAtDate;
         Console.Write("createdAtDate: ");
         string? createdAtDate_input = Console.ReadLine();
-        if (createdAtDate_input == "") { createdAtDate = s_dalTask!.Read(id)!.CreatedAtDate; }
+        if (createdAtDate_input == "") { createdAtDate = s_dal!.Task!.Read(id)!.CreatedAtDate; }
         else { createdAtDate = DateTime.Parse(createdAtDate_input!); }
 
         DateTime? scheduledDate;
         Console.Write("scheduledDate: ");
         string? scheduledDate_input = Console.ReadLine();
-        if (scheduledDate_input == "") { scheduledDate = s_dalTask!.Read(id)!.ScheduledDate; }
+        if (scheduledDate_input == "") { scheduledDate = s_dal!.Task!.Read(id)!.ScheduledDate; }
         else { scheduledDate = DateTime.Parse(scheduledDate_input!); }
 
         DateTime? startDate;
         Console.Write("startDate: ");
         string? startDate_input = Console.ReadLine();
-        if (startDate_input == "") { startDate = s_dalTask!.Read(id)!.StartDate; }
-        else { startDate = s_dalTask!.Read(id)!.StartDate; }
+        if (startDate_input == "") { startDate = s_dal!.Task!.Read(id)!.StartDate; }
+        else { startDate = s_dal!.Task!.Read(id)!.StartDate; }
 
         TimeSpan? foresastDate;
         Console.Write("foresastDate: ");
         string? foresastDate_input = (Console.ReadLine()!);
-        if (foresastDate_input == "") { foresastDate = s_dalTask!.Read(id)!.ForesastDate; }
+        if (foresastDate_input == "") { foresastDate = s_dal!.Task!.Read(id)!.ForesastDate; }
         else { foresastDate = TimeSpan.Parse(foresastDate_input); }
 
         DateTime? deadLineDate;
         Console.Write("deadLineDate: ");
         string? deadLineDate_input = (Console.ReadLine()!);
-        if (deadLineDate_input == "") { deadLineDate = s_dalTask!.Read(id)!.DeadLineDate; }
+        if (deadLineDate_input == "") { deadLineDate = s_dal!.Task!.Read(id)!.DeadLineDate; }
         else { deadLineDate = DateTime.Parse(deadLineDate_input); }
 
         DateTime? completeDate;
         Console.Write("completeDate: ");
         string? completeDate_input = (Console.ReadLine()!);
-        if (completeDate_input == "") { completeDate = s_dalTask!.Read(id)!.CompleteDate; }
+        if (completeDate_input == "") { completeDate = s_dal!.Task!.Read(id)!.CompleteDate; }
         else { completeDate = DateTime.Parse(completeDate_input); }
 
         Console.Write("deliverable: ");
         string? deliverable = Console.ReadLine();
-        if (deliverable == "") { deliverable = s_dalTask!.Read(id)!.Deliverable; }
+        if (deliverable == "") { deliverable = s_dal!.Task!.Read(id)!.Deliverable; }
 
         Console.Write("remarks: ");
         string? remarks = Console.ReadLine();
-        if (remarks == "") { remarks = s_dalTask!.Read(id)!.Deliverable; }
+        if (remarks == "") { remarks = s_dal!.Task!.Read(id)!.Deliverable; }
 
         int? engineerld;
         Console.Write("engineerld: ");
         string? engineerld_input = Console.ReadLine();
-        if (engineerld_input == "") { engineerld = s_dalTask!.Read(id)!.Engineerld; }
+        if (engineerld_input == "") { engineerld = s_dal!.Task!.Read(id)!.Engineerld; }
         else { engineerld = int.Parse(engineerld_input!); }
 
         DO.Task newTask = new(id, description, alias,
@@ -477,7 +477,7 @@ internal class Program
             scheduledDate, foresastDate, deadLineDate,
             completeDate, deliverable, remarks, engineerld);
 
-        s_dalTask!.Update(newTask);
+        s_dal!.Task!.Update(newTask);
     }
 
     /// <summary>
@@ -490,25 +490,25 @@ internal class Program
         Console.Write($"Enter the ID of the dependency you want to update: ");
         int id = int.Parse(Console.ReadLine()!);
 
-        Console.WriteLine(s_dalDependency!.Read(id));
-        if (s_dalEngineer!.Read(id) is null)
+        Console.WriteLine(s_dal!.Dependency!.Read(id));
+        if (s_dal!.Engineer!.Read(id) is null)
             throw new Exception($"Dependency with ID={id} does Not exist");
 
         int dependentTask;
         Console.Write("dependentTask: ");
         string? dependentTask_input = Console.ReadLine();
-        if (dependentTask_input == "") { dependentTask = s_dalDependency!.Read(id)!.DependentTask; }
+        if (dependentTask_input == "") { dependentTask = s_dal!.Dependency!.Read(id)!.DependentTask; }
         else { dependentTask = int.Parse(dependentTask_input!); }
 
         int previousTask;
         Console.Write("previousTask: ");
         string? previousTask_input = (Console.ReadLine()!);
-        if (previousTask_input == "") { previousTask = s_dalDependency!.Read(id)!.PreviousTask; }
+        if (previousTask_input == "") { previousTask = s_dal!.Dependency!.Read(id)!.PreviousTask; }
         else { previousTask = int.Parse(previousTask_input); }
 
         Dependency newDependency = new(id, dependentTask, previousTask);
 
-        s_dalDependency!.Update(newDependency);
+        s_dal!.Dependency!.Update(newDependency);
     }
 
     #endregion
@@ -533,13 +533,13 @@ internal class Program
             switch (entity)
             {
                 case "Engineer":
-                    s_dalEngineer!.Delete(id);
+                    s_dal!.Engineer!.Delete(id);
                     break;
                 case "Task":
-                    s_dalTask!.Delete(id);
+                    s_dal!.Task!.Delete(id);
                     break;
                 case "Dependency":
-                    s_dalDependency!.Delete(id);
+                    s_dal!.Dependency!.Delete(id);
                     break;
 
             }
