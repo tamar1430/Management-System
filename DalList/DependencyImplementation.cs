@@ -61,7 +61,7 @@ internal class DependencyImplementation : IDependency
     {
         Dependency? previousDependency = DataSource.Dependencys.Find(dependency => dependency.Id == newDependency.Id);
         if (previousDependency == null)
-            throw new Exception($"Dependency with ID={newDependency.Id} does Not exist");
+            throw new DalDoesNotExistException($"Dependency with ID={newDependency.Id} does Not exist");
         DataSource.Dependencys.Remove(previousDependency);
         DataSource.Dependencys.Add(newDependency);
     }

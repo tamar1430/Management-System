@@ -2,6 +2,7 @@
 namespace Dal;
 using DalApi;
 using DO;
+using System.Data;
 
 internal class TaskImplementation : ITask
 {
@@ -25,11 +26,12 @@ internal class TaskImplementation : ITask
     /// <exception cref="Exception"></exception>
     public void Delete(int id)
     {
-        Task? task = DataSource.Tasks.Find(task => task.Id == id);
-        if (task == null)
-            throw new Exception($"Task with ID={id} does Not exist");
-        else
-            DataSource.Tasks.Remove(task);
+        throw new DalDeletionImpossible("can't delete task");
+        //Task? task = DataSource.Tasks.Find(task => task.Id == id);
+        //if (task == null)
+        //    throw new Exception($"Task with ID={id} does Not exist");
+        //else
+        //    DataSource.Tasks.Remove(task);
     }
 
     /// <summary>
