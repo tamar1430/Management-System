@@ -28,7 +28,7 @@ internal class DependencyImplementation : IDependency
     {
         Dependency? dependency = DataSource.Dependencys.Find(dependency => dependency.Id == id);
         if (dependency == null)
-            throw new Exception($"Dependency with ID={id} does Not exist");
+            throw new DalDoesNotExistException($"Dependency with ID={id} does Not exist");
         else
             DataSource.Dependencys.Remove(dependency);
     }
