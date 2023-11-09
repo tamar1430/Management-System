@@ -7,9 +7,8 @@ namespace DalTest;
 
 internal class Program
 {
-    private static IEngineer? s_dalEngineer = new EngineerImplementation(); //stage 1
-    private static ITask? s_dalTask = new TaskImplementation(); //stage 1
-    private static IDependency? s_dalDependency = new DependencyImplementation(); //stage 1
+    
+    static readonly IDal s_dal = new DalList();
 
     /// <summary>
     /// this function initializes the program by calling the Do method of the Initialization class and then displays the options menu to the user. 
@@ -20,7 +19,7 @@ internal class Program
     {
         try
         {
-            Initialization.Do(s_dalEngineer, s_dalTask, s_dalDependency);
+            Initialization.Do(s_dal);
             ShowOptionsMenu();
         }
         catch (Exception ex)
