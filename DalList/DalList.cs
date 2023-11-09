@@ -2,7 +2,7 @@
 namespace Dal;
 using DalApi;
 
-sealed public class DalList : IDal
+sealed internal class DalList : IDal
 {
     public IEngineer Engineer => new EngineerImplementation();
 
