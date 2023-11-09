@@ -60,7 +60,7 @@ internal class TaskImplementation : ITask
     {
         Task? previousTask = DataSource.Tasks.Find(task => task.Id == newTask.Id);
         if (previousTask == null)
-            throw new Exception($"Task with ID={newTask.Id} does Not exist");
+            throw new DalDoesNotExistException($"Task with ID={newTask.Id} does Not exist");
         DataSource.Tasks.Remove(previousTask);
         DataSource.Tasks.Add(newTask);
     }
