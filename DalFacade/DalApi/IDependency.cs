@@ -2,6 +2,9 @@
 namespace DalApi;
 using DO;
 
+/// <summary>
+/// interface for Dependency
+/// </summary>
 public interface IDependency
 {
     int Create(Dependency dependency); //Creates new entity object in DAL

@@ -2,6 +2,9 @@
 namespace DalApi;
 using DO;
 
+/// <summary>
+/// interface for Engineer
+/// </summary>
 public interface IEngineer
 {
     int Create(Engineer newEngineer); //Creates new entity object in DAL

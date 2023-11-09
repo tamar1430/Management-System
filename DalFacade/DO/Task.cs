@@ -1,6 +1,23 @@
 ﻿
 namespace DO;
 
+/// <summary>
+/// record class for tasks
+/// </summary>
+/// <param name="Id"></param>
+/// <param name="Description"></param>
+/// <param name="Alias"></param>
+/// <param name="IsMilestone"></param>
+/// <param name="CopmlexityLevel"></param>
+/// <param name="CreatedAtDate"></param>
+/// <param name="ScheduledDate"></param>
+/// <param name="StartDate"></param>
+/// <param name="ForesastDate"></param>
+/// <param name="DeadLineDate"></param>
+/// <param name="CompleteDate"></param>
+/// <param name="Deliverable"></param>
+/// <param name="Remarks"></param>
+/// <param name="Engineerld"></param>
 public record Task
 (
     int Id,
@@ -19,5 +36,5 @@ public record Task
     int? Engineerld = null
 )
 {
-    public Task():this(0,"","",false, EngineerExperience.Novice,DateTime.Now) { }
+    public Task():this(0,"","",false, EngineerExperience.Novice,DateTime.Now) { }//defualt constractor
 }

@@ -1,10 +1,11 @@
 ﻿namespace DalTest;
 using DalApi;
 using DO;
-using Dal;
-using System.Runtime.CompilerServices;
 
 
+/// <summary>
+/// class Initialization
+/// </summary>
 public static class Initialization
 {
     const int MIN_ID = 100000000;
@@ -16,19 +17,18 @@ public static class Initialization
     private static IDependency? s_dalDependency;
     private static readonly Random s_rand = new();
 
-
-    //This function appears to be a loop that iterates over an array of engineer names.
-    // Inside the loop, it generates a random ID for each engineer using the s_rand random number generator object. 
-    //It then checks if the generated ID already exists in the data accessed by the s_dalEngineer data access layer object. 
-    //If the ID already exists, it continues generating new IDs until a unique one is found.
-
-    // After generating the ID, it assigns the current engineer name to the _name variable and the corresponding engineer email to the _email variable.
-    // It then retrieves all values of an enum called EngineerExperience using the Enum.GetValues method and stores them in an array called enumValues.
-
-    // Next, it generates a random index using the s_rand random number generator object and assigns it to the randomIndex variable.Finally,
-    // it retrieves the engineer experience level at the randomly generated index from the enumValues array and assigns it to the _level variable.
-    // Overall, it seems that this code generates random IDs, assigns engineer names and emails,
-    // and randomly assigns engineer experience levels to each engineer in the array.
+    /// <summary>
+    /// This function appears to be a loop that iterates over an array of engineer names.
+    /// Inside the loop, it generates a random ID for each engineer using the s_rand random number generator object. 
+    /// It then checks if the generated ID already exists in the data accessed by the s_dalEngineer data access layer object. 
+    /// If the ID already exists, it continues generating new IDs until a unique one is found.
+    /// After generating the ID, it assigns the current engineer name to the _name variable and the corresponding engineer email to the _email variable.
+    /// It then retrieves all values of an enum called EngineerExperience using the Enum.GetValues method and stores them in an array called enumValues.
+    /// Next, it generates a random index using the s_rand random number generator object and assigns it to the randomIndex variable.Finally,
+    /// it retrieves the engineer experience level at the randomly generated index from the enumValues array and assigns it to the _level variable.
+    /// Overall, it seems that this code generates random IDs, assigns engineer names and emails,
+    /// and randomly assigns engineer experience levels to each engineer in the array.
+    /// </summary>
     private static void createEngineers()
     {
         //a array with names of engineers
@@ -60,8 +60,12 @@ public static class Initialization
             s_dalEngineer!.Create(newEngineer);
         }
     }
-    /*This function snippet creates multiple tasks and saves them using a data access layer (DAL). Here's what it does:
 
+
+
+    /// <summary>
+    /// 
+    /*This function snippet creates multiple tasks and saves them using a data access layer (DAL). Here's what it does:
 1. It defines two string arrays: arrTaskDescription and arrTaskAlias. These arrays hold descriptions and aliases for various tasks.
 2. It enters a for loop that iterates through the elements of the arrTaskDescription array.
 3. Within the loop, it assigns the current task description to the _description variable and the corresponding task alias to the _alias variable.
@@ -79,6 +83,7 @@ public static class Initialization
 
 In summary, this code generates multiple tasks with various properties using predefined descriptions and aliases. It assigns random complexity levels,
     creates random creation dates, and saves the tasks using the DAL.*/
+    /// </summary>
     private static void createTasks()
     {
         string[] arrTaskDescription =
@@ -114,7 +119,10 @@ In summary, this code generates multiple tasks with various properties using pre
 
         }
     }
-    //
+
+    /// <summary>
+    /// create Dependencys
+    /// </summary>
     private static void createDependencys()
     {
         createDependency(5, 1);
@@ -159,13 +167,26 @@ In summary, this code generates multiple tasks with various properties using pre
         createDependency(19, 3);
         createDependency(20, 1);
     }
-    //this function creates a dependency relationship between two tasks identified by their IDs and saves it using the DAL.
+
+    /// <summary>
+    /// this function creates a dependency relationship between two tasks
+    /// identified by their IDs and saves it using the DAL.
+    /// </summary>
+    /// <param name="x">DependentTask</param>
+    /// <param name="y">PreviousTask</param>
     private static void createDependency(int x, int y)
     {
         Dependency newDependency1 = new(0, x, y);
         s_dalDependency!.Create(newDependency1);
     }
 
+    /// <summary>
+    /// Initializing lists
+    /// </summary>
+    /// <param name="dalEngineer"></param>
+    /// <param name="dalTask"></param>
+    /// <param name="dalDependency"></param>
+    /// <exception cref="Exception"></exception>
     public static void Do(IEngineer? dalEngineer, ITask? dalTask, IDependency? dalDependency)
     {
         s_dalEngineer = dalEngineer ?? throw new Exception("DAL can not be null!");

@@ -1,10 +1,12 @@
 ﻿
 
 namespace Dal;
-
 using DalApi;
 using DO;
 
+/// <summary>
+/// class DataSource include config and defining the lists
+/// </summary>
 internal static class DataSource
 {
     internal static class Config

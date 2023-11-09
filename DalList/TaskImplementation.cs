@@ -2,11 +2,14 @@
 namespace Dal;
 using DalApi;
 using DO;
-using System;
-
 
 public class TaskImplementation : ITask
 {
+    /// <summary>
+    /// create new task
+    /// </summary>
+    /// <param name="task"></param>
+    /// <returns>id of the new task</returns>
     public int Create(Task task)
     {
         int newId = DataSource.Config.NextTaskId;
@@ -15,6 +18,11 @@ public class TaskImplementation : ITask
         return newId;
     }
 
+    /// <summary>
+    /// delete task
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="Exception"></exception>
     public void Delete(int id)
     {
         Task? task = DataSource.Tasks.Find(task => task.Id == id);
@@ -24,16 +32,30 @@ public class TaskImplementation : ITask
             DataSource.Tasks.Remove(task);
     }
 
+    /// <summary>
+    /// The task with the id received
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public Task? Read(int id)
     {
         return DataSource.Tasks.Find(task => task.Id == id);
     }
 
+    /// <summary>
+    /// read all the tasks
+    /// </summary>
+    /// <returns>the task list</returns>
     public List<Task> ReadAll()
     {
         return new List<Task>(DataSource.Tasks);
     }
 
+    /// <summary>
+    /// update task
+    /// </summary>
+    /// <param name="newTask"></param>
+    /// <exception cref="Exception"></exception>
     public void Update(Task newTask)
     {
         Task? previousTask = DataSource.Tasks.Find(task => task.Id == newTask.Id);
