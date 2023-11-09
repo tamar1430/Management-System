@@ -1,6 +1,7 @@
 ﻿using Dal;
 using DalApi;
 using DO;
+using System.Runtime.CompilerServices;
 
 namespace DalTest;
 
@@ -9,7 +10,8 @@ internal class Program
     private static IEngineer? s_dalEngineer = new EngineerImplementation(); //stage 1
     private static ITask? s_dalTask = new TaskImplementation(); //stage 1
     private static IDependency? s_dalDependency = new DependencyImplementation(); //stage 1
-
+    // this code initializes the program by calling the Do method of the Initialization class and then displays the options menu to the user. 
+    //It also handles any exceptions that might occur during program execution by catching them and displaying the exception message.
     static void Main(string[] args)
     {
         try
@@ -22,7 +24,9 @@ internal class Program
             Console.WriteLine(ex.Message);
         }
     }
-
+    //this code presents an options menu to the user, allows them to select various entities (Engineer, Task, or Dependency), 
+    //and performs specific actions based on their selection.
+    // It also handles invalid input by displaying an error message and showing the options menu again
     private static void ShowOptionsMenu()
     {
         bool exitMenu = false;
@@ -65,7 +69,8 @@ internal class Program
 
     }
 
-
+    //this code defines a method that displays a menu for a specific entity and allows the user to perform various actions related to that entity. 
+    //It handles invalid input by displaying an error message and showing the entity menu again.
     private static void ShowMenuEntity(string entity)
     {
         bool exitMenu = false;
@@ -112,6 +117,8 @@ internal class Program
 
     #region Create
 
+    //this code defines a method that creates an entity based on the provided entity parameter. 
+    //It dynamically calls a specific creation method based on the value of entity.
     private static void Create(string entity)
     {
         Console.WriteLine($"---- Create {entity}  ----");
@@ -209,7 +216,10 @@ internal class Program
     #endregion 
 
     #region Read
-
+    //this funtion snippet defines a method called Read that reads and displays a specific entity based on its ID.
+    // It prompts the user to enter the ID of the desired entity and then uses a switch statement to determine the entity type.
+    // Depending on the entity type (Engineer, Task, or Dependency), it calls the corresponding read method from the appropriate 
+    //DataAccess Layer class and displays the returned entity
     private static void Read(string entity)
     {
         Console.WriteLine("---- Read by ID ----");
@@ -233,10 +243,10 @@ internal class Program
 
     #region ReadAll
 
-    /// <summentityry>
-    /// 
-    /// </summary>
-    /// <param name="entity"></param>
+    //this function  snippet defines a method called ReadAll that reads and displays all entities of a specific type.
+    // It uses a switch statement to determine the entity type and then calls the corresponding ReadAll method from 
+    //the appropriate DataAccess Layer class. It iterates over each returned entity and displays it using Console.WriteLine(). 
+    //The code handles three entity types: Engineer, Task, and Dependency.
     private static void ReadAll(string entity)
     {
         Console.WriteLine($"---- Read All {entity}s ----");
@@ -268,10 +278,7 @@ internal class Program
 
     #region Update
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="entity"></param>
+  
     private static void Update(string entity)
     {
         try
