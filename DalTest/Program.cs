@@ -150,11 +150,12 @@ internal class Program
         }
     }
 
-
-    //The CreateEngineer function prompts the user to enter information (ID, name, email, level, and cost) for a new Engineer entity.
-    // It then creates a new Engineer object with the provided information and calls the appropriate data access layer method to create
-    // the entity in the data source.
-    // If successful, it displays a success message; otherwise, it displays an error message if an exception occurs during the creation process.
+    /// <summary>
+    /// The CreateEngineer function prompts the user to enter information (ID, name, email, level, and cost) for a new Engineer entity.
+    /// It then creates a new Engineer object with the provided information and calls the appropriate data access layer method to create
+    /// the entity in the data source.
+    /// If successful, it displays a success message; otherwise, it displays an error message if an exception occurs during the creation process.
+    /// </summary>
     private static void CreateEngineer()
     {
         try
@@ -180,13 +181,13 @@ internal class Program
 
     }
 
-
-    //The CreateTask function prompts the user to enter various information (description, alias, isMilestone,
-    //complexityLevel, createdAtDate, scheduledDate, startDate, forecastDate, deadlineDate, completeDate, deliverable, remarks, engineerId) for a new Task entity.
-    //It reads the user input and parses it into the appropriate data types. It then creates a new Task object with the provided information and calls the appropriate data access
-    //layer method to create the entity in the data source.
-    //If successful, it displays a success message indicating that the entity has been created.
-
+    /// <summary>
+    /// The CreateTask function prompts the user to enter various information (description, alias, isMilestone,
+    /// complexityLevel, createdAtDate, scheduledDate, startDate, forecastDate, deadlineDate, completeDate, deliverable, remarks, engineerId) for a new Task entity.
+    /// It reads the user input and parses it into the appropriate data types. It then creates a new Task object with the provided information and calls the appropriate data access
+    /// layer method to create the entity in the data source.
+    /// If successful, it displays a success message indicating that the entity has been created.
+    /// </summary>
     private static void CreateTask()
     {
         Console.Write("description: ");
@@ -224,11 +225,12 @@ internal class Program
         Console.WriteLine("Entity created successfully.");
     }
 
-    //The CreateDependency function prompts the user to enter the IDs of two tasks, dependentTask and previousTask, to create a dependency between them.
-    //It reads the user input and parses it into integers. It then creates a new Dependency object with the provided task IDs and calls the appropriate data access
-    //layer method to create the dependency in the data source.
-    //If successful, it displays a success message indicating that the entity has been created.
-
+    /// <summary>
+    /// The CreateDependency function prompts the user to enter the IDs of two tasks, dependentTask and previousTask, to create a dependency between them.
+    /// It reads the user input and parses it into integers. It then creates a new Dependency object with the provided task IDs and calls the appropriate data access
+    /// layer method to create the dependency in the data source.
+    /// If successful, it displays a success message indicating that the entity has been created.
+    /// </summary>
     private static void CreateDependency()
     {
         Console.Write("dependentTask: ");
