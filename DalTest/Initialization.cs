@@ -13,9 +13,10 @@ public static class Initialization
     const int MIN_COST = 100;
     const int MAX_COST = 600;
 
-    private static IEngineer? s_dalEngineer;
-    private static ITask? s_dalTask;
-    private static IDependency? s_dalDependency;
+    //private static IEngineer? s_dalEngineer;//stage 1
+    //private static ITask? s_dalTask;//stage1
+    //private static IDependency? s_dalDependency;//stage1
+    private static IDal? s_dal; //stage 2
 
     private static readonly Random s_rand = new();
 
@@ -51,7 +52,7 @@ public static class Initialization
             int _id;
             do
                 _id = s_rand.Next(MIN_ID, MAX_ID);
-            while (s_dalEngineer!.Read(_id) != null);
+            while (s_dal!.Engineer!.Read(_id) != null);
             string _name = engineerNames[i];
             string _email = engineerEmails[i];
             Array enumValues = Enum.GetValues(typeof(EngineerExperience));// Get all values of the enum
@@ -59,7 +60,7 @@ public static class Initialization
             EngineerExperience _level = (EngineerExperience)enumValues.GetValue(randomIndex)!; // Get the random enum value
             double _cost = s_rand.Next(MIN_COST, MAX_COST);
             Engineer newEngineer = new(_id, _name, _email, _level, _cost);
-            s_dalEngineer!.Create(newEngineer);
+            s_dal.Engineer!.Create(newEngineer);
         }
     }
 
@@ -87,7 +88,7 @@ public static class Initialization
             bool _isMilestone = false;
             Array enumValues = Enum.GetValues(typeof(EngineerExperience));  // Get all values of the enum
             int randomIndex = s_rand.Next(enumValues.Length);  // Generate a random index
-            EngineerExperience _copmlexityLevel = (EngineerExperience)enumValues.GetValue(randomIndex);// Get the random enum value
+            EngineerExperience _copmlexityLevel = (EngineerExperience)enumValues.GetValue(randomIndex)!;// Get the random enum value
             DateTime _createdAtDate = DateTime.Now.AddDays(s_rand.Next(-100, -1));
             DateTime? _scheduledDate = null;
             DateTime? _startDate = null;
@@ -99,7 +100,7 @@ public static class Initialization
             int? _engineerld = null;
             Task newTask = new(0, _description, _alias, _isMilestone, _copmlexityLevel,
                 _createdAtDate, _scheduledDate, _startDate, _foresastDate, _deadLineDate, _completeDate, _deliverable, _remarks, _engineerld);
-            s_dalTask!.Create(newTask);
+            s_dal!.Task!.Create(newTask);
 
         }
     }
@@ -161,7 +162,7 @@ public static class Initialization
     private static void createDependency(int x, int y)
     {
         Dependency newDependency1 = new(0, x, y);
-        s_dalDependency!.Create(newDependency1);
+        s_dal!.Dependency!.Create(newDependency1);
     }
 
     /// <summary>
@@ -171,11 +172,13 @@ public static class Initialization
     /// <param name="dalTask"></param>
     /// <param name="dalDependency"></param>
     /// <exception cref="Exception"></exception>
-    public static void Do(IEngineer? dalEngineer, ITask? dalTask, IDependency? dalDependency)
+    public static void Do(IDal dal) //stage 2
+
     {
-        s_dalEngineer = dalEngineer ?? throw new Exception("DAL can not be null!");
-        s_dalTask = dalTask ?? throw new Exception("DAL can not be null!");
-        s_dalDependency = dalDependency ?? throw new Exception("DAL can not be null!");
+        //s_dalEngineer = dalEngineer ?? throw new Exception("DAL can not be null!"); //stage 1
+        //s_dalTask = dalTask ?? throw new Exception("DAL can not be null!"); //stage 1
+        //s_dalDependency = dalDependency ?? throw new Exception("DAL can not be null!"); //stage 1
+        s_dal = dal ?? throw new Exception("DAL object can not be null!"); //stage 
 
         createEngineers();
         createTasks();
