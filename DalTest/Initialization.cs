@@ -47,7 +47,7 @@ public static class Initialization
             int randomIndex = s_rand.Next(enumValues.Length);
 
             // Get the random enum value
-            EngineerExperience _level = (EngineerExperience)enumValues.GetValue(randomIndex);
+            EngineerExperience _level = (EngineerExperience)enumValues.GetValue(randomIndex)!;
 
 
             double _cost = s_rand.Next(MIN_COST, MAX_COST);
@@ -90,7 +90,7 @@ public static class Initialization
             int randomIndex = s_rand.Next(enumValues.Length);
 
             // Get the random enum value
-            EngineerExperience _copmlexityLevel = (EngineerExperience)enumValues.GetValue(randomIndex);
+            EngineerExperience _copmlexityLevel = (EngineerExperience)enumValues.GetValue(randomIndex)!;
 
             DateTime _createdAtDate = DateTime.Now.AddDays(s_rand.Next(-100, -1)); ;
             DateTime? _scheduledDate = null;
