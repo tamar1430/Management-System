@@ -2,20 +2,6 @@
 using DalApi;
 using DO;
 
-//🥳🥳🥳🥳🥳🥳
-//😴😴😴😴😴😴
-//❤️❤️❤️❤️❤️❤️❤️❤️
-
-/*
- * תזכורת:
- * ממשק ומימוש של שכבת הנתונים:
-בממשק שכבת הנתונים IDal, בנוסף לתכונות המייצגות ממשקי CRUD של ישויות, יהיו גם האיברים הבאים:
-פעולה Reset ללא פרמטרים, שבמימוש שלה יתבצע איפוס (מחיקה) של כל הנתונים (במימוש רשימות [שלב 1 ו-2] מחיקת תוכן הרשימות שב-DataSource, ובמימוש XML [בשלב 3] - מחיקת תוכן הקבצים של xml).
-תכונת תאריך תחילת הפרויקט מטיפוס מתאפס של תאריך
-תכונת תאריך סיום הפרויקט המתוכנן מטיפוס מתאפס של תאריך
-יש להוסיף תכונות במחלקת Config ב-DataSource, ובקובץ קונפיגורציה xml (בשלב 3) עבור שתי התכונות הנ"ל. במימוש התכונות ב-DalList וב-DalXml יש לאחזר\לעדכן את התכונות ב-Config ובקובץ קונפיגורציה בהתאם.
-*/
-
 namespace DalTest;
 
 internal class Program
