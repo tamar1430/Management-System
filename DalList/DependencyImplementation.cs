@@ -44,6 +44,16 @@ internal class DependencyImplementation : IDependency
     }
 
     /// <summary>
+    /// Reads dependency that meet a certain condition
+    /// </summary>
+    /// <param name="filter">Pointer to a boolean function, delegate of type Func</param>
+    /// <returns></returns>
+    public Dependency? Read(Func<Dependency, bool> filter)
+    {
+        return DataSource.Dependencys.Where(filter).FirstOrDefault();
+    }
+
+    /// <summary>
     /// Read all dependencys or dependencys that meet a certain condition
     /// </summary>
     /// <returns>dependencys list</returns>
@@ -54,8 +64,6 @@ internal class DependencyImplementation : IDependency
         else
             return DataSource.Dependencys.Where(filter);
     }
-
-
 
     /// <summary>
     /// update dependency

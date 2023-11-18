@@ -39,6 +39,16 @@ internal class TaskImplementation : ITask
     }
 
     /// <summary>
+    /// Reads task that meet a certain condition
+    /// </summary>
+    /// <param name="filter">Pointer to a boolean function, delegate of type Func</param>
+    /// <returns></returns>
+    public Task? Read(Func<Task, bool> filter)
+    {
+        return DataSource.Tasks.Where(filter).FirstOrDefault();
+    }
+
+    /// <summary>
     /// Read all tasks or tasks that meet a certain condition
     /// </summary>
     /// <returns>the task list</returns>

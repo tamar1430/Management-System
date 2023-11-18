@@ -51,6 +51,16 @@ internal class EngineerImplementation : IEngineer
     }
 
     /// <summary>
+    /// Reads engineer that meet a certain condition
+    /// </summary>
+    /// <param name="filter">Pointer to a boolean function, delegate of type Func</param>
+    /// <returns></returns>
+    public Engineer? Read(Func<Engineer, bool> filter)
+    {
+        return DataSource.Engineers.Where(filter).FirstOrDefault();
+    }
+
+    /// <summary>
     /// Read all engineers or engineers that meet a certain condition
     /// </summary>
     /// <returns>the engineers list</returns>
@@ -61,8 +71,6 @@ internal class EngineerImplementation : IEngineer
         else
             return DataSource.Engineers.Where(filter);
     }
-
-
 
     /// <summary>
     /// update engineer
