@@ -489,9 +489,9 @@ internal class Program
         Console.Write($"Enter the ID of the dependency you want to update: ");
         int id = int.Parse(Console.ReadLine()!);
 
-        Console.WriteLine(s_dal!.Dependency!.Read(id));
         if (s_dal!.Dependency!.Read(id) is null)
             throw new Exception($"Dependency with ID={id} does Not exist");
+        Console.WriteLine(s_dal!.Dependency!.Read(id));
 
         int dependentTask;
         Console.Write("dependentTask: ");
