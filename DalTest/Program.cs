@@ -404,12 +404,12 @@ internal class Program
     /// <exception cref="Exception"></exception>
     private static void UpdateTask()
     {
-        Console.Write($"Enter the ID of the engineer you want to update: ");
+        Console.Write($"Enter the ID of the task you want to update: ");
         int id = int.Parse(Console.ReadLine()!);
 
-        if (s_dal!.Engineer!.Read(id) is null)
+        if (s_dal!.Task!.Read(id) is null)
             throw new Exception($"Task with ID={id} does Not exist");
-        Console.WriteLine(s_dal!.Engineer!.Read(id));
+        Console.WriteLine(s_dal!.Task!.Read(id));
 
         string description;
         Console.Write("description: ");
@@ -504,7 +504,7 @@ internal class Program
         int id = int.Parse(Console.ReadLine()!);
 
         Console.WriteLine(s_dal!.Dependency!.Read(id));
-        if (s_dal!.Engineer!.Read(id) is null)
+        if (s_dal!.Dependency!.Read(id) is null)
             throw new Exception($"Dependency with ID={id} does Not exist");
 
         int dependentTask;

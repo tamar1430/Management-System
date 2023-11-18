@@ -70,12 +70,12 @@ internal class DependencyImplementation : IDependency
     /// </summary>
     /// <param name="newDependency"></param>
     /// <exception cref="Exception"></exception>
-    public void Update(Dependency newDependency)
+    public void Update(Dependency dependency)
     {
-        Dependency? previousDependency = DataSource.Dependencys.Where(dependency => dependency.Id == newDependency.Id).FirstOrDefault();
+        Dependency? previousDependency = DataSource.Dependencys.Where(dependency1 => dependency1.Id == dependency.Id).FirstOrDefault();
         if (previousDependency == null)
-            throw new DalDoesNotExistException($"Dependency with ID={newDependency.Id} does Not exist");
+            throw new DalDoesNotExistException($"Dependency with ID={dependency.Id} does Not exist");
         DataSource.Dependencys.Remove(previousDependency);
-        DataSource.Dependencys.Add(newDependency);
+        DataSource.Dependencys.Add(dependency);
     }
 }

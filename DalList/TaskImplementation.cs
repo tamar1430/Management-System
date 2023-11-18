@@ -65,12 +65,12 @@ internal class TaskImplementation : ITask
     /// </summary>
     /// <param name="newTask"></param>
     /// <exception cref="Exception"></exception>
-    public void Update(Task newTask)
+    public void Update(Task task)
     {
-        Task? previousTask = DataSource.Tasks.Where(task => task.Id == newTask.Id).FirstOrDefault();
+        Task? previousTask = DataSource.Tasks.Where(task1 => task1.Id == task.Id).FirstOrDefault();
         if (previousTask == null)
-            throw new DalDoesNotExistException($"Task with ID={newTask.Id} does Not exist");
+            throw new DalDoesNotExistException($"Task with ID={task.Id} does Not exist");
         DataSource.Tasks.Remove(previousTask);
-        DataSource.Tasks.Add(newTask);
+        DataSource.Tasks.Add(task);
     }
 }

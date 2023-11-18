@@ -13,10 +13,10 @@ internal class EngineerImplementation : IEngineer
     /// <exception cref="Exception"></exception>
     public int Create(Engineer newEngineer)
     {
-        Engineer? engineer1 = (from engineer in DataSource.Engineers
-                  where engineer.Id == newEngineer.Id
-                  select engineer).ToList().FirstOrDefault();
-        if (engineer1 != null)
+        Engineer? engineer = (from engineer1 in DataSource.Engineers
+                  where engineer1.Id == newEngineer.Id
+                  select engineer1).ToList().FirstOrDefault();
+        if (engineer != null)
             throw new DalAlreadyExistsException("Engineer already exists an object of type with the same Id");
         DataSource.Engineers.Add(newEngineer);
         return newEngineer.Id;
@@ -80,8 +80,8 @@ internal class EngineerImplementation : IEngineer
     public void Update(Engineer engineer)
     {
         Engineer? previousEngineer = (from engineer1 in DataSource.Engineers
-                                      where engineer.Id == engineer.Id
-                                      select engineer).ToList().FirstOrDefault();
+                                      where engineer1.Id == engineer.Id
+                                      select engineer1).ToList().FirstOrDefault();
 
         if (previousEngineer == null)
             throw new DalDoesNotExistException($"Engineer with ID={engineer.Id} does Not exist");
