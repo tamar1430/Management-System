@@ -3,7 +3,6 @@ namespace Dal;
 using DalApi;
 using DO;
 
-
 internal class EngineerImplementation : IEngineer
 {
     /// <summary>
@@ -14,7 +13,10 @@ internal class EngineerImplementation : IEngineer
     /// <exception cref="Exception"></exception>
     public int Create(Engineer newEngineer)
     {
-        if (DataSource.Engineers.Find(engineer => engineer.Id == newEngineer.Id) != null)
+        Engineer? engineer1 = (from engineer in DataSource.Engineers
+                  where engineer.Id == newEngineer.Id
+                  select engineer).ToList().FirstOrDefault();
+        if (engineer1 != null)
             throw new DalAlreadyExistsException("Engineer already exists an object of type with the same Id");
         DataSource.Engineers.Add(newEngineer);
         return newEngineer.Id;
@@ -27,8 +29,10 @@ internal class EngineerImplementation : IEngineer
     /// <exception cref="Exception"></exception>
     public void Delete(int id)
     {
-        Engineer? engineer = DataSource.Engineers.Find(Engineer => Engineer.Id == id);
-        if (engineer == null )
+        Engineer? engineer = (from engineer1 in DataSource.Engineers
+                             where engineer1.Id == id
+                             select engineer1).ToList().FirstOrDefault();
+        if (engineer == null)
             throw new DalDoesNotExistException($"Engineer with ID={id} does Not exist");
         else
             DataSource.Engineers.Remove(engineer);
@@ -41,8 +45,9 @@ internal class EngineerImplementation : IEngineer
     /// <returns>engineer with the id received</returns>
     public Engineer? Read(int id)
     {
-        Engineer? a= DataSource.Engineers.Find(Engineer => Engineer.Id == id);
-        return a;
+        return (from engineer in DataSource.Engineers
+                where engineer.Id == id
+                select engineer).ToList().FirstOrDefault();
     }
 
     /// <summary>
@@ -61,7 +66,10 @@ internal class EngineerImplementation : IEngineer
     /// <exception cref="Exception"></exception>
     public void Update(Engineer engineer)
     {
-        Engineer? previousEngineer = DataSource.Engineers.Find(Engineer => Engineer.Id == engineer.Id);
+        Engineer? previousEngineer = (from engineer1 in DataSource.Engineers
+                                      where engineer.Id == engineer.Id
+                                      select engineer).ToList().FirstOrDefault();
+
         if (previousEngineer == null)
             throw new DalDoesNotExistException($"Engineer with ID={engineer.Id} does Not exist");
         DataSource.Engineers.Remove(previousEngineer);

@@ -35,7 +35,7 @@ internal class TaskImplementation : ITask
     /// <returns></returns>
     public Task? Read(int id)
     {
-        return DataSource.Tasks.Find(task => task.Id == id);
+        return DataSource.Tasks.Where(task=>task.Id == id).FirstOrDefault();
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ internal class TaskImplementation : ITask
     /// <exception cref="Exception"></exception>
     public void Update(Task newTask)
     {
-        Task? previousTask = DataSource.Tasks.Find(task => task.Id == newTask.Id);
+        Task? previousTask = DataSource.Tasks.Where(task => task.Id == newTask.Id).FirstOrDefault();
         if (previousTask == null)
             throw new DalDoesNotExistException($"Task with ID={newTask.Id} does Not exist");
         DataSource.Tasks.Remove(previousTask);

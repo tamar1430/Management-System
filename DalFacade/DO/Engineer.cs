@@ -19,4 +19,9 @@ public record Engineer
 )
 {
 	public Engineer():this(0,"","", EngineerExperience.Novice, 0) { }//defualt constractor
+
+    public static explicit operator Engineer(List<Engineer> v)
+    {
+        throw new NotImplementedException();
+    }
 }
