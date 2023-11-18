@@ -39,12 +39,15 @@ internal class TaskImplementation : ITask
     }
 
     /// <summary>
-    /// read all the tasks
+    /// Read all tasks or tasks that meet a certain condition
     /// </summary>
     /// <returns>the task list</returns>
-    public List<Task> ReadAll()
+    public IEnumerable<Task?> ReadAll(Func<Task, bool>? filter = null)
     {
-        return new List<Task>(DataSource.Tasks);
+        if (filter == null)
+            return DataSource.Tasks.Select(task => task);
+        else
+            return DataSource.Tasks.Where(filter);
     }
 
     /// <summary>

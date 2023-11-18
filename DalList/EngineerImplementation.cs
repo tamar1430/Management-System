@@ -51,13 +51,18 @@ internal class EngineerImplementation : IEngineer
     }
 
     /// <summary>
-    /// read all the engineers
+    /// Read all engineers or engineers that meet a certain condition
     /// </summary>
     /// <returns>the engineers list</returns>
-    public List<Engineer> ReadAll()
+    public IEnumerable<Engineer?> ReadAll(Func<Engineer, bool>? filter = null)
     {
-        return new List<Engineer>(DataSource.Engineers);
+        if (filter == null)
+            return DataSource.Engineers.Select(engineer => engineer);
+        else
+            return DataSource.Engineers.Where(filter);
     }
+
+
 
     /// <summary>
     /// update engineer

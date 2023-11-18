@@ -304,19 +304,19 @@ internal class Program
         switch (entity)
         {
             case "Engineer":
-                foreach (Engineer engineer in s_dal!.Engineer!.ReadAll())
+                foreach (Engineer? engineer in s_dal!.Engineer!.ReadAll())
                 {
                     Console.WriteLine(engineer);
                 }
                 break;
             case "Task":
-                foreach (DO.Task task in s_dal!.Task!.ReadAll())
+                foreach (DO.Task? task in s_dal!.Task!.ReadAll())
                 {
                     Console.WriteLine(task);
                 }
                 break;
             case "Dependency":
-                foreach (Dependency dependency in s_dal!.Dependency!.ReadAll())
+                foreach (Dependency? dependency in s_dal!.Dependency!.ReadAll())
                 {
                     Console.WriteLine(dependency);
                 }

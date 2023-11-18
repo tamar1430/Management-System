@@ -44,13 +44,18 @@ internal class DependencyImplementation : IDependency
     }
 
     /// <summary>
-    /// read all the dependencys
+    /// Read all dependencys or dependencys that meet a certain condition
     /// </summary>
     /// <returns>dependencys list</returns>
-    public List<Dependency> ReadAll()
+    public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
     {
-        return new List<Dependency>(DataSource.Dependencys);
+        if (filter == null)
+            return DataSource.Dependencys.Select(dependency => dependency);
+        else
+            return DataSource.Dependencys.Where(filter);
     }
+
+
 
     /// <summary>
     /// update dependency
