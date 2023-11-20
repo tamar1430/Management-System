@@ -479,6 +479,7 @@ internal class Program
         s_dal!.Task!.Update(newTask);
     }
 
+
     /// <summary>
     /// this function snippet allows the user to update the details of a dependency entity by providing new values
     /// for the dependentTask and `previousTask
