@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfDependency>
+  <Dependency Id="1" DependentTask="5" PreviousTask="1" />
+  <Dependency Id="2" DependentTask="5" PreviousTask="2" />
+  <Dependency Id="3" DependentTask="5" PreviousTask="3" />
+  <Dependency Id="4" DependentTask="7" PreviousTask="1" />
+  <Dependency Id="5" DependentTask="7" PreviousTask="2" />
+  <Dependency Id="6" DependentTask="7" PreviousTask="3" />
+  <Dependency Id="7" DependentTask="9" PreviousTask="4" />
+  <Dependency Id="8" DependentTask="10" PreviousTask="3" />
+  <Dependency Id="9" DependentTask="11" PreviousTask="8" />
+  <Dependency Id="10" DependentTask="12" PreviousTask="7" />
+  <Dependency Id="11" DependentTask="13" PreviousTask="8" />
+  <Dependency Id="12" DependentTask="15" PreviousTask="4" />
+  <Dependency Id="13" DependentTask="15" PreviousTask="5" />
+  <Dependency Id="14" DependentTask="15" PreviousTask="9" />
+  <Dependency Id="15" DependentTask="16" PreviousTask="2" />
+  <Dependency Id="16" DependentTask="16" PreviousTask="7" />
+  <Dependency Id="17" DependentTask="16" PreviousTask="10" />
+  <Dependency Id="18" DependentTask="17" PreviousTask="1" />
+  <Dependency Id="19" DependentTask="17" PreviousTask="2" />
+  <Dependency Id="20" DependentTask="17" PreviousTask="3" />
+  <Dependency Id="21" DependentTask="17" PreviousTask="4" />
+  <Dependency Id="22" DependentTask="17" PreviousTask="5" />
+  <Dependency Id="23" DependentTask="17" PreviousTask="6" />
+  <Dependency Id="24" DependentTask="17" PreviousTask="7" />
+  <Dependency Id="25" DependentTask="17" PreviousTask="8" />
+  <Dependency Id="26" DependentTask="17" PreviousTask="9" />
+  <Dependency Id="27" DependentTask="17" PreviousTask="10" />
+  <Dependency Id="28" DependentTask="17" PreviousTask="11" />
+  <Dependency Id="29" DependentTask="17" PreviousTask="12" />
+  <Dependency Id="30" DependentTask="17" PreviousTask="13" />
+  <Dependency Id="31" DependentTask="17" PreviousTask="14" />
+  <Dependency Id="32" DependentTask="17" PreviousTask="15" />
+  <Dependency Id="33" DependentTask="17" PreviousTask="16" />
+  <Dependency Id="34" DependentTask="18" PreviousTask="3" />
+  <Dependency Id="35" DependentTask="18" PreviousTask="2" />
+  <Dependency Id="36" DependentTask="18" PreviousTask="7" />
+  <Dependency Id="37" DependentTask="18" PreviousTask="15" />
+  <Dependency Id="38" DependentTask="19" PreviousTask="3" />
+  <Dependency Id="39" DependentTask="19" PreviousTask="8" />
+  <Dependency Id="40" DependentTask="19" PreviousTask="3" />
+  <Dependency Id="41" DependentTask="20" PreviousTask="1" />
+</ArrayOfDependency>
