@@ -31,7 +31,7 @@ internal class DependencyImplementation : IDependency
     /// <exception cref="Exception"></exception>
     public void Delete(int id)
     {
-        XElement? doc = XMLTools.LoadListFromXMLElement("dependencys");
+        XElement doc = XMLTools.LoadListFromXMLElement("dependencys");
         var dependency = doc.Descendants("Dependency")
                     .Where(dependency => Convert.ToInt32(dependency.Element("Id")!.Value).Equals(id))
                     .ToList().FirstOrDefault();
@@ -49,7 +49,7 @@ internal class DependencyImplementation : IDependency
     /// <returns>dependency with the if that recived</returns>
     public Dependency? Read(int id)
     {
-        XElement? doc = XMLTools.LoadListFromXMLElement("dependencys");
+        XElement doc = XMLTools.LoadListFromXMLElement("dependencys");
         XElement? dependencyD = doc.Elements("Dependency")
                     .FirstOrDefault(dependency => Convert.ToInt32(dependency.Element("Id")!.Value).Equals(id));
         if (dependencyD != null)
@@ -72,7 +72,7 @@ internal class DependencyImplementation : IDependency
     /// <returns></returns>
     public Dependency? Read(Func<Dependency, bool> filter)
     {
-        XElement? doc = XMLTools.LoadListFromXMLElement("dependencys");
+        XElement doc = XMLTools.LoadListFromXMLElement("dependencys");
         Dependency? dependency = doc.Elements("Dependency")
                .Select(d =>
                {
@@ -91,7 +91,7 @@ internal class DependencyImplementation : IDependency
     /// <returns>dependencys list</returns>
     public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
     {
-        XElement? doc = XMLTools.LoadListFromXMLElement("dependencys");
+        XElement doc = XMLTools.LoadListFromXMLElement("dependencys");
         List<Dependency> dependencys;
         if (filter != null)
         {
@@ -126,7 +126,7 @@ internal class DependencyImplementation : IDependency
     /// <exception cref="Exception"></exception>
     public void Update(Dependency dependency)
     {
-        XElement? doc = XMLTools.LoadListFromXMLElement("dependencys");
+        XElement doc = XMLTools.LoadListFromXMLElement("dependencys");
         //get the previous dependency
         var previousDependency = doc.Descendants("Dependency")
                     .Where(d => Convert.ToInt32(d.Element("Id")?.Value).Equals(dependency.Id))
