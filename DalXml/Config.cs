@@ -1,5 +1,4 @@
 ﻿
-
 namespace Dal;
 using System.Xml.Linq;
 
