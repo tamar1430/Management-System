@@ -1,5 +1,4 @@
 ﻿
-
 namespace Dal;
 using DalApi;
 using DO;
@@ -15,7 +14,7 @@ internal class EngineerImplementation : IEngineer
     /// <exception cref="Exception"></exception>
     public int Create(Engineer newEngineer)
     {
-        List<Engineer> ? engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
+        List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
     Engineer? engineer = (from engineer1 in engineers
                           where engineer1.Id == newEngineer.Id
                           select engineer1).ToList().FirstOrDefault();
@@ -34,7 +33,7 @@ internal class EngineerImplementation : IEngineer
     /// <exception cref="Exception"></exception>
     public void Delete(int id)
     {
-        List<Engineer>? engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
+        List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
         Engineer? engineer = (from engineer1 in engineers
                               where engineer1.Id == id
                               select engineer1).ToList().FirstOrDefault();
@@ -52,7 +51,7 @@ internal class EngineerImplementation : IEngineer
     /// <returns>engineer with the id received</returns>
     public Engineer? Read(int id)
     {
-        List<Engineer>? engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
+        List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
         return (from engineer in engineers
                 where engineer.Id == id
                 select engineer).ToList().FirstOrDefault();
@@ -65,7 +64,7 @@ internal class EngineerImplementation : IEngineer
     /// <returns></returns>
     public Engineer? Read(Func<Engineer, bool> filter)
     {
-        List<Engineer>? engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
+        List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
         return engineers.Where(filter).FirstOrDefault();
     }
 
@@ -75,7 +74,7 @@ internal class EngineerImplementation : IEngineer
     /// <returns>the engineers list</returns>
     public IEnumerable<Engineer?> ReadAll(Func<Engineer, bool>? filter = null)
     {
-        List<Engineer>? engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
+        List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
         if (filter == null)
             return engineers.Select(engineer => engineer);
         else
@@ -89,7 +88,7 @@ internal class EngineerImplementation : IEngineer
     /// <exception cref="Exception"></exception>
     public void Update(Engineer engineer)
     {
-        List<Engineer>? engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
+        List<Engineer> engineers = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
         Engineer? previousEngineer = (from engineer1 in engineers
                                       where engineer1.Id == engineer.Id
                                       select engineer1).ToList().FirstOrDefault();

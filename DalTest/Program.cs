@@ -97,7 +97,6 @@ internal class Program
             switch (choice)
             {
                 case 0:
-                    Console.WriteLine("Exiting the program...");
                     exitMenu = true;
                     break;
                 case 1:

@@ -38,7 +38,6 @@
   <Dependency Id="36" DependentTask="18" PreviousTask="7" />
   <Dependency Id="37" DependentTask="18" PreviousTask="15" />
   <Dependency Id="38" DependentTask="19" PreviousTask="3" />
-  <Dependency Id="39" DependentTask="19" PreviousTask="8" />
   <Dependency Id="40" DependentTask="19" PreviousTask="3" />
   <Dependency Id="41" DependentTask="20" PreviousTask="1" />
 </ArrayOfDependency>
