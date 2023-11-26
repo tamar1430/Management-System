@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Task>
+    <Id>1</Id>
+    <Description>Buy groceries</Description>
+    <Alias>Shopping</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Novice</CopmlexityLevel>
+    <CreatedAtDate>2023-09-08T00:19:17.5455017+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>2</Id>
+    <Description>Prepare dinner</Description>
+    <Alias>Cooking</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>AdvancedBeginner</CopmlexityLevel>
+    <CreatedAtDate>2023-08-21T00:19:17.7474578+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>3</Id>
+    <Description>Organize the room</Description>
+    <Alias>Cleaning</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Proficient</CopmlexityLevel>
+    <CreatedAtDate>2023-11-01T00:19:17.770416+02:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>4</Id>
+    <Description>Read a book</Description>
+    <Alias>Reading</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Competent</CopmlexityLevel>
+    <CreatedAtDate>2023-09-18T00:19:17.7954118+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>5</Id>
+    <Description>Translate an article</Description>
+    <Alias>Translation</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>AdvancedBeginner</CopmlexityLevel>
+    <CreatedAtDate>2023-11-15T00:19:17.8199168+02:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>6</Id>
+    <Description>Write a blog post</Description>
+    <Alias>Blogging</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Novice</CopmlexityLevel>
+    <CreatedAtDate>2023-11-22T00:19:17.8410405+02:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>7</Id>
+    <Description>Follow homework instructions</Description>
+    <Alias>Homework</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Proficient</CopmlexityLevel>
+    <CreatedAtDate>2023-10-30T00:19:17.8681257+02:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>8</Id>
+    <Description>Meet a friend</Description>
+    <Alias>Socializing</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Expert</CopmlexityLevel>
+    <CreatedAtDate>2023-11-12T00:19:17.8889897+02:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>9</Id>
+    <Description>Define goals for the week</Description>
+    <Alias>Planning</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>AdvancedBeginner</CopmlexityLevel>
+    <CreatedAtDate>2023-10-09T00:19:17.9117372+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>10</Id>
+    <Description>Exercise for 30 minutes</Description>
+    <Alias>Fitness</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>AdvancedBeginner</CopmlexityLevel>
+    <CreatedAtDate>2023-09-25T00:19:17.9368781+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>11</Id>
+    <Description>Complete a puzzle</Description>
+    <Alias>Game</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Proficient</CopmlexityLevel>
+    <CreatedAtDate>2023-09-25T00:19:17.9594455+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>12</Id>
+    <Description>Learn a new language</Description>
+    <Alias>Language learning</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Competent</CopmlexityLevel>
+    <CreatedAtDate>2023-09-22T00:19:17.985707+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>13</Id>
+    <Description>Create a budget</Description>
+    <Alias>Financial planning</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Competent</CopmlexityLevel>
+    <CreatedAtDate>2023-09-21T00:19:18.0448553+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>14</Id>
+    <Description>Write a thank-you note</Description>
+    <Alias>Appreciation</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Competent</CopmlexityLevel>
+    <CreatedAtDate>2023-09-04T00:19:18.0669483+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>15</Id>
+    <Description>Plant flowers</Description>
+    <Alias>Gardening</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Proficient</CopmlexityLevel>
+    <CreatedAtDate>2023-09-17T00:19:18.0862605+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>16</Id>
+    <Description>Watch a movie</Description>
+    <Alias>Entertainment</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>AdvancedBeginner</CopmlexityLevel>
+    <CreatedAtDate>2023-08-27T00:19:18.1081402+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>17</Id>
+    <Description>Volunteer for a cause</Description>
+    <Alias>Community service</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Expert</CopmlexityLevel>
+    <CreatedAtDate>2023-09-21T00:19:18.1293024+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>18</Id>
+    <Description>Write a poem</Description>
+    <Alias>Creative writing</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Proficient</CopmlexityLevel>
+    <CreatedAtDate>2023-09-01T00:19:18.1504852+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>19</Id>
+    <Description>Learn to play a musical instrument</Description>
+    <Alias>Music practice</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>AdvancedBeginner</CopmlexityLevel>
+    <CreatedAtDate>2023-10-14T00:19:18.1707901+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>20</Id>
+    <Description>Plan a weekend getaway</Description>
+    <Alias>Travel planning</Alias>
+    <IsMilestone>false</IsMilestone>
+    <CopmlexityLevel>Proficient</CopmlexityLevel>
+    <CreatedAtDate>2023-09-27T00:19:18.1942543+03:00</CreatedAtDate>
+    <ScheduledDate xsi:nil="true" />
+    <StartDate xsi:nil="true" />
+    <ForesastDate xsi:nil="true" />
+    <DeadLineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverable>deliverable deliverable deliverable deliverable</Deliverable>
+    <Remarks>remarks remarks remarks remarks remarks</Remarks>
+    <Engineerld xsi:nil="true" />
+  </Task>
+</ArrayOfTask>

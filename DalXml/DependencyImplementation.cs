@@ -17,9 +17,9 @@ internal class DependencyImplementation : IDependency
         Dependency newDependency = dependency with { Id = newId };
         XElement doc = XMLTools.LoadListFromXMLElement("dependencys");
         doc.Add(new XElement("Dependency",
-                                        new XAttribute("Id", newDependency.Id),
-                                        new XAttribute("DependentTask", newDependency.DependentTask),
-                                        new XAttribute("PreviousTask", newDependency.PreviousTask)));
+                                        new XElement("Id", newDependency.Id),
+                                        new XElement("DependentTask", newDependency.DependentTask),
+                                        new XElement("PreviousTask", newDependency.PreviousTask)));
         XMLTools.SaveListToXMLElement(doc, "dependencys");
         return newId;
     }
@@ -33,7 +33,7 @@ internal class DependencyImplementation : IDependency
     {
         XElement? doc = XMLTools.LoadListFromXMLElement("dependencys");
         var dependency = doc.Descendants("Dependency")
-                    .Where(dependency => Convert.ToInt32(dependency.Attribute("Id")!.Value).Equals(id))
+                    .Where(dependency => Convert.ToInt32(dependency.Element("Id")!.Value).Equals(id))
                     .ToList().FirstOrDefault();
         if (dependency == null)
             throw new DalDoesNotExistException($"Dependency with ID={id} does Not exist");
@@ -51,12 +51,12 @@ internal class DependencyImplementation : IDependency
     {
         XElement? doc = XMLTools.LoadListFromXMLElement("dependencys");
         XElement? dependencyD = doc.Elements("Dependency")
-                    .FirstOrDefault(dependency => Convert.ToInt32(dependency.Attribute("Id")!.Value).Equals(id));
+                    .FirstOrDefault(dependency => Convert.ToInt32(dependency.Element("Id")!.Value).Equals(id));
         if (dependencyD != null)
         {
-            Dependency dependency = new(Convert.ToInt32(dependencyD.Attribute("Id")!.Value),
-                Convert.ToInt32(dependencyD.Attribute("DependentTask")!.Value),
-                Convert.ToInt32(dependencyD.Attribute("PreviousTask")!.Value));
+            Dependency dependency = new(Convert.ToInt32(dependencyD.Element("Id")!.Value),
+                Convert.ToInt32(dependencyD.Element("DependentTask")!.Value),
+                Convert.ToInt32(dependencyD.Element("PreviousTask")!.Value));
             return dependency;
         }
         else
@@ -76,9 +76,9 @@ internal class DependencyImplementation : IDependency
         Dependency? dependency = doc.Elements("Dependency")
                .Select(d =>
                {
-                   Dependency dependencyD = new Dependency(Convert.ToInt32(d.Attribute("Id")!.Value),
-                   Convert.ToInt32(d.Attribute("DependentTask")!.Value),
-                   Convert.ToInt32(d.Attribute("PreviousTask")!.Value));
+                   Dependency dependencyD = new Dependency(Convert.ToInt32(d.Element("Id")!.Value),
+                   Convert.ToInt32(d.Element("DependentTask")!.Value),
+                   Convert.ToInt32(d.Element("PreviousTask")!.Value));
                    return dependencyD;
                })
             .FirstOrDefault(d => filter(d));
@@ -98,7 +98,7 @@ internal class DependencyImplementation : IDependency
             dependencys = doc.Elements("Dependency")
                    .Select(d =>
                    {
-                       Dependency dependency = new Dependency(Convert.ToInt32(d.Attribute("Id")!.Value),
+                       Dependency dependency = new Dependency(Convert.ToInt32(d.Element("Id")!.Value),
                        Convert.ToInt32(d.Element("DependentTask")!.Value),
                        Convert.ToInt32(d.Element("PreviousTask")!.Value));
                        return dependency;
@@ -110,9 +110,9 @@ internal class DependencyImplementation : IDependency
             dependencys = doc.Elements("Dependency")
                               .Select(d =>
                               {
-                                  Dependency dependency = new Dependency(Convert.ToInt32(d.Attribute("Id")!.Value),
-                                  Convert.ToInt32(d.Attribute("DependentTask")!.Value),
-                                  Convert.ToInt32(d.Attribute("PreviousTask")!.Value));
+                                  Dependency dependency = new Dependency(Convert.ToInt32(d.Element("Id")!.Value),
+                                  Convert.ToInt32(d.Element("DependentTask")!.Value),
+                                  Convert.ToInt32(d.Element("PreviousTask")!.Value));
                                   return dependency;
                               }).ToList();
         }
@@ -129,7 +129,7 @@ internal class DependencyImplementation : IDependency
         XElement? doc = XMLTools.LoadListFromXMLElement("dependencys");
         //get the previous dependency
         var previousDependency = doc.Descendants("Dependency")
-                    .Where(d => Convert.ToInt32(d.Attribute("Id")?.Value).Equals(dependency.Id))
+                    .Where(d => Convert.ToInt32(d.Element("Id")?.Value).Equals(dependency.Id))
                     .ToList().FirstOrDefault();
 
         // throw Exception if the dependency don't found 
@@ -142,9 +142,9 @@ internal class DependencyImplementation : IDependency
             previousDependency.Remove();
             //add the update dependency
             doc.Add(new XElement("Dependency",
-                                            new XAttribute("Id", dependency.Id),
-                                            new XAttribute("DependentTask", dependency.DependentTask),
-                                            new XAttribute("PreviousTask", dependency.PreviousTask)));
+                                            new XElement("Id", dependency.Id),
+                                            new XElement("DependentTask", dependency.DependentTask),
+                                            new XElement("PreviousTask", dependency.PreviousTask)));
             XMLTools.SaveListToXMLElement(doc, "dependencys");
         }
     }

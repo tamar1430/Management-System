@@ -1,43 +1,208 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfDependency>
-  <Dependency Id="1" DependentTask="5" PreviousTask="1" />
-  <Dependency Id="2" DependentTask="5" PreviousTask="2" />
-  <Dependency Id="3" DependentTask="5" PreviousTask="3" />
-  <Dependency Id="4" DependentTask="7" PreviousTask="1" />
-  <Dependency Id="5" DependentTask="7" PreviousTask="2" />
-  <Dependency Id="6" DependentTask="7" PreviousTask="3" />
-  <Dependency Id="7" DependentTask="9" PreviousTask="4" />
-  <Dependency Id="8" DependentTask="10" PreviousTask="3" />
-  <Dependency Id="9" DependentTask="11" PreviousTask="8" />
-  <Dependency Id="10" DependentTask="12" PreviousTask="7" />
-  <Dependency Id="11" DependentTask="13" PreviousTask="8" />
-  <Dependency Id="12" DependentTask="15" PreviousTask="4" />
-  <Dependency Id="13" DependentTask="15" PreviousTask="5" />
-  <Dependency Id="14" DependentTask="15" PreviousTask="9" />
-  <Dependency Id="15" DependentTask="16" PreviousTask="2" />
-  <Dependency Id="16" DependentTask="16" PreviousTask="7" />
-  <Dependency Id="17" DependentTask="16" PreviousTask="10" />
-  <Dependency Id="18" DependentTask="17" PreviousTask="1" />
-  <Dependency Id="19" DependentTask="17" PreviousTask="2" />
-  <Dependency Id="20" DependentTask="17" PreviousTask="3" />
-  <Dependency Id="21" DependentTask="17" PreviousTask="4" />
-  <Dependency Id="22" DependentTask="17" PreviousTask="5" />
-  <Dependency Id="23" DependentTask="17" PreviousTask="6" />
-  <Dependency Id="24" DependentTask="17" PreviousTask="7" />
-  <Dependency Id="25" DependentTask="17" PreviousTask="8" />
-  <Dependency Id="26" DependentTask="17" PreviousTask="9" />
-  <Dependency Id="27" DependentTask="17" PreviousTask="10" />
-  <Dependency Id="28" DependentTask="17" PreviousTask="11" />
-  <Dependency Id="29" DependentTask="17" PreviousTask="12" />
-  <Dependency Id="30" DependentTask="17" PreviousTask="13" />
-  <Dependency Id="31" DependentTask="17" PreviousTask="14" />
-  <Dependency Id="32" DependentTask="17" PreviousTask="15" />
-  <Dependency Id="33" DependentTask="17" PreviousTask="16" />
-  <Dependency Id="34" DependentTask="18" PreviousTask="3" />
-  <Dependency Id="35" DependentTask="18" PreviousTask="2" />
-  <Dependency Id="36" DependentTask="18" PreviousTask="7" />
-  <Dependency Id="37" DependentTask="18" PreviousTask="15" />
-  <Dependency Id="38" DependentTask="19" PreviousTask="3" />
-  <Dependency Id="40" DependentTask="19" PreviousTask="3" />
-  <Dependency Id="41" DependentTask="20" PreviousTask="1" />
+  <Dependency>
+    <Id>1</Id>
+    <DependentTask>5</DependentTask>
+    <PreviousTask>1</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>2</Id>
+    <DependentTask>5</DependentTask>
+    <PreviousTask>2</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>3</Id>
+    <DependentTask>5</DependentTask>
+    <PreviousTask>3</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>4</Id>
+    <DependentTask>7</DependentTask>
+    <PreviousTask>1</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>5</Id>
+    <DependentTask>7</DependentTask>
+    <PreviousTask>2</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>6</Id>
+    <DependentTask>7</DependentTask>
+    <PreviousTask>3</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>7</Id>
+    <DependentTask>9</DependentTask>
+    <PreviousTask>4</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>8</Id>
+    <DependentTask>10</DependentTask>
+    <PreviousTask>3</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>9</Id>
+    <DependentTask>11</DependentTask>
+    <PreviousTask>8</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>10</Id>
+    <DependentTask>12</DependentTask>
+    <PreviousTask>7</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>11</Id>
+    <DependentTask>13</DependentTask>
+    <PreviousTask>8</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>12</Id>
+    <DependentTask>15</DependentTask>
+    <PreviousTask>4</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>13</Id>
+    <DependentTask>15</DependentTask>
+    <PreviousTask>5</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>14</Id>
+    <DependentTask>15</DependentTask>
+    <PreviousTask>9</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>15</Id>
+    <DependentTask>16</DependentTask>
+    <PreviousTask>2</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>16</Id>
+    <DependentTask>16</DependentTask>
+    <PreviousTask>7</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>17</Id>
+    <DependentTask>16</DependentTask>
+    <PreviousTask>10</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>18</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>1</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>19</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>2</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>20</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>3</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>21</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>4</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>22</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>5</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>23</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>6</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>24</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>7</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>25</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>8</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>26</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>9</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>27</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>10</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>28</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>11</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>29</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>12</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>30</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>13</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>31</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>14</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>32</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>15</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>33</Id>
+    <DependentTask>17</DependentTask>
+    <PreviousTask>16</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>34</Id>
+    <DependentTask>18</DependentTask>
+    <PreviousTask>3</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>35</Id>
+    <DependentTask>18</DependentTask>
+    <PreviousTask>2</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>36</Id>
+    <DependentTask>18</DependentTask>
+    <PreviousTask>7</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>37</Id>
+    <DependentTask>18</DependentTask>
+    <PreviousTask>15</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>38</Id>
+    <DependentTask>19</DependentTask>
+    <PreviousTask>3</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>39</Id>
+    <DependentTask>19</DependentTask>
+    <PreviousTask>8</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>41</Id>
+    <DependentTask>20</DependentTask>
+    <PreviousTask>1</PreviousTask>
+  </Dependency>
+  <Dependency>
+    <Id>42</Id>
+    <DependentTask>7</DependentTask>
+    <PreviousTask>8</PreviousTask>
+  </Dependency>
 </ArrayOfDependency>
