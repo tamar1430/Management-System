@@ -6,7 +6,7 @@ namespace DalTest;
 
 internal class Program
 {
-    static readonly IDal s_dal = new DalXml(); //stage 3
+    static readonly IDal s_dal = Factory.Get; //stage 4
 
     /// <summary>
     /// this function initializes the program by calling the Do method of the Initialization class and then displays the options menu to the user. 

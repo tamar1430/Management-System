@@ -49,4 +49,88 @@
     <Level>Novice</Level>
     <Cost>345</Cost>
   </Engineer>
+  <Engineer>
+    <Id>539661104</Id>
+    <Name>Dani Levi</Name>
+    <Email>DaniL@gmail.com</Email>
+    <Level>Proficient</Level>
+    <Cost>457</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>794764422</Id>
+    <Name>Eli Amar</Name>
+    <Email>EliA@gmail.com</Email>
+    <Level>Competent</Level>
+    <Cost>435</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>730927512</Id>
+    <Name>Yair Cohen</Name>
+    <Email>YairC@gmail.com</Email>
+    <Level>Proficient</Level>
+    <Cost>431</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>517251640</Id>
+    <Name>Ariela Levin</Name>
+    <Email>ArielaL@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>101</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>389821171</Id>
+    <Name>Dina Klein</Name>
+    <Email>DinaK@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>260</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>124919145</Id>
+    <Name>Shira Israelof</Name>
+    <Email>ShiraI@gmail.com</Email>
+    <Level>Competent</Level>
+    <Cost>533</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>711197066</Id>
+    <Name>Dani Levi</Name>
+    <Email>DaniL@gmail.com</Email>
+    <Level>Proficient</Level>
+    <Cost>325</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>109069810</Id>
+    <Name>Eli Amar</Name>
+    <Email>EliA@gmail.com</Email>
+    <Level>AdvancedBeginner</Level>
+    <Cost>512</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>213458097</Id>
+    <Name>Yair Cohen</Name>
+    <Email>YairC@gmail.com</Email>
+    <Level>Proficient</Level>
+    <Cost>367</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>780656374</Id>
+    <Name>Ariela Levin</Name>
+    <Email>ArielaL@gmail.com</Email>
+    <Level>Expert</Level>
+    <Cost>295</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>741049385</Id>
+    <Name>Dina Klein</Name>
+    <Email>DinaK@gmail.com</Email>
+    <Level>Proficient</Level>
+    <Cost>115</Cost>
+  </Engineer>
+  <Engineer>
+    <Id>198516759</Id>
+    <Name>Shira Israelof</Name>
+    <Email>ShiraI@gmail.com</Email>
+    <Level>Novice</Level>
+    <Cost>559</Cost>
+  </Engineer>
 </ArrayOfEngineer>
