@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{559FCBB9-759
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{AE5B3655-5BE3-4669-BDCA-E708562E28ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlTest", "BlTest\BlTest.csproj", "{38186F34-F54A-49BD-B92B-E634375A61CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{AE5B3655-5BE3-4669-BDCA-E708562E28ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE5B3655-5BE3-4669-BDCA-E708562E28ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE5B3655-5BE3-4669-BDCA-E708562E28ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38186F34-F54A-49BD-B92B-E634375A61CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38186F34-F54A-49BD-B92B-E634375A61CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38186F34-F54A-49BD-B92B-E634375A61CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38186F34-F54A-49BD-B92B-E634375A61CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
