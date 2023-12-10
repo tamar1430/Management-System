@@ -5,9 +5,9 @@
 /// </summary>
 public interface IEngineer
 {
-    public IEnumerable<BO.Engineer> getEngineersList(Func<BO.Engineer, bool>? filter = null);
+    public IEnumerable<BO.Engineer> GetEngineersList(Func<BO.Engineer, bool>? filter = null);
     public BO.Engineer EngineerDetailsRequest(int id);
-    public void addEngineer(BO.Engineer engineer);
-    public void deleteEngineer(int id);
-    public void updateEngineerData(BO.Engineer engineer);
+    public void AddEngineer(BO.Engineer engineer);
+    public void DeleteEngineer(int id);
+    public void UpdateEngineerData(BO.Engineer engineer);
 }
