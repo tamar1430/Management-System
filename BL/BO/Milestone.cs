@@ -8,7 +8,7 @@ namespace BO
         public string Description { get; init; }
         public string Alias {  get; init; }
         public DateTime CreatedAtDate {  get; init; }   
-        public BO.Status Status { get; set; }
+        public Status Status { get; set; }
         public DateTime ? ForecastDate { get; init; }
         public DateTime DeadlineDate { get; init; }
         public DateTime? CompleteDate { get; set;}
