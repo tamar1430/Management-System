@@ -7,8 +7,8 @@ public class Task
     public string Alias { get; init; }
     public DateTime CreatedAtDate { get; init; }
     public Status? Status { get; set; }
-    //public MilestoneInTask? Milestone { get; set; }
     public List<TaskInList> Dependencies { get; set; }
+    public MilestoneInTask? Milestone { get; set; }
     public DateTime? BaselineStartDate { get; init; }
     public DateTime? StartDate { get; set; }
     public DateTime? ScheduledStartDate { get; init; }
@@ -17,6 +17,6 @@ public class Task
     public DateTime? CompleteDate { get; set; }
     public string? Deliverable {  get; set; }
     public string? Remarks { get; set; }
-    public Engineer? Engineer { get; set; }
+    public EngineerInTask? Engineer { get; set; }
     public EngineerExperience? CopmlexityLevel {  get; set; }
 }

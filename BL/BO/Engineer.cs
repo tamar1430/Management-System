@@ -7,5 +7,5 @@ public class Engineer
     public string Email { get; init; }
     public EngineerExperience Level { get; set; }
     public double Cost { get; set; }
-    //public int? Task { get; set; }
+    public TaskInEngineer? Task { get; set; }
 }
