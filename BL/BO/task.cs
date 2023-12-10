@@ -8,6 +8,7 @@ public class Task
     public DateTime CreatedAtDate { get; init; }
     public Status? Status { get; set; }
     //public MilestoneInTask? Milestone { get; set; }
+    public List<TaskInList> Dependencies { get; set; }
     public DateTime? BaselineStartDate { get; init; }
     public DateTime? StartDate { get; set; }
     public DateTime? ScheduledStartDate { get; init; }
