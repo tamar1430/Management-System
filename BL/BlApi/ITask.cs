@@ -2,9 +2,9 @@
 
 public interface ITask
 {
-    public IEnumerable<BO.Task> getTaskrsList(Func<BO.Task, bool>? filter = null);
+    public IEnumerable<BO.Task> GetTaskrsList(Func<BO.Task, bool>? filter = null);
     public BO.Task TaskDetailsRequest(int id);
-    public void addTask(BO.Task engineer);
-    public void deleteTask(int id);
-    public void updateTaskData(BO.Task engineer);
+    public void AddTask(BO.Task engineer);
+    public void DeleteTask(int id);
+    public void UpdateTaskData(BO.Task engineer);
 }
