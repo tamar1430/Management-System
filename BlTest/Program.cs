@@ -2,6 +2,7 @@
 
 //ToString לעשות 🥇🥇🥇🥇
 //הערות
+//לו"ז פרויקט
 
 internal class Program
 {

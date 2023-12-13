@@ -1,6 +1,7 @@
-﻿using DalApi;
-using static Config;
+﻿using static Config;
 using System.Reflection;
+
+namespace DalApi;
 
 public static class Factory
 {
