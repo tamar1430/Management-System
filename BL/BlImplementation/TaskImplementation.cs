@@ -1,11 +1,10 @@
 ﻿using BlApi;
 namespace BlImplementation;
-private DalApi.IDal _dal = DalApi.Factory.Get;
-
-
 
 internal class TaskImplementation : ITask
 {
+    private DalApi.IDal _dal = DalApi.Factory.Get;
+
     public void AddTask(BO.Task engineer)
     {
         throw new NotImplementedException();
