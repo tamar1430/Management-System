@@ -18,6 +18,7 @@ internal class Program
         try
         {
             Initialization.Do(s_dal);
+            ShowOptionsMenu();
         }
         catch (Exception ex)
         {
@@ -209,11 +210,11 @@ internal class Program
         string deliverable = Console.ReadLine()!;
         Console.Write("remarks: ");
         string remarks = Console.ReadLine()!;
-        Console.Write("engineerld: ");
-        int? engineerld = int.Parse(Console.ReadLine()!);
+        Console.Write("engineerId: ");
+        int? engineerId = int.Parse(Console.ReadLine()!);
 
         DO.Task newTask = new(0, description, alias, isMilestone, copmlexityLevel, createdAtDate, scheduledDate,
-            startDate, foresastDate, deadLineDate, completeDate, deliverable, remarks, engineerld);
+            startDate, foresastDate, deadLineDate, completeDate, deliverable, remarks, engineerId);
 
         s_dal.Task!.Create(newTask);
 
@@ -462,16 +463,16 @@ internal class Program
         string? remarks = Console.ReadLine();
         if (remarks == "") { remarks = s_dal!.Task!.Read(id)!.Deliverable; }
 
-        int? engineerld;
-        Console.Write("engineerld: ");
-        string? engineerld_input = Console.ReadLine();
-        if (engineerld_input == "") { engineerld = s_dal!.Task!.Read(id)!.Engineerld; }
-        else { engineerld = int.Parse(engineerld_input!); }
+        int? engineerId;
+        Console.Write("engineerId: ");
+        string? engineerId_input = Console.ReadLine();
+        if (engineerId_input == "") { engineerId = s_dal!.Task!.Read(id)!.EngineerId; }
+        else { engineerId = int.Parse(engineerId_input!); }
 
         DO.Task newTask = new(id, description, alias,
             isMilestone, copmlexityLevel, createdAtDate, startDate,
             scheduledDate, foresastDate, deadLineDate,
-            completeDate, deliverable, remarks, engineerld);
+            completeDate, deliverable, remarks, engineerId);
 
         s_dal!.Task!.Update(newTask);
     }

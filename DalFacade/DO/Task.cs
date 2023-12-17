@@ -17,7 +17,7 @@ namespace DO;
 /// <param name="CompleteDate"></param>
 /// <param name="Deliverable"></param>
 /// <param name="Remarks"></param>
-/// <param name="Engineerld"></param>
+/// <param name="EngineerId"></param>
 public record Task
 (
     int Id,
@@ -33,7 +33,7 @@ public record Task
     DateTime? CompleteDate = null,
     string? Deliverable = null,
     string? Remarks = null,
-    int? Engineerld = null
+    int? EngineerId = null
 )
 {
     public Task():this(0,"","",false, EngineerExperience.Novice,DateTime.Now) { }//defualt constractor

@@ -1,16 +1,18 @@
 ﻿using BlApi;
+using DalApi;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
 namespace BlImplementation;
 
-internal class EngineerImplementation : IEngineer
+internal class EngineerImplementation : BlApi.IEngineer
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
 
     public void Create(BO.Engineer boEngineer)
     {
         if (boEngineer.Id <= 0) throw new BO.BlInorrectData("Engineer's id isn't correct");
-        if (boEngineer.Name.Length<= 0) throw new BO.BlInorrectData("Engineer's name isn't correct");
+        if (boEngineer.Name.Length <= 0) throw new BO.BlInorrectData("Engineer's name isn't correct");
         if (boEngineer.Cost <= 0) throw new BO.BlInorrectData("Engineer's cost isn't correct");
 
         string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
@@ -31,7 +33,12 @@ internal class EngineerImplementation : IEngineer
 
     public void Delete(int id)
     {
-        
+        DO.Task? taskEngineer = _dal!.Task!.Read(t => t.EngineerId == id && t.IsMilestone);
+        if (taskEngineer != null)
+            throw new BO.BlDeletionImpossible("can't delete engineer that do task now");
+
+        // לבדוק איך לבדוק אם בצע משימה בעבר
+
         try
         {
             _dal.Engineer.Delete(id);
@@ -48,6 +55,8 @@ internal class EngineerImplementation : IEngineer
         if (doEngineer == null)
             throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
 
+        DO.Task? taskEngineer = _dal!.Task!.Read(t => t.EngineerId == id && t.IsMilestone);
+
         return new BO.Engineer()
         {
             Id = id,
@@ -55,13 +64,15 @@ internal class EngineerImplementation : IEngineer
             Email = doEngineer.Email,
             Level = (BO.EngineerExperience)doEngineer.Level,
             Cost = doEngineer.Cost,
+            Task = taskEngineer != null ? new BO.TaskInEngineer { Id = taskEngineer.Id, Alias = taskEngineer.Alias } : null
         };
 
     }
 
     public IEnumerable<BO.Engineer> ReadAll(Func<BO.Engineer, bool>? filter = null)
     {
-        return (from DO.Engineer doEngineer in _dal.Engineer.ReadAll()
+        return (from DO.Engineer doEngineer in _dal.Engineer.ReadAll(filter!=null ? (Func<DO.Engineer, bool>)filter :null )
+                let taskEngineer = _dal!.Task!.Read(t => t.EngineerId == doEngineer.Id && t.IsMilestone)
                 select new BO.Engineer
                 {
                     Id = doEngineer.Id,
@@ -69,12 +80,20 @@ internal class EngineerImplementation : IEngineer
                     Email = doEngineer.Email,
                     Level = (BO.EngineerExperience)doEngineer.Level,
                     Cost = doEngineer.Cost,
+                    Task = taskEngineer != null ? new BO.TaskInEngineer { Id = taskEngineer.Id, Alias = taskEngineer.Alias } : null
                 });
-
     }
 
-    public void UpdateEngineerData(BO.Engineer boEngineer)
+    public void Update(BO.Engineer boEngineer)
     {
+        if (boEngineer.Id <= 0) throw new BO.BlInorrectData("Engineer's id isn't correct");
+        if (boEngineer.Name.Length <= 0) throw new BO.BlInorrectData("Engineer's name isn't correct");
+        if (boEngineer.Cost <= 0) throw new BO.BlInorrectData("Engineer's cost isn't correct");
+
+        string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+        bool isValid = Regex.IsMatch(boEngineer.Email, pattern);
+        if (!isValid) throw new BO.BlInorrectData("Engineer's email isn't correct");
+
         DO.Engineer doEngineer = new(boEngineer.Id, boEngineer.Name, boEngineer.Email, (DO.EngineerExperience)boEngineer.Level, boEngineer.Cost);
         try
         {

@@ -9,5 +9,5 @@ public interface IEngineer
     public void Delete(int id);
     public BO.Engineer Read(int id);
     public IEnumerable<BO.Engineer> ReadAll(Func<BO.Engineer, bool>? filter = null);
-    public void UpdateEngineerData(BO.Engineer engineer);
+    public void Update(BO.Engineer engineer);
 }
