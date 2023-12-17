@@ -18,7 +18,6 @@ internal class Program
         try
         {
             Initialization.Do(s_dal);
-            ShowOptionsMenu();
         }
         catch (Exception ex)
         {
