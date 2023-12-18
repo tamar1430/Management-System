@@ -27,7 +27,15 @@ internal class TaskImplementation : ITask
     /// <exception cref="Exception"></exception>
     public void Delete(int id)
     {
-        throw new DalDeletionImpossible("can't delete task");
+        List<Task> tasks = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
+        Task? task = (from task1 in tasks
+                              where task1.Id == id
+                              select task1).ToList().FirstOrDefault();
+        if (task == null)
+            throw new DalDoesNotExistException($"Task with ID={id} does Not exist");
+        else
+           tasks.Remove(task);
+        XMLTools.SaveListToXMLSerializer<Task>(tasks, "tasks");
     }
 
     /// <summary>
