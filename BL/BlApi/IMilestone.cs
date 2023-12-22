@@ -2,6 +2,6 @@
 
 public interface IMilestone
 {
-    public BO.Engineer MilestoneDetailsRequest(int id);
-    public void UpdateMilestoneData(BO.Milestone milestone);
+    public BO.Milestone Read(int id);
+    public void Update(BO.Milestone milestone);
 }
