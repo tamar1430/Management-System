@@ -1,5 +1,4 @@
 ﻿using BlApi;
-using BO;
 using DalApi;
 
 namespace BlImplementation;
@@ -63,10 +62,7 @@ internal class TaskImplementation : BlApi.ITask
                     Description = doTask.Description,
                     Alias = doTask.Alias,
                     CreatedAtDate = doTask.CreatedAtDate,
-                    Status = doTask.ScheduledDate is null ? BO.Status.Unscheduled :
-                    doTask.StartDate is null ? BO.Status.Scheduled :
-                    doTask.CompleteDate is null ? BO.Status.OnTrack :
-                    BO.Status.InJeopardy,
+                    Status = BO.Tools.status(doTask),
                     Milestone = null,//לעשות
                                      //BaselineStartDate =null ,//לעשות
                     StartDate = doTask.StartDate,
@@ -95,10 +91,7 @@ internal class TaskImplementation : BlApi.ITask
             Description = doTask.Description,
             Alias = doTask.Alias,
             CreatedAtDate = doTask.CreatedAtDate,
-            Status = doTask.ScheduledDate is null ? BO.Status.Unscheduled :
-                doTask.StartDate is null ? BO.Status.Scheduled :
-                doTask.CompleteDate is null ? BO.Status.OnTrack :
-                BO.Status.InJeopardy,
+            Status = BO.Tools.status(doTask),
             Milestone = null,//לעשות
                              //BaselineStartDate =null ,//לעשות
             StartDate = doTask.StartDate,

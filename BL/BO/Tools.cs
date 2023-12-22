@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+namespace BO;
 
-namespace BO
+public class Tools
 {
-    internal class Tools
+    public static Status status (DO.Task doTask)
     {
+        return doTask.ScheduledDate is null ? BO.Status.Unscheduled :
+                   doTask.StartDate is null ? BO.Status.Scheduled :
+                   doTask.CompleteDate is null ?
+                   (doTask.DeadLineDate < DateTime.Now ? BO.Status.OnTrack : BO.Status.InJeopardy) :
+                   BO.Status.Done;
     }
+
 }
