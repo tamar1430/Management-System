@@ -76,7 +76,7 @@ internal class TaskImplementation : BlApi.ITask
                     CompleteDate = doTask.CompleteDate,
                     Deliverable = doTask.Deliverable,
                     Remarks = doTask.Remarks,
-                    Engineer = doTask.EngineerId is not null ? new BO.EngineerInTask() { Id = (int)doTask.EngineerId, Name = _dal!.Engineer!.Read((int)doTask!.EngineerId).Name } : null,
+                    Engineer = doTask.EngineerId is not null ? new BO.EngineerInTask() { Id = (int)doTask.EngineerId, Name = _dal!.Engineer!.Read((int)doTask!.EngineerId)!.Name } : null,
                     CopmlexityLevel = (BO.EngineerExperience)doTask.CopmlexityLevel
                 });
     }
@@ -108,7 +108,7 @@ internal class TaskImplementation : BlApi.ITask
             CompleteDate = doTask.CompleteDate,
             Deliverable = doTask.Deliverable,
             Remarks = doTask.Remarks,
-            Engineer = doTask.EngineerId is not null ? new BO.EngineerInTask() { Id = (int)doTask.EngineerId, Name = _dal!.Engineer!.Read((int)doTask!.EngineerId).Name } : null,
+            Engineer = doTask.EngineerId is not null ? new BO.EngineerInTask() { Id = (int)doTask.EngineerId, Name = _dal!.Engineer!.Read((int)doTask!.EngineerId)!.Name } : null,
             CopmlexityLevel = (BO.EngineerExperience)doTask.CopmlexityLevel
         };
         return boTask;
