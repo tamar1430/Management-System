@@ -26,6 +26,10 @@ internal static class DataSource
     internal static List<Task> Tasks { get; } = new();
     internal static List<Engineer> Engineers { get; set; } = new();
     internal static List<Dependency> Dependencys { get; } = new();
+
+    internal static DateTime? startProjectDate { get; set; } = null;
+    internal static DateTime? finishProjectDate { get; set; } = null;
+
 }
 
 
