@@ -72,7 +72,7 @@ internal class DependencyImplementation : IDependency
     public void Update(Dependency dependency)
     {
         Dependency? previousDependency = DataSource.Dependencys.Where(dependency1 => dependency1.Id == dependency.Id).FirstOrDefault();
-        if (previousDependency == null)
+        if (previousDependency is null)
             throw new DalDoesNotExistException($"Dependency with ID={dependency.Id} does Not exist");
         DataSource.Dependencys.Remove(previousDependency);
         DataSource.Dependencys.Add(dependency);

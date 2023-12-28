@@ -17,7 +17,8 @@ internal class Program
     {
         try
         {
-            Initialization.Do(s_dal);
+            //s_dal.SpecialOperations.Reset();
+            //Initialization.Do(s_dal);
             ShowOptionsMenu();
         }
         catch (Exception ex)
@@ -201,7 +202,9 @@ internal class Program
         Console.Write("startDate: ");
         DateTime startDate = DateTime.Parse(Console.ReadLine()!);
         Console.Write("foresastDate: ");
-        TimeSpan foresastDate = TimeSpan.Parse(Console.ReadLine()!);
+        DateTime foresastDate = DateTime.Parse(Console.ReadLine()!);
+        Console.Write("requiredEffortTime: ");
+        TimeSpan requiredEffortTime = TimeSpan.Parse(Console.ReadLine()!);
         Console.Write("deadLineDate: ");
         DateTime deadLineDate = DateTime.Parse(Console.ReadLine()!);
         Console.Write("completeDate: ");
@@ -213,8 +216,8 @@ internal class Program
         Console.Write("engineerId: ");
         int? engineerId = int.Parse(Console.ReadLine()!);
 
-        DO.Task newTask = new(0, description, alias, isMilestone, copmlexityLevel, createdAtDate, scheduledDate,
-            startDate, foresastDate, deadLineDate, completeDate, deliverable, remarks, engineerId);
+        DO.Task newTask = new(0, description, alias, isMilestone,  createdAtDate, copmlexityLevel, scheduledDate,
+            startDate,requiredEffortTime, foresastDate, deadLineDate, completeDate, deliverable, remarks, engineerId);
 
         s_dal.Task!.Create(newTask);
 
@@ -413,7 +416,7 @@ internal class Program
         if (isMilestone_input == "") { isMilestone = s_dal!.Task!.Read(id)!.IsMilestone; }
         else { isMilestone = bool.Parse(isMilestone_input!); }
 
-        EngineerExperience copmlexityLevel;
+        EngineerExperience? copmlexityLevel;
         Console.Write("copmlexityLevel: ");
         string? copmlexityLevel_input = Console.ReadLine();
         if (copmlexityLevel_input == "") { copmlexityLevel = (s_dal!.Task!.Read(id)!.CopmlexityLevel); }
@@ -437,11 +440,18 @@ internal class Program
         if (startDate_input == "") { startDate = s_dal!.Task!.Read(id)!.StartDate; }
         else { startDate = s_dal!.Task!.Read(id)!.StartDate; }
 
-        TimeSpan? foresastDate;
+        DateTime? foresastDate;
         Console.Write("foresastDate: ");
         string? foresastDate_input = (Console.ReadLine()!);
         if (foresastDate_input == "") { foresastDate = s_dal!.Task!.Read(id)!.ForesastDate; }
-        else { foresastDate = TimeSpan.Parse(foresastDate_input); }
+        else { foresastDate = DateTime.Parse(foresastDate_input); }
+
+
+        TimeSpan? requiredEffortTime;
+        Console.Write("requiredEffortTime: ");
+        string? requiredEffortTime_input = (Console.ReadLine()!);
+        if (requiredEffortTime_input == "") { requiredEffortTime = s_dal!.Task!.Read(id)!.RequiredEffortTime; }
+        else { requiredEffortTime = TimeSpan.Parse(requiredEffortTime_input); }
 
         DateTime? deadLineDate;
         Console.Write("deadLineDate: ");
@@ -470,8 +480,8 @@ internal class Program
         else { engineerId = int.Parse(engineerId_input!); }
 
         DO.Task newTask = new(id, description, alias,
-            isMilestone, copmlexityLevel, createdAtDate, startDate,
-            scheduledDate, foresastDate, deadLineDate,
+            isMilestone,  createdAtDate, copmlexityLevel, scheduledDate,
+            startDate, requiredEffortTime, foresastDate, deadLineDate,
             completeDate, deliverable, remarks, engineerId);
 
         s_dal!.Task!.Update(newTask);

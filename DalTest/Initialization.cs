@@ -88,18 +88,19 @@ public static class Initialization
             bool _isMilestone = false;
             Array enumValues = Enum.GetValues(typeof(EngineerExperience));  // Get all values of the enum
             int randomIndex = s_rand.Next(enumValues.Length);  // Generate a random index
-            EngineerExperience _copmlexityLevel = (EngineerExperience)enumValues.GetValue(randomIndex)!;// Get the random enum value
+            EngineerExperience? _copmlexityLevel = (EngineerExperience)enumValues.GetValue(randomIndex)!;// Get the random enum value
             DateTime _createdAtDate = DateTime.Now.AddDays(s_rand.Next(-100, -1));
             DateTime? _scheduledDate = null;
             DateTime? _startDate = null;
-            TimeSpan? _foresastDate = null;
+            TimeSpan? _requiredEffortTime = null;   
+            DateTime? _foresastDate = null;
             DateTime? _deadLineDate = null;
             DateTime? _completeDate = null;
             string _deliverable = "deliverable deliverable deliverable deliverable";
             string _remarks = "remarks remarks remarks remarks remarks";
             int? _engineerId = null;
-            Task newTask = new(0, _description, _alias, _isMilestone, _copmlexityLevel,
-                _createdAtDate, _scheduledDate, _startDate, _foresastDate, _deadLineDate, _completeDate, _deliverable, _remarks, _engineerId);
+            Task newTask = new(0, _description, _alias, _isMilestone, _createdAtDate, _copmlexityLevel,
+                 _scheduledDate, _startDate, _requiredEffortTime, _foresastDate, _deadLineDate, _completeDate, _deliverable, _remarks, _engineerId);
             s_dal!.Task!.Create(newTask);
 
         }

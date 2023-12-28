@@ -24,11 +24,12 @@ public record Task
     string Description,
     string Alias,
     bool IsMilestone,
-    EngineerExperience CopmlexityLevel,
     DateTime  CreatedAtDate,
+    EngineerExperience? CopmlexityLevel = null,
     DateTime? ScheduledDate = null,
     DateTime? StartDate = null,
-    TimeSpan? ForesastDate = null,
+    TimeSpan? RequiredEffortTime = null,
+    DateTime? ForesastDate = null,
     DateTime? DeadLineDate = null,
     DateTime? CompleteDate = null,
     string? Deliverable = null,
@@ -36,5 +37,5 @@ public record Task
     int? EngineerId = null
 )
 {
-    public Task():this(0,"","",false, EngineerExperience.Novice,DateTime.Now) { }//defualt constractor
+    public Task():this(0,"a","a",false,DateTime.Now) { }//defualt constractor
 }

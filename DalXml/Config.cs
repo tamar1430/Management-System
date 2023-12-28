@@ -15,23 +15,33 @@ internal static class Config
     {
         get => XMLTools.GetAndIncreaseNextId(s_data_config_xml, "NextDependencyId");
     }
-    internal static DateTime? startProjectDate
+    internal static DateTime? StartProjectDate
     {
-        get => startProjectDate;
+        get
+        {
+            XElement doc = XElement.Load(@"..\xml\data-config.xml");
+            //var a = doc!.Element("StartProjectDate") != null ? (DateTime)doc!.Element("StartProjectDate")! : null;
+            //return a;
+            return doc!.Element("StartProjectDate")!.Value != null ? DateTime.Parse(doc!.Element("StartProjectDate")!.Value) : null;
+        }
         set
         {
             XElement doc = XElement.Load(@"..\xml\data-config.xml");
-            doc!.Element("startProjectDate")?.SetValue(Convert.ToString(value) ?? throw new Exception("start project date can`t be null"));
+            doc!.Element("StartProjectDate")?.SetValue(Convert.ToString(value) ?? throw new Exception("start project date can`t be null"));
             doc.Save(@"..\xml\data-config.xml");
         }
     }
-    internal static DateTime? finishProjectDate
+    internal static DateTime? FinishProjectDate
     {
-        get => finishProjectDate;
+        get
+        {
+            XElement doc = XElement.Load(@"..\xml\data-config.xml");
+            return doc!.Element("FinishProjectDate")!.Value != null ? DateTime.Parse(doc!.Element("FinishProjectDate")!.Value) : null;
+        }
         set
         {
             XElement doc = XElement.Load(@"..\xml\data-config.xml");
-            doc!.Element("finishProjectDate")?.SetValue(Convert.ToString(value)??throw new Exception("start project date can`t be null"));
+            doc!.Element("FinishProjectDate")?.SetValue(Convert.ToString(value)??throw new Exception("finish project date can`t be null"));
             doc.Save(@"..\xml\data-config.xml");
         }
     }
