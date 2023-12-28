@@ -218,7 +218,6 @@ internal class MilestoneImplementation : IMilestone
 
     private void CalculationTimeTasksAndMilestones()
     {
-
         List<int> lastTasks = Read(_dal!.Task!.Read(m => m.Alias == "end")!.Id).Dependencies.ToList().Select(t => t.Id).ToList();
         foreach (var task in lastTasks)
         {
@@ -290,7 +289,7 @@ internal class MilestoneImplementation : IMilestone
                 foreach (var taskD in depTasks)
                 {
                     DateTime scheduledDate = taskD.ScheduledDate is null ?
-                        (DateTime)task.ScheduledDate! :
+                        (DateTime)(task.ScheduledDate!+task.RequiredEffortTime)! :
                         DateTime.Compare((DateTime)task.ScheduledDate!, (DateTime)taskD.ScheduledDate!) > 0
                         ? (DateTime)task.ScheduledDate!
                         : (DateTime)taskD.ScheduledDate!;
@@ -345,7 +344,7 @@ internal class MilestoneImplementation : IMilestone
 
     private void UpdateMilestonesNames()
     {
-        List<BO.Milestone> milestones = _dal.Task.ReadAll(t => t.IsMilestone).Select(m => Read(m!.Id)).ToList()!;
+        List<BO.Milestone> milestones = _dal.Task.ReadAll(t => t.IsMilestone && t.Alias!="start" && t.Alias!="end").Select(m => Read(m!.Id)).ToList()!;
         foreach (var milestone in milestones)
         {
             DO.Task doMilestone = _dal.Task.Read(milestone.Id)!;
@@ -366,10 +365,10 @@ internal class MilestoneImplementation : IMilestone
 
     public void CreatingProjectSchedule(DateTime startDate, DateTime finishDate)
     {
-        UpdateStartDateAndFinishDate(startDate, finishDate);
-        CalculationMilestones(_dal!.Dependency!.ReadAll()!.ToList()!);
-        CalculationTimeTasksAndMilestones();
-        UpdateMilestonesNames();
+        //UpdateStartDateAndFinishDate(startDate, finishDate);
+        //CalculationMilestones(_dal!.Dependency!.ReadAll()!.ToList()!);
+        //CalculationTimeTasksAndMilestones();
+         //UpdateMilestonesNames();
     }
 
 }

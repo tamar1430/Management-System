@@ -17,7 +17,34 @@ internal class Program
     {
         try
         {
-            //s_dal.SpecialOperations.Reset();
+            s_dal.SpecialOperations.Reset();
+            for (int i = 0; i < 5; i++)
+            {
+                string _description = "a";
+                string _alias = "a";
+                bool _isMilestone = false;
+                Array enumValues = Enum.GetValues(typeof(EngineerExperience));  // Get all values of the enum
+                int randomIndex = i;  // Generate a random index
+                EngineerExperience? _copmlexityLevel = (EngineerExperience)enumValues.GetValue(randomIndex)!;// Get the random enum value
+                DateTime _createdAtDate = DateTime.Now.AddDays(i);
+                DateTime? _scheduledDate = null;
+                DateTime? _startDate = null;
+                TimeSpan? _requiredEffortTime = null;
+                DateTime? _foresastDate = null;
+                DateTime? _deadLineDate = null;
+                DateTime? _completeDate = null;
+                string _deliverable = "deliverable deliverable deliverable deliverable";
+                string _remarks = "remarks remarks remarks remarks remarks";
+                int? _engineerId = null;
+                DO.Task newTask = new(0, _description, _alias, _isMilestone, _createdAtDate, _copmlexityLevel,
+                     _scheduledDate, _startDate, _requiredEffortTime, _foresastDate, _deadLineDate, _completeDate, _deliverable, _remarks, _engineerId);
+                s_dal!.Task!.Create(newTask);
+
+            }
+            s_dal.Dependency.Create(new DO.Dependency(0, 3, 1));
+            s_dal.Dependency.Create(new DO.Dependency(0, 3, 2));
+            s_dal.Dependency.Create(new DO.Dependency(0, 4, 3));
+            s_dal.Dependency.Create(new DO.Dependency(0, 5, 3));
             //Initialization.Do(s_dal);
             ShowOptionsMenu();
         }
