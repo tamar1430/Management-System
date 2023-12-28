@@ -22,7 +22,9 @@ internal class Program
             Console.Write("Would you like to create Initial data? (Y/N)");
             string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
             if (ans == "Y")
-               // DalTest.Initialization.DO;
+            {
+                // DalTest.Initialization.DO;
+            }
 
             DisplayMainMenu();
         }
