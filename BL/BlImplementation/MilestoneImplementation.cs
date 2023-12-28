@@ -14,6 +14,8 @@ internal class MilestoneImplementation : IMilestone
     public BO.Milestone Read(int id)
     {
         DO.Task doMilestone = _dal.Task.Read(id) ?? throw new BO.BlDoesNotExistException($"milestone with id:{id} isn't exists");
+        if (!doMilestone.IsMilestone)
+            throw new BO.BlDoesNotExistException($"milestone with id:{id} isn't exists");
 
         var listDependencyTasks = _dal!.Dependency.ReadAll(d => d.DependentTask == id).Select(d=>d.PreviousTask);
 
@@ -161,10 +163,7 @@ internal class MilestoneImplementation : IMilestone
         };
         int idStart = _dal!.Task!.Create(doMilestoneStart);
 
-      
-
         List<int> tasksId = _dal.Task.ReadAll().ToList().Where(t => !t!.IsMilestone).Select(m => m!.Id).ToList();
-
 
         var groups = dependencies.GroupBy(d => d.DependentTask)
             .Select(g => new { key = g.Key, tasks = g.Select(s => s.PreviousTask).ToList() });
@@ -250,23 +249,6 @@ internal class MilestoneImplementation : IMilestone
                 }
             }
         }
-
-        //List<DO.Task> tasks = _dal.Task.ReadAll(t => !t.IsMilestone).ToList()!;
-
-        //foreach (var task in tasks)
-        //{
-        //    List<int> prevTasks = Read(_dal.Dependency.Read(d => d!.DependentTask == task.Id)!.PreviousTask).Dependencies.Select(t => t.Id).ToList();
-        //    foreach (var taskId in prevTasks)
-        //    {
-        //        DO.Task taskD = _dal.Task.Read(taskId)!;
-        //        _dal.Task.Update(taskD
-        //          with
-        //        {
-        //            DeadLineDate = task.DeadLineDate - task.RequiredEffortTime,
-        //            ScheduledDate = task.DeadLineDate - task.RequiredEffortTime - taskD.RequiredEffortTime
-        //        });
-        //    }
-        //}
         
         List<int> firstTasks = _dal.Dependency.ReadAll(d=>d.PreviousTask == _dal!.Task!.Read(m => m.Alias == "start")!.Id).Select(d=>d!.DependentTask).ToList();
         foreach (var task in firstTasks)
@@ -305,24 +287,6 @@ internal class MilestoneImplementation : IMilestone
 
             }
         }
-
-        //foreach (var task in tasks1)
-        //{
-
-        //}
-        //foreach (var task in tasks1)
-        //{
-        //    var milestones = _dal.Task.ReadAll(t=>t.IsMilestone).Where(m=>Read(m!.Id).Dependencies.Select(t=>t.Id).Contains(task.Id)).Select(m=>m!.Id).ToList();
-        //    var depTasks = tasks1.Where(t => _dal.Dependency.Read(d => milestones.Contains(d.PreviousTask) && d.DependentTask == t.Id) is not null);
-
-        //    foreach (var taskId in depTasks)
-        //    {
-        //        _dal.Task.Update(_dal.Task.Read(taskId)!
-        //            with
-        //        { ScheduledDate = task.DeadLineDate - task.RequiredEffortTime });
-        //    }
-
-        //}
 
         List<BO.Milestone> milestones = _dal.Task.ReadAll(t => t.IsMilestone).Select(m => Read(m!.Id)).ToList()!;
         foreach (var milestone in milestones)
