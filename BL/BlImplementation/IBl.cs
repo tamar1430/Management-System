@@ -3,7 +3,7 @@ namespace BlImplementation;
 
 using BL;
 using BlApi;
-internal class Bl : IBl
+internal class IBl : BlApi.Bl
 {
     public IEngineer Engineer => new EngineerImplementation();
 

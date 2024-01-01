@@ -1,7 +1,7 @@
 ﻿using DalApi;
 
 namespace BlApi;
-public interface IBl
+public interface Bl
 {
     public IEngineer Engineer { get; }
     public IMilestone Milestone { get; }

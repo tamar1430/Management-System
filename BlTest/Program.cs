@@ -7,7 +7,7 @@ internal class Program
 {
     private static readonly Random s_rand = new();
 
-    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+    static readonly BlApi.Bl s_bl = BlApi.Factory.Get();
     static void Main(string[] args)
     {
         try
