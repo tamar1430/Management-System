@@ -224,7 +224,8 @@ internal class MilestoneImplementation : IMilestone
             DO.Task newTask = prevTask with
             { DeadLineDate = _dal.SpecialOperations.GetFinishProjectDate() - prevTask.RequiredEffortTime };
             _dal.Task.Update(newTask);
-            UpdateDeadLineDates(newTask);
+            UpdateDeadLineDates(_dal.Task.Read(newTask!.Id)!);
+
         }
 
         void UpdateDeadLineDates(DO.Task task)
@@ -245,7 +246,7 @@ internal class MilestoneImplementation : IMilestone
                         //ScheduledDate = task.DeadLineDate - task.RequiredEffortTime - taskD.RequiredEffortTime
                     });
 
-                    UpdateDeadLineDates(taskD);
+                    UpdateDeadLineDates(_dal.Task.Read(taskD!.Id)!);
                 }
             }
         }
@@ -257,7 +258,8 @@ internal class MilestoneImplementation : IMilestone
             DO.Task newTask = prevTask with
             { ScheduledDate = _dal.SpecialOperations.GetStartProjectDate() };
             _dal.Task.Update(newTask);
-            UpdateScheduledDates(prevTask);
+            UpdateScheduledDates(_dal.Task.Read(prevTask!.Id)!);
+
         }
 
         void UpdateScheduledDates(DO.Task task)
@@ -282,7 +284,7 @@ internal class MilestoneImplementation : IMilestone
                         ForesastDate = scheduledDate + taskD.RequiredEffortTime
                     });
 
-                    UpdateScheduledDates(taskD);
+                    UpdateScheduledDates(_dal.Task.Read(taskD!.Id)!);
                 }
 
             }
@@ -329,10 +331,10 @@ internal class MilestoneImplementation : IMilestone
 
     public void CreatingProjectSchedule(DateTime startDate, DateTime finishDate)
     {
-        //UpdateStartDateAndFinishDate(startDate, finishDate);
-        //CalculationMilestones(_dal!.Dependency!.ReadAll()!.ToList()!);
-        //CalculationTimeTasksAndMilestones();
-         //UpdateMilestonesNames();
+        UpdateStartDateAndFinishDate(startDate, finishDate);
+        CalculationMilestones(_dal!.Dependency!.ReadAll()!.ToList()!);
+        CalculationTimeTasksAndMilestones();
+        UpdateMilestonesNames();
     }
 
 }

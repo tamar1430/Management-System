@@ -1,6 +1,7 @@
 ﻿namespace Dal;
 using DalApi;
 using DO;
+using System.Xml.Linq;
 
 internal class SpecialOperationsImplementation : ISpecialOperations
 {
@@ -37,6 +38,11 @@ internal class SpecialOperationsImplementation : ISpecialOperations
         List<Dependency> dependencys = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencys");
         dependencys.Clear();
         XMLTools.SaveListToXMLSerializer(dependencys, "dependencys");
+
+        XElement doc = XElement.Load(@"..\xml\data-config.xml");
+        doc!.Element("NextTaskId")?.SetValue(Convert.ToString(1) ?? throw new Exception("finish project date can`t be null"));
+        doc!.Element("NextDependencyId")?.SetValue(Convert.ToString(1) ?? throw new Exception("finish project date can`t be null"));
+        doc.Save(@"..\xml\data-config.xml");
     }
 
 }

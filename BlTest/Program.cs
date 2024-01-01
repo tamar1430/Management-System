@@ -1,15 +1,8 @@
-﻿using BlApi;
-using DalApi;
+﻿
 namespace BlTest;
-using BlApi;
 using BO;
-using DalApi;
-using DO;
-using System.Diagnostics.Metrics;
-using System.Dynamic;
+using System;
 using System.Globalization;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 internal class Program
 {
     private static readonly Random s_rand = new();
@@ -19,18 +12,11 @@ internal class Program
     {
         try
         {
-            Console.Write("Would you like to create Initial data? (Y/N)");
-            string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
-            if (ans == "Y")
-            {
-                // DalTest.Initialization.DO;
-            }
-
             DisplayMainMenu();
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.ToString());
+            Console.WriteLine(ex.Message);
         }
 
         static void DisplayMainMenu()
@@ -45,6 +31,8 @@ internal class Program
                 Console.WriteLine("1. Task");
                 Console.WriteLine("2. Engineer");
                 Console.WriteLine("3. Milestone");
+                Console.WriteLine("4. CreatingProjectSchedule ");
+                Console.WriteLine("5. Reset ");
                 Console.Write("Enter your choice: ");
                 string? input = Console.ReadLine();
 
@@ -54,19 +42,32 @@ internal class Program
                         exitTheMenu = true;
                         break;
                     case "1":
-                     
+
                         DisplaySubMenu("Task");
 
                         break;
                     case "2":
-                    
+
                         DisplaySubMenu("Engineer");
 
                         break;
                     case "3":
-                        
-                        DisplayMilstonMenu("Milestone");
 
+                        DisplayMilestoneMenu();
+
+                        break;
+                    case "4":
+                        DateTime start = DateTime.Now;
+                        Console.WriteLine("start project date:");
+                        DateTime.TryParse(Console.ReadLine(), out start);
+                        DateTime finish = DateTime.Now.AddYears(1);
+                        Console.WriteLine("finish project date:");
+                        DateTime.TryParse(Console.ReadLine(), out finish);
+                        s_bl.Milestone.CreatingProjectSchedule(start, finish);
+
+                        break;
+                    case "5":
+                        s_bl.SpecialOperations.Reset();
                         break;
                     default:
                         Console.WriteLine("Invalid choice. Please try again.");
@@ -105,25 +106,25 @@ internal class Program
                         exitMenu = true;
                         break;
                     case "2":
-                       
+
                         createObject(entityName);
                         break;
                     case "3":
-                       
+
                         readObject(entityName);
                         break;
                     case "4":
-                   
+
                         updateObject(entityName);
                         break;
                     case "5":
-                     
-                         readAllObjects(entityName);
+
+                        readAllObjects(entityName);
                         break;
                     case "6":
-                      
-                          deleteObject(entityName);
-                       
+
+                        deleteObject(entityName);
+
                         break;
                     default:
                         Console.WriteLine("Invalid choice. Please try again.");
@@ -133,10 +134,10 @@ internal class Program
                 Console.WriteLine();
             }
         }
-        catch (Exception ex) { Console.WriteLine(ex); }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
     }
 
-    public static void DisplayMilstonMenu(string entityName)
+    public static void DisplayMilestoneMenu()
     {
         try
         {
@@ -144,9 +145,10 @@ internal class Program
 
             while (!exitMenu)
             {
-
-                Console.WriteLine("5. The display of the list of all Milston");
-                Console.WriteLine("6. Deleting an existing object from a list");
+                Console.WriteLine("Select the method you want to execute:");
+                Console.WriteLine("1. Exiting the main menu");
+                Console.WriteLine("2. Object display by identifier");
+                Console.WriteLine("3. Updating existing object data");
                 Console.Write("Enter your choice: ");
                 string? input = Console.ReadLine();
 
@@ -156,17 +158,11 @@ internal class Program
                         exitMenu = true;
                         break;
                     case "2":
-
-                        createObject(entityName);
+                        readObject("Milestone");
                         break;
                     case "3":
-
-                        readObject(entityName);
+                        updateObject("Milestone");
                         break;
-                    case "4":
-                        updateObject(entityName);
-                        break;
-   
                     default:
                         Console.WriteLine("Invalid choice. Please try again.");
                         break;
@@ -175,7 +171,7 @@ internal class Program
                 Console.WriteLine();
             }
         }
-        catch (Exception ex) { Console.WriteLine(ex); }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
 
     }
 
@@ -198,40 +194,65 @@ internal class Program
         }
 
     }
-    
+
     static void createTask()///A function that receives data from the user for the task and creates a new task
     {
         string description = GetInput("Enter the task description: ");
         string alias = GetInput("Enter the task alias: ");
-        DateTime startDate = GetDateTimeInput("Enter the task start date and time (YYYY-MM-DD HH:mm:ss): ");
-        DateTime deadLine = GetDateTimeInput("Enter the task deadline date and time (YYYY-MM-DD HH:mm:ss): ");
-        DateTime createdAtDate = DateTime.Now.AddDays(-s_rand.Next(0, 100));
+        DateTime? scheduledStartDate = GetNullDateTimeInput("Enter the task start date and time (YYYY-MM-DD HH:mm:ss): ") ?? DateTime.Now;
+        DateTime? deadLine = GetNullDateTimeInput("Enter the task deadline date and time (YYYY-MM-DD HH:mm:ss): ") ?? DateTime.Now.AddYears(1);
+        TimeSpan requiredEffortTime = new TimeSpan(GetIntInput("Enter the task requiredEffortTime (in days) : "), 0, 0, 0);
         string deliverables = GetInput("Enter the task deliverables: ");
         string remarks = GetInput("Enter the task Remarks: ");
-        int EngineerId = GetIntInput("Enter the engineers Id ");
-        string EngineerName = GetInput("Enter the engineers name : ");
-        BO.EngineerExperience copmlexityLevel = GetCopmlexityLevelInput("Please enter the engineer's experience level (  Novice, AdvancedBeginner, Competent, Proficient, Expert): ");
+        Console.WriteLine("Enter the dependencies tasks");
+        string? read = Console.ReadLine();
+        List<int>? dependenciesId = read != "" && read is not null ? read.Split(" ")?.Select(n => int.Parse(n)).ToList() : null;
+        List<BO.TaskInList> dependencies = new();
+        if (dependenciesId is not null) foreach (var Id in dependenciesId)
+            {
+                try
+                {
+                    BO.Task depTask = s_bl.Task.Read(Id);
+                    dependencies.Add(
+                        new BO.TaskInList()
+                        {
+                            Id = Id,
+                            Alias = depTask.Alias,
+                            Description = depTask.Description,
+                            Status = depTask.Status is not null ? (BO.Status)depTask.Status! : Status.Unscheduled,
+                        });
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message); }
+            }
+        int? engineerId = GetNullIntInput("Enter the engineers Id ");
+        BO.EngineerInTask? engineer = engineerId is not null ? new EngineerInTask()
+        {
+            Id = (int)engineerId,
+            Name = s_bl.Engineer.Read((int)engineerId).Name,
+        } : null;
         BO.Task task = new BO.Task
         {
+            Id = 1,
             Description = description,
             Alias = alias,
-            CreatedAtDate = createdAtDate,
+            CreatedAtDate = DateTime.Now,
             Status = 0,
-            StartDate = startDate,
+            RequiredEffortTime = requiredEffortTime,
+            ScheduledStartDate = scheduledStartDate,
             DeadLine = deadLine,
             Deliverable = deliverables,
             Remarks = remarks,
-            Engineer = new EngineerInTask { Id = EngineerId, Name = EngineerName },
-            CopmlexityLevel = copmlexityLevel
+            Engineer = engineer,
+            CopmlexityLevel = engineerId is not null ? s_bl.Engineer.Read((int)engineerId!).Level : null,
+            Dependencies = dependencies,
         };
         try
         {
-
             s_bl!.Task.Create(task);
         }
-        catch (Exception e) { Console.WriteLine(e); }
+        catch (Exception e) { Console.WriteLine(e.Message); }
     }
-    
+
     static void createEngineer()///A function that receives data from the user for the Engineer and creates a new Engineer
     {
         string name = GetInput("Please enter the engineer's name: ");
@@ -246,7 +267,7 @@ internal class Program
 
             s_bl!.Engineer.Create(engineer);
         }
-        catch (Exception e) { Console.WriteLine(e); }
+        catch (Exception e) { Console.WriteLine(e.Message); }
     }
 
     public static void readObject(string entityName)
@@ -309,7 +330,7 @@ internal class Program
             Console.WriteLine(task);
         }
     }
-    
+
     static void readAllEngineers()
     {
         List<BO.Engineer?> engineerList = s_bl!.Engineer.ReadAll().ToList();
@@ -343,7 +364,7 @@ internal class Program
             int.TryParse(GetInput("Enter the Tasks id: "), out idTask);
             s_bl!.Task.Delete(idTask);
         }
-        catch (Exception e) { Console.WriteLine(e); }
+        catch (Exception e) { Console.WriteLine(e.Message); }
 
     }
     static void deleteEngineer()///Gets the id from the Engineer and deletes it if it exists
@@ -354,7 +375,7 @@ internal class Program
             int.TryParse(GetInput("Enter the Engineer id: "), out idEngineer);
             s_bl!.Engineer.Delete(idEngineer);
         }
-        catch (Exception e) { Console.WriteLine(e); }
+        catch (Exception e) { Console.WriteLine(e.Message); }
 
     }
 
@@ -376,43 +397,62 @@ internal class Program
         }
 
     }
-   
-    static void updateTask() 
+
+    static void updateTask()
     {
         int idTask;
         int.TryParse(GetInput("Enter the Tasks id: "), out idTask);
         BO.Task? task = s_bl!.Task.Read(idTask);
         if (task != null)
         {
-            Console.WriteLine(task);
-            Console.WriteLine("Enter Task Data:");
-            string? description = GetInput("Enter the task description: ");
-            string? alias = GetInput("Enter the task alias: ");
-            DateTime? start = GetNullDatTimeInput("Enter the task start date and time (YYYY-MM-DD HH:mm:ss): ");
-            DateTime? scheduled = GetNullDatTimeInput("Enter the task scheduled date and time (YYYY-MM-DD HH:mm:ss): ");
-            DateTime? forecas = GetNullDatTimeInput("Enter the task Enter the task forecas date and time (YYYY-MM-DD HH:mm:ss): ");
-            DateTime? deadline = GetNullDatTimeInput("Enter the task deadline date and time (YYYY-MM-DD HH:mm:ss): ");
-            DateTime? complete = GetNullDatTimeInput("Enter the task Enter the task complete date and time (YYYY-MM-DD HH:mm:ss): ");
-            string? deliverables = GetInput("Enter the task deliverables: ");
-            string? remarks = GetInput("Enter Remarks: ");
-            int engineerId = GetIntInput("Enter Engineer ID: ");
-            BO.EngineerExperience? complexityLevel = GetCopmlexityLevelInput("Please enter the engineer's experience level (  Novice, AdvancedBeginner, Competent, Proficient, Expert): ");
-            string EngineerName = GetInput("Enter the engineers name : ");
+            string description = GetInput("Enter the task description: ");
+            string alias = GetInput("Enter the task alias: ");
+            DateTime? scheduledStartDate = GetNullDateTimeInput("Enter the task start date and time (YYYY-MM-DD HH:mm:ss): ") ?? DateTime.Now;
+            DateTime? deadLine = GetNullDateTimeInput("Enter the task deadline date and time (YYYY-MM-DD HH:mm:ss): ") ?? DateTime.Now.AddYears(1);
+            TimeSpan requiredEffortTime = new TimeSpan(GetIntInput("Enter the task requiredEffortTime (in days) : "), 0, 0, 0);
+            string deliverables = GetInput("Enter the task deliverables: ");
+            string remarks = GetInput("Enter the task Remarks: ");
+            Console.WriteLine("Enter the dependencies tasks");
+            string? read = Console.ReadLine();
+            List<int>? dependenciesId = read != "" && read is not null ? read.Split(" ")?.Select(n => int.Parse(n)).ToList() : null;
+            List<BO.TaskInList> dependencies = new();
+            if (dependenciesId is not null) foreach (var Id in dependenciesId)
+                {
+                    try
+                    {
+                        BO.Task depTask = s_bl.Task.Read(Id);
+                        dependencies.Add(
+                            new BO.TaskInList()
+                            {
+                                Id = Id,
+                                Alias = depTask.Alias,
+                                Description = depTask.Description,
+                                Status = depTask.Status is not null ? (BO.Status)depTask.Status! : Status.Unscheduled,
+                            });
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                }
+            int? engineerId = GetNullIntInput("Enter the engineers Id ");
+            BO.EngineerInTask? engineer = engineerId is not null ? new EngineerInTask()
+            {
+                Id = (int)engineerId,
+                Name = s_bl.Engineer.Read((int)engineerId).Name,
+            } : null;
             BO.Task updatedTask = new BO.Task
             {
-                Id = task.Id,
-                Description = description != "" ? description : task.Description,
-                Alias = alias != "" ? alias : task.Alias,
-                Status = GetStatusInput("enter the status "),
-                StartDate = start ?? task.StartDate,
-                ScheduledStartDate = scheduled ?? task.ScheduledStartDate,
-                ForecastDate = forecas ?? task.ForecastDate,
-                CompleteDate = complete ?? task.CompleteDate,
-                DeadLine = deadline ?? task.DeadLine,
-                Deliverable = deliverables != "" ? deliverables : task.Deliverable,
-                Remarks = remarks != "" ? remarks : task.Remarks,
-                Engineer = new EngineerInTask { Id = engineerId, Name = EngineerName },
-                CopmlexityLevel = complexityLevel ?? task.CopmlexityLevel,
+                Id = 1,
+                Description = description,
+                Alias = alias,
+                CreatedAtDate = DateTime.Now,
+                Status = 0,
+                RequiredEffortTime = requiredEffortTime,
+                ScheduledStartDate = scheduledStartDate,
+                DeadLine = deadLine,
+                Deliverable = deliverables,
+                Remarks = remarks,
+                Engineer = engineer,
+                CopmlexityLevel = engineerId is not null ? s_bl.Engineer.Read((int)engineerId!).Level : null,
+                Dependencies = dependencies,
             };
             s_bl!.Task.Update(updatedTask);
 
@@ -433,7 +473,7 @@ internal class Program
             double? cost = GetNullDoubleInput("Please enter the engineer's cost per hour: ");
             int? taskId = GetNullIntInput("Enter task Id: ");
             string alias = GetInput("Enter the alias  ");
-            TaskInEngineer? taskinEngineer = new TaskInEngineer { Id = taskId ?? 0, Alias = alias };
+            TaskInEngineer? taskInEngineer = new TaskInEngineer { Id = taskId ?? 0, Alias = alias };
 
             BO.Engineer updatedEngineer = new BO.Engineer
             {
@@ -442,7 +482,7 @@ internal class Program
                 Email = email != "" ? email : engineer.Email,
                 Level = level ?? engineer.Level,
                 Cost = cost ?? engineer.Cost,
-                Task = taskId == null ? null : taskinEngineer
+                Task = taskId == null ? null : taskInEngineer
             };
             s_bl!.Engineer.Update(updatedEngineer);
         }
@@ -451,7 +491,7 @@ internal class Program
     static string GetInput(string message)
     {
         Console.Write(message);
-        return Console.ReadLine();
+        return Console.ReadLine() ?? " ";
     }
 
     public static int? GetNullIntInput(string message)
@@ -487,8 +527,8 @@ internal class Program
         }
         return inputMutable;
     }
-    
-    public static DateTime? GetNullDatTimeInput(string message)
+
+    public static DateTime? GetNullDateTimeInput(string message)
     {
         DateTime? inputMutable;
         string? input = GetInput(message);
@@ -504,7 +544,24 @@ internal class Program
         }
         return inputMutable;
     }
-    
+
+    public static TimeSpan GetTimeSpanInput(string message)
+    {
+        TimeSpan inputMutable;
+        string? input = GetInput(message);
+        bool success = TimeSpan.TryParse(input, out TimeSpan parsedValue);
+
+        if (success)
+        {
+            inputMutable = parsedValue;
+        }
+        else
+        {
+            throw new BlNullPropertyException("null input");
+        }
+        return inputMutable;
+    }
+
     public static double? GetNullDoubleInput(string message)///A function with a print-to-screen parameter that receives a double from the user and returns a variable with the content and if nothing is entered a null value
     {
 
@@ -530,13 +587,13 @@ internal class Program
         return bool.Parse(input!);
     }
 
-    static DateTime GetDateTimeInput(string message)    
+    static DateTime? GetDateTimeInput(string message)
     {
-        Console.Write(message);
-
-        DateTime createdAtDate;
-        DateTime.TryParseExact(GetInput("Enter the created at date and time (yyyy-MM-dd HH:mm:ss): "), "yyyy-MM-dd HH:mm:ss", null, DateTimeStyles.None, out createdAtDate);
-        return createdAtDate;
+        DateTime date;
+        Console.WriteLine(message);
+        if (!DateTime.TryParse(Console.ReadLine(), out date))
+            return null;
+        return date;
     }
     static BO.EngineerExperience GetCopmlexityLevelInput(string message)
     {
