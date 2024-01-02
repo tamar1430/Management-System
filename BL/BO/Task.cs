@@ -1,5 +1,8 @@
 ﻿namespace BO;
 
+/// <summary>
+/// Task class
+/// </summary>
 public class Task
 {
     public int Id { get; init; }

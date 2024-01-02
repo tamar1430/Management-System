@@ -1,14 +1,19 @@
-﻿using BlApi;
-using DalApi;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.CompilerServices;
-
+﻿
 namespace BlImplementation;
 
+/// <summary>
+/// TaskImplementation
+/// </summary>
 internal class TaskImplementation : BlApi.ITask
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
 
+    /// <summary>
+    /// create task
+    /// </summary>
+    /// <param name="boTask"></param>
+    /// <exception cref="BO.BlInorrectData"></exception>
+    /// <exception cref="BO.BlAlreadyExistsException"></exception>
     public void Create(BO.Task boTask)
     {
         if (boTask.Id <= 0) throw new BO.BlInorrectData("Task's id isn't correct");
@@ -38,6 +43,12 @@ internal class TaskImplementation : BlApi.ITask
         }
     }
 
+    /// <summary>
+    /// delete task
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="BO.BlDeletionImpossible"></exception>
+    /// <exception cref="BO.BlDoesNotExistException"></exception>
     public void Delete(int id)
     {
         if (_dal.Dependency.ReadAll().Where(d => d!.PreviousTask == id).First() != null)
@@ -55,6 +66,11 @@ internal class TaskImplementation : BlApi.ITask
         }
     }
 
+    /// <summary>
+    /// read all tasks
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns></returns>
     public IEnumerable<BO.Task> ReadAll(Func<BO.Task, bool>? filter = null)
     {
         return (from DO.Task doTask in _dal.Task
@@ -62,6 +78,12 @@ internal class TaskImplementation : BlApi.ITask
                 select Read(doTask.Id));
     }
 
+    /// <summary>
+    /// read task
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.BlDoesNotExistException"></exception>
     public BO.Task Read(int id)
     {
         DO.Task? doTask = _dal.Task.Read(id);
@@ -122,22 +144,26 @@ internal class TaskImplementation : BlApi.ITask
         return boTask;
     }
 
+    /// <summary>
+    /// update task
+    /// </summary>
+    /// <param name="boTask"></param>
+    /// <exception cref="BO.BlInorrectData"></exception>
+    /// <exception cref="BO.BlDoesNotExistException"></exception>
     public void Update(BO.Task boTask)
     {
         if (boTask.Id <= 0) throw new BO.BlInorrectData("Task's id isn't correct");
         if (boTask.Alias is null || boTask.Alias.Length <= 0) throw new BO.BlInorrectData("Task's Alias isn't correct");
 
-        foreach (var prevTask in boTask.Dependencies)
-        {
-            if (CheckDependency(prevTask,boTask))
-                _dal.Dependency.Create(new DO.Dependency(0, boTask.Id, prevTask.Id));
-        }
+        if (boTask.Dependencies is not null) foreach (var prevTask in boTask.Dependencies)
+            {
+                if (CheckDependency(prevTask, boTask))
+                    _dal.Dependency.Create(new DO.Dependency(0, boTask.Id, prevTask.Id));
+            }
 
         DO.Task? prevDoTask = _dal!.Task.Read(boTask.Id);
 
         if (prevDoTask is null) throw new BO.BlDoesNotExistException($"task with id:{boTask.Id} isn't exists");
-
-        _dal.Task.Delete(boTask.Id);
 
         DO.Task newDoTask = new(boTask.Id, boTask.Description,
             boTask.Alias, false,
@@ -145,14 +171,20 @@ internal class TaskImplementation : BlApi.ITask
             boTask.ScheduledStartDate, boTask.StartDate,
             boTask.RequiredEffortTime, boTask.ForecastDate, boTask.DeadLine,
             boTask.CompleteDate, boTask.Deliverable,
-            boTask.Remarks, boTask!.Engineer!.Id
+            boTask.Remarks, boTask!.Engineer?.Id
             );
-        _dal.Task.Create(newDoTask);
+        _dal.Task.Update(newDoTask);
     }
 
-    private bool CheckDependency(BO.TaskInList prevTask,BO.Task task)
+    /// <summary>
+    /// help function for Check Dependency
+    /// </summary>
+    /// <param name="prevTask"></param>
+    /// <param name="task"></param>
+    /// <returns></returns>
+    private bool CheckDependency(BO.TaskInList prevTask, BO.Task task)
     {
-        return InnerCheck(prevTask.Id,task.Id);
+        return InnerCheck(prevTask.Id, task.Id);
 
         bool InnerCheck(int currentTaskId, int prevTaskId)
         {
@@ -163,7 +195,7 @@ internal class TaskImplementation : BlApi.ITask
                 if (dependency!.PreviousTask == prevTaskId)
                     return false;
                 else
-                    if(!InnerCheck(dependency!.PreviousTask, prevTaskId))
+                    if (!InnerCheck(dependency!.PreviousTask, prevTaskId))
                     return false;
             }
             return true;

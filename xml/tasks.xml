@@ -138,6 +138,7 @@
 		<CreatedAtDate>2024-01-01T20:16:23.1513989+02:00</CreatedAtDate>
 		<CopmlexityLevel xsi:nil="true" />
 		<ScheduledDate xsi:nil="true" />
+		<StartDate xsi:nil="true" />
 		<RequiredEffortTime xsi:nil="true" />
 		<ForesastDate xsi:nil="true" />
 		<DeadLineDate xsi:nil="true" />

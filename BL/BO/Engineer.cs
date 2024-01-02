@@ -2,6 +2,10 @@
 using System.Text;
 
 namespace BO;
+
+/// <summary>
+/// Engineer class
+/// </summary>
 public class Engineer
 {
     public int Id { get; init; }
