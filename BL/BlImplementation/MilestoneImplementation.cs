@@ -84,14 +84,14 @@ internal class MilestoneImplementation : IMilestone
     {
         DO.Task doMilestone = _dal.Task.Read(id) ?? throw new BO.BlDoesNotExistException($"milestone with id:{id} isn't exists");
 
-        DO.Task newDoMliestone = doMilestone with
+        DO.Task newDoMilestone = doMilestone with
         {
             Description = description ?? doMilestone.Description,
             Alias = alias ?? doMilestone.Alias,
             Remarks = remarks ?? doMilestone.Remarks
         };
 
-        _dal.Task.Update(newDoMliestone);
+        _dal.Task.Update(newDoMilestone);
 
         return Read(id);
 
@@ -262,7 +262,6 @@ internal class MilestoneImplementation : IMilestone
             { DeadLineDate = _dal.SpecialOperations.GetFinishProjectDate() - prevTask.RequiredEffortTime };
             _dal.Task.Update(newTask);
             UpdateDeadLineDates(_dal.Task.Read(newTask!.Id)!);
-
         }
 
         void UpdateDeadLineDates(DO.Task task)
