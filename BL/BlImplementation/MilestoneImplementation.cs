@@ -180,7 +180,7 @@ internal class MilestoneImplementation : IMilestone
     }
 
     /// <summary>
-    /// function thatCalculation all the milestones
+    /// function that Calculation all the milestones
     /// </summary>
     /// <param name="dependencies">all the prevois depenencies</param>
     /// <returns></returns>
