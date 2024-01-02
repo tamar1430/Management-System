@@ -3,6 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace BlImplementation;
 
+/// <summary>
+/// MilestoneImplementation
+/// </summary>
 internal class MilestoneImplementation : IMilestone
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
@@ -11,6 +14,12 @@ internal class MilestoneImplementation : IMilestone
     private static int nextMilestoneId = startMilestoneId;
     internal static int NextMilestoneId { get => nextMilestoneId++; }
 
+    /// <summary>
+    /// read Milestone
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.BlDoesNotExistException"></exception>
     public BO.Milestone Read(int id)
     {
         DO.Task doMilestone = _dal.Task.Read(id) ?? throw new BO.BlDoesNotExistException($"milestone with id:{id} isn't exists");
@@ -62,23 +71,37 @@ internal class MilestoneImplementation : IMilestone
 
     }
 
+    /// <summary>
+    /// update milestone
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="alias"></param>
+    /// <param name="description"></param>
+    /// <param name="remarks"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.BlDoesNotExistException"></exception>
     public BO.Milestone Update(int id, string? alias = null, string? description = null, string? remarks = null)
     {
         DO.Task doMilestone = _dal.Task.Read(id) ?? throw new BO.BlDoesNotExistException($"milestone with id:{id} isn't exists");
 
-        DO.Task newDoMliestone = doMilestone with
+        DO.Task newDoMilestone = doMilestone with
         {
             Description = description ?? doMilestone.Description,
             Alias = alias ?? doMilestone.Alias,
             Remarks = remarks ?? doMilestone.Remarks
         };
 
-        _dal.Task.Update(newDoMliestone);
+        _dal.Task.Update(newDoMilestone);
 
         return Read(id);
 
     }
 
+    /// <summary>
+    /// help function for create milestone
+    /// </summary>
+    /// <param name="tasks"></param>
+    /// <returns></returns>
     private int CreateMilestone(List<int> tasks)
     {
 
@@ -98,12 +121,23 @@ internal class MilestoneImplementation : IMilestone
         return milestoneId;
     }
 
+    /// <summary>
+    /// Update Start Date And Finish Date
+    /// </summary>
+    /// <param name="startDate"></param>
+    /// <param name="finishDate"></param>
     private void UpdateStartDateAndFinishDate(DateTime startDate, DateTime finishDate)
     {
         _dal!.SpecialOperations!.SetStartProjectDate(startDate);
         _dal!.SpecialOperations!.SetFinishProjectDate(finishDate);
     }
 
+    /// <summary>
+    /// Check Equal Dependencies
+    /// </summary>
+    /// <param name="list1"></param>
+    /// <param name="list2"></param>
+    /// <returns></returns>
     private bool EqualDependencies(List<int> list1, List<int> list2)
     {
         // Check if the lists have the same length
@@ -215,6 +249,9 @@ internal class MilestoneImplementation : IMilestone
         return _dal.Dependency.ReadAll().ToList()!;
     }
 
+    /// <summary>
+    /// Calculation Time Tasks And Milestones
+    /// </summary>
     private void CalculationTimeTasksAndMilestones()
     {
         List<int> lastTasks = Read(_dal!.Task!.Read(m => m.Alias == "end")!.Id).Dependencies.ToList().Select(t => t.Id).ToList();
@@ -225,7 +262,6 @@ internal class MilestoneImplementation : IMilestone
             { DeadLineDate = _dal.SpecialOperations.GetFinishProjectDate() - prevTask.RequiredEffortTime };
             _dal.Task.Update(newTask);
             UpdateDeadLineDates(_dal.Task.Read(newTask!.Id)!);
-
         }
 
         void UpdateDeadLineDates(DO.Task task)
@@ -308,6 +344,9 @@ internal class MilestoneImplementation : IMilestone
         }
     }
 
+    /// <summary>
+    /// Update Milestones Names
+    /// </summary>
     private void UpdateMilestonesNames()
     {
         List<BO.Milestone> milestones = _dal.Task.ReadAll(t => t.IsMilestone && t.Alias!="start" && t.Alias!="end").Select(m => Read(m!.Id)).ToList()!;
@@ -329,6 +368,11 @@ internal class MilestoneImplementation : IMilestone
         }
     }
 
+    /// <summary>
+    /// Main function for Creating Project Schedule
+    /// </summary>
+    /// <param name="startDate"></param>
+    /// <param name="finishDate"></param>
     public void CreatingProjectSchedule(DateTime startDate, DateTime finishDate)
     {
         UpdateStartDateAndFinishDate(startDate, finishDate);

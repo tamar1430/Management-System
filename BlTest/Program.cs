@@ -2,12 +2,20 @@
 namespace BlTest;
 using BO;
 using System;
-using System.Globalization;
+
+/// <summary>
+/// Program
+/// </summary>
 internal class Program
 {
     private static readonly Random s_rand = new();
 
     static readonly BlApi.Bl s_bl = BlApi.Factory.Get();
+
+    /// <summary>
+    /// Main
+    /// </summary>
+    /// <param name="args"></param>
     static void Main(string[] args)
     {
         try
@@ -80,6 +88,10 @@ internal class Program
         }
     }
 
+    /// <summary>
+    /// DisplaySubMenu
+    /// </summary>
+    /// <param name="entityName"></param>
     public static void DisplaySubMenu(string entityName)
     {
         try
@@ -137,6 +149,9 @@ internal class Program
         catch (Exception ex) { Console.WriteLine(ex.Message); }
     }
 
+    /// <summary>
+    /// DisplayMilestoneMenu
+    /// </summary>
     public static void DisplayMilestoneMenu()
     {
         try
@@ -175,7 +190,10 @@ internal class Program
 
     }
 
-
+    /// <summary>
+    /// createObject
+    /// </summary>
+    /// <param name="entityName"></param>
     public static void createObject(string entityName)
     {
         switch (entityName)
@@ -195,6 +213,9 @@ internal class Program
 
     }
 
+    /// <summary>
+    /// createTask
+    /// </summary>
     static void createTask()///A function that receives data from the user for the task and creates a new task
     {
         string description = GetInput("Enter the task description: ");
@@ -253,6 +274,9 @@ internal class Program
         catch (Exception e) { Console.WriteLine(e.Message); }
     }
 
+    /// <summary>
+    /// createEngineer
+    /// </summary>
     static void createEngineer()///A function that receives data from the user for the Engineer and creates a new Engineer
     {
         string name = GetInput("Please enter the engineer's name: ");
@@ -270,6 +294,10 @@ internal class Program
         catch (Exception e) { Console.WriteLine(e.Message); }
     }
 
+    /// <summary>
+    /// readObject
+    /// </summary>
+    /// <param name="entityName"></param>
     public static void readObject(string entityName)
     {
         switch (entityName)
@@ -289,6 +317,9 @@ internal class Program
 
     }
 
+    /// <summary>
+    /// readTask
+    /// </summary>
     static void readTask()///Receives from the Task id and if it exists it prints it
     {
         int idTask;
@@ -298,6 +329,9 @@ internal class Program
 
     }
 
+    /// <summary>
+    /// readEngineer
+    /// </summary>
     static void readEngineer()///Receives from the Engineer id and if it exists it prints it
     {
         int idEngineer;
@@ -306,6 +340,10 @@ internal class Program
         Console.WriteLine(engineerRead);
     }
 
+    /// <summary>
+    /// readAllObjects
+    /// </summary>
+    /// <param name="entityName"></param>
     public static void readAllObjects(string entityName)
     {
         switch (entityName)
@@ -322,6 +360,9 @@ internal class Program
 
     }
 
+    /// <summary>
+    /// readAllTasks
+    /// </summary>
     static void readAllTasks()///Prints all entities of Task
     {
         List<BO.Task?> taskList = s_bl!.Task.ReadAll(null).ToList();
@@ -331,6 +372,9 @@ internal class Program
         }
     }
 
+    /// <summary>
+    /// readAllEngineers
+    /// </summary>
     static void readAllEngineers()
     {
         List<BO.Engineer?> engineerList = s_bl!.Engineer.ReadAll().ToList();
@@ -340,6 +384,10 @@ internal class Program
         }
     }
 
+    /// <summary>
+    /// deleteObject
+    /// </summary>
+    /// <param name="entityName"></param>
     public static void deleteObject(string entityName)
     {
         switch (entityName)
@@ -356,6 +404,9 @@ internal class Program
 
     }
 
+    /// <summary>
+    /// deleteTask
+    /// </summary>
     static void deleteTask()///Gets the id from the Tasks and deletes it if it exists
     {
         try
@@ -367,6 +418,10 @@ internal class Program
         catch (Exception e) { Console.WriteLine(e.Message); }
 
     }
+
+    /// <summary>
+    /// deleteEngineer
+    /// </summary>
     static void deleteEngineer()///Gets the id from the Engineer and deletes it if it exists
     {
         try
@@ -379,6 +434,10 @@ internal class Program
 
     }
 
+    /// <summary>
+    /// updateObject
+    /// </summary>
+    /// <param name="entityName"></param>
     public static void updateObject(string entityName)
     {
         switch (entityName)
@@ -398,6 +457,9 @@ internal class Program
 
     }
 
+    /// <summary>
+    /// updateTask
+    /// </summary>
     static void updateTask()
     {
         int idTask;
@@ -405,13 +467,14 @@ internal class Program
         BO.Task? task = s_bl!.Task.Read(idTask);
         if (task != null)
         {
-            string description = GetInput("Enter the task description: ");
-            string alias = GetInput("Enter the task alias: ");
+            string? description = GetInput("Enter the task description: ");
+            string? alias = GetInput("Enter the task alias: ");
             DateTime? scheduledStartDate = GetNullDateTimeInput("Enter the task start date and time (YYYY-MM-DD HH:mm:ss): ") ?? DateTime.Now;
             DateTime? deadLine = GetNullDateTimeInput("Enter the task deadline date and time (YYYY-MM-DD HH:mm:ss): ") ?? DateTime.Now.AddYears(1);
-            TimeSpan requiredEffortTime = new TimeSpan(GetIntInput("Enter the task requiredEffortTime (in days) : "), 0, 0, 0);
-            string deliverables = GetInput("Enter the task deliverables: ");
-            string remarks = GetInput("Enter the task Remarks: ");
+            int? requiredEffortTimeNumber = GetNullIntInput("Enter the task requiredEffortTime (in days) : ");
+            TimeSpan? requiredEffortTime = requiredEffortTimeNumber is not null ? new TimeSpan((int)requiredEffortTimeNumber, 0, 0, 0) : null;
+            string? deliverables = GetInput("Enter the task deliverables: ");
+            string? remarks = GetInput("Enter the task Remarks: ");
             Console.WriteLine("Enter the dependencies tasks");
             string? read = Console.ReadLine();
             List<int>? dependenciesId = read != "" && read is not null ? read.Split(" ")?.Select(n => int.Parse(n)).ToList() : null;
@@ -440,25 +503,29 @@ internal class Program
             } : null;
             BO.Task updatedTask = new BO.Task
             {
-                Id = 1,
-                Description = description,
-                Alias = alias,
-                CreatedAtDate = DateTime.Now,
-                Status = 0,
-                RequiredEffortTime = requiredEffortTime,
-                ScheduledStartDate = scheduledStartDate,
-                DeadLine = deadLine,
-                Deliverable = deliverables,
-                Remarks = remarks,
-                Engineer = engineer,
-                CopmlexityLevel = engineerId is not null ? s_bl.Engineer.Read((int)engineerId!).Level : null,
-                Dependencies = dependencies,
+                Id = task.Id,
+                Description = description != "" ? description : task.Description,
+                Alias = alias != "" ? alias : task.Alias,
+                Status = GetStatusInput("enter the status "),
+                StartDate = task.StartDate,
+                ScheduledStartDate = task.ScheduledStartDate,
+                ForecastDate = task.ForecastDate,
+                CompleteDate = task.CompleteDate,
+                DeadLine = task.DeadLine,
+                Deliverable = deliverables != "" ? deliverables : task.Deliverable,
+                Remarks = remarks != "" ? remarks : task.Remarks,
+                Engineer = engineerId is not null?engineer:null,
+                CopmlexityLevel = task.CopmlexityLevel,
             };
             s_bl!.Task.Update(updatedTask);
 
         }
 
     }
+
+    /// <summary>
+    /// updateEngineer
+    /// </summary>
     static void updateEngineer()
     {
         int idEngineer;
@@ -472,7 +539,7 @@ internal class Program
             BO.EngineerExperience? level = GetCopmlexityLevelInput("Please enter the engineer's experience level (  Novice, AdvancedBeginner, Competent, Proficient, Expert): ");
             double? cost = GetNullDoubleInput("Please enter the engineer's cost per hour: ");
             int? taskId = GetNullIntInput("Enter task Id: ");
-            string alias = GetInput("Enter the alias  ");
+            string? alias = GetInput("Enter the alias  ");
             TaskInEngineer? taskInEngineer = new TaskInEngineer { Id = taskId ?? 0, Alias = alias };
 
             BO.Engineer updatedEngineer = new BO.Engineer
@@ -488,12 +555,22 @@ internal class Program
         }
     }
 
+    /// <summary>
+    /// GetInput
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
     static string GetInput(string message)
     {
         Console.Write(message);
         return Console.ReadLine() ?? " ";
     }
 
+    /// <summary>
+    /// GetNullIntInput
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
     public static int? GetNullIntInput(string message)
     {
         int? inputMutable;
@@ -510,6 +587,13 @@ internal class Program
         }
         return inputMutable;
     }
+
+    /// <summary>
+    /// GetIntInput
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
+    /// <exception cref="BlNullPropertyException"></exception>
     public static int GetIntInput(string message)
     {
 
@@ -528,6 +612,11 @@ internal class Program
         return inputMutable;
     }
 
+    /// <summary>
+    /// GetNullDateTimeInput
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
     public static DateTime? GetNullDateTimeInput(string message)
     {
         DateTime? inputMutable;
@@ -545,6 +634,12 @@ internal class Program
         return inputMutable;
     }
 
+    /// <summary>
+    /// GetTimeSpanInput
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
+    /// <exception cref="BlNullPropertyException"></exception>
     public static TimeSpan GetTimeSpanInput(string message)
     {
         TimeSpan inputMutable;
@@ -562,6 +657,11 @@ internal class Program
         return inputMutable;
     }
 
+    /// <summary>
+    /// GetNullDoubleInput
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
     public static double? GetNullDoubleInput(string message)///A function with a print-to-screen parameter that receives a double from the user and returns a variable with the content and if nothing is entered a null value
     {
 
@@ -580,6 +680,11 @@ internal class Program
         return inputMutable;
     }
 
+    /// <summary>
+    /// GetBoolInput
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
     static bool GetBoolInput(string message)
     {
         Console.Write(message);
@@ -587,6 +692,11 @@ internal class Program
         return bool.Parse(input!);
     }
 
+    /// <summary>
+    /// GetDateTimeInput
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
     static DateTime? GetDateTimeInput(string message)
     {
         DateTime date;
@@ -595,6 +705,12 @@ internal class Program
             return null;
         return date;
     }
+
+    /// <summary>
+    /// GetCopmlexityLevelInput
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
     static BO.EngineerExperience GetCopmlexityLevelInput(string message)
     {
         Console.Write(message);
@@ -603,6 +719,12 @@ internal class Program
         Enum.TryParse(level, out experienceLevel);
         return experienceLevel;
     }
+
+    /// <summary>
+    /// GetStatusInput
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
     static BO.Status GetStatusInput(string message)
     {
         Console.Write(message);
@@ -611,6 +733,10 @@ internal class Program
         Enum.TryParse(status, out statusLevel);
         return statusLevel;
     }
+
+    /// <summary>
+    /// readMilestone
+    /// </summary>
     static void readMilestone()
     {
         int idMilestone;
@@ -619,6 +745,10 @@ internal class Program
         Console.WriteLine(milestoneRead);
 
     }
+
+    /// <summary>
+    /// updateMilestone
+    /// </summary>
     static void updateMilestone()
     {
         int idMilestone;
