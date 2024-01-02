@@ -1,8 +1,5 @@
 ﻿namespace BO;
 
-/// <summary>
-/// TaskInList class
-/// </summary>
 public class TaskInList
 {
     public int Id { get; init; }

@@ -1,8 +1,5 @@
 ﻿namespace BlApi;
 
-/// <summary>
-/// ITask
-/// </summary>
 public interface ITask
 {
     public IEnumerable<BO.Task> ReadAll(Func<BO.Task, bool>? filter = null);

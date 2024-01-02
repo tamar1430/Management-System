@@ -1,10 +1,6 @@
 ﻿using DalApi;
 
 namespace BlApi;
-
-/// <summary>
-/// Bl
-/// </summary>
 public interface Bl
 {
     public IEngineer Engineer { get; }

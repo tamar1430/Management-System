@@ -1,7 +1,7 @@
 ﻿namespace BlApi;
 
 /// <summary>
-/// IEngineer
+/// 
 /// </summary>
 public interface IEngineer
 {

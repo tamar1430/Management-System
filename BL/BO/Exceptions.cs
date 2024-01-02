@@ -1,8 +1,5 @@
 ﻿namespace BO;
 
-/// <summary>
-/// BlDoesNotExistException
-/// </summary>
 [Serializable]
 public class BlDoesNotExistException : Exception
 {
@@ -11,9 +8,6 @@ public class BlDoesNotExistException : Exception
                 : base(message, innerException) { }
 }
 
-/// <summary>
-/// BlAlreadyExistsException
-/// </summary>
 [Serializable]
 public class BlAlreadyExistsException : Exception
 {
@@ -22,9 +16,6 @@ public class BlAlreadyExistsException : Exception
                 : base(message, innerException) { }
 }
 
-/// <summary>
-/// BlDeletionImpossible
-/// </summary>
 [Serializable]
 public class BlDeletionImpossible : Exception
 {
@@ -33,9 +24,6 @@ public class BlDeletionImpossible : Exception
                 : base(message, innerException) { }
 }
 
-/// <summary>
-/// BlXMLFileLoadCreateException
-/// </summary>
 [Serializable]
 public class BlXMLFileLoadCreateException : Exception
 {
@@ -44,18 +32,12 @@ public class BlXMLFileLoadCreateException : Exception
                 : base(message, innerException) { }
 }
 
-/// <summary>
-/// BlNullPropertyException
-/// </summary>
 [Serializable]
 public class BlNullPropertyException : Exception
 {
     public BlNullPropertyException(string? message) : base(message) { }
 }
 
-/// <summary>
-/// BlInorrectData
-/// </summary>
 [Serializable]
 public class BlInorrectData
  : Exception

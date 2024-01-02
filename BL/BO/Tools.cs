@@ -1,16 +1,11 @@
 ﻿
+using System.Reflection;
+using System.Text;
+
 namespace BO;
 
-/// <summary>
-/// Tools function
-/// </summary>
 public static class Tools
 {
-    /// <summary>
-    /// give the correct status for task
-    /// </summary>
-    /// <param name="doTask"></param>
-    /// <returns></returns>
     public static Status status(DO.Task doTask)
     {
         return doTask.ScheduledDate is null ? BO.Status.Unscheduled :
@@ -20,23 +15,11 @@ public static class Tools
                    BO.Status.Done;
     }
 
-    /// <summary>
-    /// public ToStringProperty
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="obj"></param>
-    /// <returns></returns>
     public static string ToStringProperty<T>(this T obj)
     {
         return ToStringProperty(obj, "");
     }
 
-    /// <summary>
-    /// private inner ToStringProperty
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <param name="indent"></param>
-    /// <returns></returns>
     private static string ToStringProperty(object obj, string indent)
     {
         var type = obj.GetType();

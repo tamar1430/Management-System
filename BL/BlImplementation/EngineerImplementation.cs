@@ -1,21 +1,15 @@
-﻿
+﻿using BlApi;
+using DalApi;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
 namespace BlImplementation;
 
-/// <summary>
-/// EngineerImplementation
-/// </summary>
 internal class EngineerImplementation : BlApi.IEngineer
 {
-    private DalApi.IDal _dal = DalApi.Factory.Get;
+    private DalApi.IDal _dal = DalApi.Factory.Get
+        ;
 
-    /// <summary>
-    /// create engineer
-    /// </summary>
-    /// <param name="boEngineer"></param>
-    /// <exception cref="BO.BlInorrectData"></exception>
-    /// <exception cref="BO.BlAlreadyExistsException"></exception>
     public void Create(BO.Engineer boEngineer)
     {
         if (boEngineer.Id <= 0) throw new BO.BlInorrectData("Engineer's id isn't correct");
@@ -38,17 +32,13 @@ internal class EngineerImplementation : BlApi.IEngineer
         }
     }
 
-    /// <summary>
-    /// delete engineer
-    /// </summary>
-    /// <param name="id"></param>
-    /// <exception cref="BO.BlDeletionImpossible"></exception>
-    /// <exception cref="BO.BlDoesNotExistException"></exception>
     public void Delete(int id)
     {
         DO.Task? taskEngineer = _dal!.Task!.Read(t => t.EngineerId == id && t.IsMilestone);
         if (taskEngineer != null)
             throw new BO.BlDeletionImpossible("can't delete engineer that do task now");
+
+        // לבדוק איך לבדוק אם בצע משימה בעבר
 
         try
         {
@@ -60,12 +50,6 @@ internal class EngineerImplementation : BlApi.IEngineer
         }
     }
 
-    /// <summary>
-    /// read engineer
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    /// <exception cref="BO.BlDoesNotExistException"></exception>
     public BO.Engineer Read(int id)
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(id);
@@ -86,11 +70,6 @@ internal class EngineerImplementation : BlApi.IEngineer
 
     }
 
-    /// <summary>
-    /// read all engineers
-    /// </summary>
-    /// <param name="filter"></param>
-    /// <returns></returns>
     public IEnumerable<BO.Engineer> ReadAll(Func<BO.Engineer, bool>? filter = null)
     {
         return (from DO.Engineer doEngineer in _dal.Engineer.ReadAll(filter!=null ? (Func<DO.Engineer, bool>)filter :null )
@@ -106,12 +85,6 @@ internal class EngineerImplementation : BlApi.IEngineer
                 });
     }
 
-    /// <summary>
-    /// update engineer
-    /// </summary>
-    /// <param name="boEngineer"></param>
-    /// <exception cref="BO.BlInorrectData"></exception>
-    /// <exception cref="BO.BlDoesNotExistException"></exception>
     public void Update(BO.Engineer boEngineer)
     {
         if (boEngineer.Id <= 0) throw new BO.BlInorrectData("Engineer's id isn't correct");

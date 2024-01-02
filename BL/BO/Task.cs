@@ -1,8 +1,5 @@
 ﻿namespace BO;
 
-/// <summary>
-/// Task class
-/// </summary>
 public class Task
 {
     public int Id { get; init; }
@@ -12,6 +9,7 @@ public class Task
     public Status? Status { get; set; }
     public List<TaskInList> Dependencies { get; set; }
     public MilestoneInTask? Milestone { get; set; }
+    //public DateTime? BaselineStartDate { get; init; }
     public DateTime? StartDate { get; set; }
     public DateTime? ScheduledStartDate { get; init; }
     public TimeSpan? RequiredEffortTime { get; init; }

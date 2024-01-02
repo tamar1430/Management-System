@@ -1,8 +1,5 @@
 ﻿namespace BlApi;
 
-/// <summary>
-/// ISpecialOperations
-/// </summary>
 public interface ISpecialOperations
 {
     public DateTime? GetStartProjectDate();

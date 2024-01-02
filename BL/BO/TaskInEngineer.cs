@@ -1,7 +1,7 @@
 ﻿namespace BO;
 
 /// <summary>
-/// TaskInEngineer class
+/// 
 /// </summary>
 public class TaskInEngineer
 {
