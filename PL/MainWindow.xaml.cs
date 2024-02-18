@@ -26,7 +26,7 @@ public partial class MainWindow : Window
     private void ResetDB(object sender, RoutedEventArgs e)
     {
         MessageBoxResult mbResult = MessageBox.Show(
-     "Are you sure?", "reset",
+        "Are you sure?", "reset",
         MessageBoxButton.YesNo,
         MessageBoxImage.Question,
         MessageBoxResult.Yes,

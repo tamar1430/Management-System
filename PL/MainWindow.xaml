@@ -12,7 +12,7 @@
             <ColumnDefinition Width="26*"/>
             <ColumnDefinition Width="683*"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="2" Content="Handle Courses" HorizontalAlignment="Left" Margin="50,329,0,0" VerticalAlignment="Top" Width="129" Height="61" Click="BtnEngineer_Click"/>
+        <Button Grid.Column="2" Content="Handle Engineers" HorizontalAlignment="Left" Margin="50,329,0,0" VerticalAlignment="Top" Width="129" Height="61" Click="BtnEngineer_Click"/>
         <Button Grid.Column="2" Content="Init DB" HorizontalAlignment="Left" Margin="231,329,0,0" VerticalAlignment="Top" Width="129" Height="61" Click="Button_Click"/>
         <Button Grid.Column="2" Content="Reset" HorizontalAlignment="Left" Margin="412,329,0,0" VerticalAlignment="Top" Width="129" Height="61" Click="ResetDB"/>
     </Grid>

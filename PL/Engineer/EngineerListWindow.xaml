@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
         Title="EngineerListWindow" Height="640" Width="800">
     <!--Extrnal Grid-->
     <Grid>
@@ -16,19 +17,22 @@
         <!--Internal, Upper Grid-->
         <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="400"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Label" Grid.Column="0" HorizontalAlignment="Left" Margin="284,0,0,0" VerticalAlignment="Center"/>
-            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Label Content="Level" Grid.Column="0" HorizontalAlignment="Left" Margin="280,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="-2.129,0.706"/>
+            <ComboBox ItemsSource="{Binding Source={StaticResource LevelsCollectionKey}}"
+                      SelectedValue="{Binding Path=SearchLevelSelectedValue, Mode=TwoWay}"
+                      SelectionChanged="LevelSelectionChanged"
+                      Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         </Grid>
-        <ListView Grid.Row="1" >
-            <ListView.View>
+        <ListView Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="SelectEngineer">
+            <ListView.View >
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100"/>
+        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Click="AddEngineer"/>
     </Grid>
 </Window>

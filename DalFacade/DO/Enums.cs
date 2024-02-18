@@ -6,6 +6,7 @@ namespace DO;
 /// </summary>
 public enum EngineerExperience
 {
+    All,
     Novice,
     AdvancedBeginner,
     Competent,
