@@ -22,7 +22,7 @@ internal class SpecialOperationsImplementation : ISpecialOperations
 
     public void SetStartProjectDate(DateTime value)
     {
-       Config.StartProjectDate = value;
+        Config.StartProjectDate = value;
     }
 
     public void Reset()

@@ -28,8 +28,7 @@ internal class Program
         }
 
         static void DisplayMainMenu()
-        {
-
+        { 
             bool exitTheMenu = false;
 
             while (!exitTheMenu)
