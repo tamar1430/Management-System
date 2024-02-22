@@ -10,4 +10,5 @@ public interface ISpecialOperations
     public void SetStartProjectDate(DateTime value);
     public void SetFinishProjectDate(DateTime value);
     public void Reset();
+    public void Init();
 }

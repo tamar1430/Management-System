@@ -6,14 +6,28 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Background" Value="LightSeaGreen" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Height" Value="70" />
+            <Setter Property="Margin" Value="30" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="91*"/>
-            <ColumnDefinition Width="26*"/>
-            <ColumnDefinition Width="683*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="2" Content="Handle Engineers" HorizontalAlignment="Left" Margin="50,329,0,0" VerticalAlignment="Top" Width="129" Height="61" Click="BtnEngineer_Click"/>
-        <Button Grid.Column="2" Content="Init DB" HorizontalAlignment="Left" Margin="231,329,0,0" VerticalAlignment="Top" Width="129" Height="61" Click="Button_Click"/>
-        <Button Grid.Column="2" Content="Reset" HorizontalAlignment="Left" Margin="412,329,0,0" VerticalAlignment="Top" Width="129" Height="61" Click="ResetDB"/>
+        <TextBlock Text="Michal &amp; Tamar!!" FontWeight="Bold" FontStyle="Oblique"  FontSize="50" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Grid.Column="0" Content="Handle Engineers" Click="BtnEngineer_Click"/>
+        <Button Grid.Column="1" Content="Init DB" Click="InitDB"/>
+        <Button Grid.Column="2" Content="Reset" Click="ResetDB"/>
     </Grid>
 </Window>

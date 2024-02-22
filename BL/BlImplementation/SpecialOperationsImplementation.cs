@@ -1,6 +1,7 @@
 ﻿namespace BL;
 using BlApi;
 using BO;
+using DalTest;
 
 /// <summary>
 /// SpecialOperationsImplementation
@@ -51,6 +52,14 @@ internal class SpecialOperationsImplementation : ISpecialOperations
     public void Reset()
     {
         _dal.SpecialOperations.Reset();
+    }
+
+    /// <summary>
+    /// init db
+    /// </summary>
+    public void Init()
+    {
+        Initialization.Do(_dal);
     }
 
 }

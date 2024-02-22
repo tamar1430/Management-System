@@ -31,5 +31,6 @@ internal class SpecialOperationsImplementation : ISpecialOperations
         DataSource.Engineers.Clear();
         DataSource.Dependencys.Clear();
         DataSource.Tasks.Clear();
-    } 
+    }
+    
 }

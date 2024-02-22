@@ -3,6 +3,9 @@ using System.Windows.Data;
 
 namespace PL;
 
+/// <summary>
+/// convert int - id to string add or update
+/// </summary>
 class ConvertIdToContent : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -16,6 +19,9 @@ class ConvertIdToContent : IValueConverter
     }
 }
 
+/// <summary>
+/// convert int - id to bool
+/// </summary>
 class ConvertIdToBoolean : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

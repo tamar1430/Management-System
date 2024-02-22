@@ -14,65 +14,83 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.Engineer
+namespace PL.Engineer;
+
+/// <summary>
+/// Interaction logic for EngineerListWindow.xaml
+/// </summary>
+public partial class EngineerListWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for EngineerListWindow.xaml
-    /// </summary>
-    public partial class EngineerListWindow : Window
+    static readonly Bl s_bl = Factory.Get();
+
+    public BO.EngineerExperience SearchLevelSelectedValue { get; set; } = BO.EngineerExperience.All;
+
+    public static readonly DependencyProperty EngineerListProperty =
+     DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.Engineer>), typeof(EngineerListWindow), new PropertyMetadata(null));
+
+    public IEnumerable<BO.Engineer> EngineerList
     {
-        static readonly Bl s_bl = Factory.Get();
+        get { return (IEnumerable<BO.Engineer>)GetValue(EngineerListProperty); }
+        set { SetValue(EngineerListProperty, value); }
+    }
 
-         AddUpdateEngineer addUpdateEngineer = new();
+    /// <summary>
+    /// initialize the window
+    /// </summary>
+    public EngineerListWindow()
+    {
+        InitializeComponent();
+        EngineerList = s_bl?.Engineer.ReadAll()!;
+    }
 
-        public BO.EngineerExperience SearchLevelSelectedValue { get; set; } = BO.EngineerExperience.All;
+    /// <summary>
+    /// level selection changed
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void LevelSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        EngineerList = (SearchLevelSelectedValue == BO.EngineerExperience.All) ?
+            s_bl?.Engineer.ReadAll()! : s_bl?.Engineer.ReadAll(item => item.Level == (DO.EngineerExperience)SearchLevelSelectedValue)!;
+    }
 
-        public static readonly DependencyProperty EngineerListProperty = 
-         DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.Engineer>), typeof(EngineerListWindow), new PropertyMetadata(null));
-
-        public IEnumerable<BO.Engineer> EngineerList
+    /// <summary>
+    /// create new engineer
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void AddEngineer(object sender, RoutedEventArgs e)
+    {
+        AddUpdateEngineer addUpdateEngineer = new();
+        addUpdateEngineer.CloseWindow += (s, e) =>
         {
-            get { return (IEnumerable<BO.Engineer>)GetValue(EngineerListProperty); }
-            set { SetValue(EngineerListProperty, value); }
-        }
+            UpdateEngineersList();
+        };
+        addUpdateEngineer.ShowDialog();
+    }
 
-        public EngineerListWindow()
+    /// <summary>
+    /// select engineer to update
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SelectEngineer(object sender, MouseButtonEventArgs e)
+    {
+        BO.Engineer? engineer = (sender as ListView)?.SelectedItem as BO.Engineer;
+        AddUpdateEngineer addUpdateEngineer = new(engineer!.Id);
+        addUpdateEngineer.CloseWindow += (s, e) =>
         {
-            InitializeComponent();
-            EngineerList = s_bl?.Engineer.ReadAll()!;
-        }
+            UpdateEngineersList();
+        };
+        addUpdateEngineer.ShowDialog();
+    }
 
-        private void LevelSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            EngineerList = (SearchLevelSelectedValue == BO.EngineerExperience.All) ?
-                s_bl?.Engineer.ReadAll()! : s_bl?.Engineer.ReadAll(item => item.Level == (DO.EngineerExperience)SearchLevelSelectedValue)!;
-        }
-
-        private void AddEngineer(object sender, RoutedEventArgs e)
-        {
-            AddUpdateEngineer addUpdateEngineer = new();
-            addUpdateEngineer.CloseWindow += (s, e) =>
-            {
-                UpdateEngineersList();
-            };
-            addUpdateEngineer.ShowDialog();
-        }
-
-        private void SelectEngineer(object sender, MouseButtonEventArgs e)
-        {
-            BO.Engineer? engineer = (sender as ListView)?.SelectedItem as BO.Engineer;
-            AddUpdateEngineer addUpdateEngineer = new(engineer!.Id);
-            addUpdateEngineer.CloseWindow += (s, e) =>
-            {
-                UpdateEngineersList();
-            };
-            addUpdateEngineer.ShowDialog();
-        }
-
-        private void UpdateEngineersList()
-        {
-            EngineerList = (SearchLevelSelectedValue == BO.EngineerExperience.All) ?
-               s_bl?.Engineer.ReadAll()! : s_bl?.Engineer.ReadAll(item => item.Level == (DO.EngineerExperience)SearchLevelSelectedValue)!;
-        }
+    /// <summary>
+    /// load the engineer list after adding or updating
+    /// </summary>
+    private void UpdateEngineersList()
+    {
+        EngineerList = (SearchLevelSelectedValue == BO.EngineerExperience.All) ?
+           s_bl?.Engineer.ReadAll()! : s_bl?.Engineer.ReadAll(item => item.Level == (DO.EngineerExperience)SearchLevelSelectedValue)!;
     }
 }

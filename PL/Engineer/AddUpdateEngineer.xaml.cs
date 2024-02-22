@@ -23,9 +23,9 @@ namespace PL.Engineer
     {
         static readonly Bl s_bl = Factory.Get();
 
-        static string addOrUpdate;
+        static string? addOrUpdate;
 
-        public event EventHandler CloseWindow;
+        public event EventHandler? CloseWindow;
 
         public AddUpdateEngineer(int currentEngineerId = 0)
         {
@@ -51,36 +51,72 @@ namespace PL.Engineer
             get { return (BO.Engineer)GetValue(CurrentEngineerProperty); }
             set { SetValue(CurrentEngineerProperty, value); }
         }
-        
 
+        /// <summary>
+        /// submit add or update engineet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddUpdateEngineerSubmit(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            try            {
                 if (addOrUpdate == "add")
                 {
-                    s_bl.Engineer.Create(CurrentEngineer);
-                    MessageBox.Show("Engineer created successfully");
-                    CloseWindow(sender,e);
-                    this.Close();
+                    try
+                    {
+                        s_bl.Engineer.Create(CurrentEngineer);
+                        MessageBox.Show("Engineer created successfully", "add engineer",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                        if (CloseWindow is not null)
+                            CloseWindow(this, e);
+                        this.Close();
+                    }
+                    catch (BO.BlInorrectData ex)
+                    {
+                        MessageBox.Show($"{ex.Message}", "incorrect data", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    catch (BO.BlAlreadyExistsException)
+                    {
+                        MessageBox.Show("Engineer already exist", "exist", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Unexpected error", "error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
                 }
                 else
                 {
-                    s_bl.Engineer.Update(CurrentEngineer);
-                    MessageBox.Show("Engineer updated successfully");
-                    CloseWindow(sender, e);
-                    this.Close();
-                }
+                    try
+                    {
+                        s_bl.Engineer.Update(CurrentEngineer);
 
+                        MessageBox.Show("Engineer updated successfully", "add engineer",
+                                MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        if (CloseWindow is not null)
+                            CloseWindow(this, e);
+                        this.Close();
+                    }
+                    catch (BO.BlInorrectData ex)
+                    {
+                        MessageBox.Show($"{ex.Message}", "incorrect data", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Unexpected error", "error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
             }
-            catch(BlInorrectData ex)
+            catch (BlInorrectData ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("can't save the changes");
             }
         }
+
     }
 }
